@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>irra实验结果</title>
+    <link href="/2024/01/03/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/"/>
+    <url>/2024/01/03/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/</url>
+    
+    <content type="html"><![CDATA[<p>triplet</p><p><img src="/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/image-20240103195843243.png" alt="image-20240103195843243"></p><p>正样本的相似性值太小了</p><p>想办法增大正样本相似性的值</p><p>笑死把sdm也搞坏了</p><p>或者会不会是margin太大了</p><p><img src="/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/image-20240103200120007.png" alt="image-20240103200120007"></p><p>这个<strong>有搞头</strong>，把负样本的值弄小些，正样本值弄大些</p><p><img src="/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/image-20240103201747595.png" alt="image-20240103201747595"></p><p>还可以调调margin，感觉margin会不会大了点</p><p>就指望你了，选用的 最简单的负样本，然后用了多个正样本</p><p>随机选一个负样本</p><p>随机选一个负样本+正样本构造</p><p><img src="/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/image-20240103200933847.png" alt="image-20240103200933847"></p><p>用triplet跑跑，还是多个正样本和，一个困难样本，然后*10</p><p>这个<strong>没搞头</strong></p><p><img src="/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/image-20240103204127632.png" alt="image-20240103204127632"></p><p>初始是大，后面太简单了，收敛太早了，根本训练不到</p><p>目前最好的效果</p><p>sdm+使用最难负样本和全部正样本</p><p>要Yue了，水不出来了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>mask</title>
+    <link href="/2024/01/02/mask/"/>
+    <url>/2024/01/02/mask/</url>
+    
+    <content type="html"><![CDATA[<p>mask操作</p><p>在计网里面学ip地址的时候，学ip地址这一章的时候</p><p>有一个子网掩码，掩码就是mask</p><p>定义来说，mask通常是指一个用来<strong>掩盖</strong>或<strong>选择</strong>特定位的二进制序列，或者是一个用来<strong>标记</strong>或<strong>过滤</strong>某些元素的布尔数组</p><p>对矩阵操作时</p><p>选择Id相同或不同</p><p>就是过滤到某些元素，就要使用<strong>布尔掩码</strong></p><p>大佬说的：gpu擅长并行计算</p><p>所以不要像以前的编程思想了，深度学习里面的计算都是矩阵运算了，谁还去写两个for循环啊</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>pytorch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>np和list</title>
+    <link href="/2024/01/02/np%E5%92%8Clist/"/>
+    <url>/2024/01/02/np%E5%92%8Clist/</url>
+    
+    <content type="html"><![CDATA[<p>numpy和list本质上都是封装好了的数组</p><p>numpy底层用c语言实现的</p><p>list列表是python内置的</p><p>难怪老师要我好好学一下numpy啊，可惜我没听进去</p><p>NumPy 数组是由 C 语言编写的，支持广播（broadcasting）等高级操作</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>pytorch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>范数norm</title>
+    <link href="/2024/01/02/%E8%8C%83%E6%95%B0norm/"/>
+    <url>/2024/01/02/%E8%8C%83%E6%95%B0norm/</url>
+    
+    <content type="html"><![CDATA[<p>范数（norm)是用于衡量向量空间中向量大小或长度的一种数学概念。是一种广义的距离度量，描述向量的大小和某种意义上的长度。</p><p>范数感觉跟模的概念好像</p><p>向量的大小或某种意义上的长度</p><p>L1范数</p><p>向量元素的绝对值之和   </p><p>edg [1,-1,2,3,-2] L1范数为3</p><p>L2范数（欧几里得范数）</p><p>向量元素的平方和的平方根</p><p>edg [1,2,3] L2范数 根号1的平方加2的平方加3的平方</p><p>torch.norm</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成一个简单的文本特征示例</span></span><br><span class="line">text_features = torch.tensor([</span><br><span class="line">    [<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>],</span><br><span class="line">    [<span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>],</span><br><span class="line">    [<span class="number">7.0</span>, <span class="number">8.0</span>, <span class="number">9.0</span>]</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对文本特征进行归一化</span></span><br><span class="line">text_norm = text_features / text_features.norm(dim=-<span class="number">1</span>, keepdim=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure><p>torch.norm()dim参数指定哪一维，keepdim参数指定是否保持原维度</p><p>0用第一维，-1用倒数第一维</p><p>上面用倒数第一位，就是用的列，求列的范数，说实话，这不是按行求吗</p><p>混了混了真混了</p><p>不管了，跑代码的时候直接打断点看看就行了</p><p>torch.tensor</p><p>轻舟过了千重山了</p><p>这几天真的是，累成一条狗了</p><p>充实还是很充实的，能认识大佬跟着大佬学</p><p>就是一开始一个人要写这个损失函数的时候</p><p>真的是很焦虑啊很焦虑</p><p>人都吓病了</p><p>还好，这几天遇到的人啊都很好</p><p>家教很幸运遇到这个热情的一家</p><p>代码很幸运有这么一个大佬</p><p>朋友很幸运有那么一个朋友喊我玩</p><p>还有还有，王老师巨好巨好巨好</p><p>人不能是孤独的</p><p>一个人可能走得更快，但一群人一定走得更远</p><p>越来越赞同人是群居动物了，是处在社会关系中的</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>pytorch torch.tensor</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>组会2</title>
+    <link href="/2023/12/29/%E7%BB%84%E4%BC%9A2/"/>
+    <url>/2023/12/29/%E7%BB%84%E4%BC%9A2/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>itc损失</title>
+    <link href="/2023/12/29/itc%E6%8D%9F%E5%A4%B1/"/>
+    <url>/2023/12/29/itc%E6%8D%9F%E5%A4%B1/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>transformer家族</title>
+    <link href="/2023/12/27/transformer%E5%AE%B6%E6%97%8F/"/>
+    <url>/2023/12/27/transformer%E5%AE%B6%E6%97%8F/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>修改主干网络</title>
+    <link href="/2023/12/27/%E4%BF%AE%E6%94%B9%E4%B8%BB%E5%B9%B2%E7%BD%91%E7%BB%9C/"/>
+    <url>/2023/12/27/%E4%BF%AE%E6%94%B9%E4%B8%BB%E5%B9%B2%E7%BD%91%E7%BB%9C/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pkl文件查看</title>
+    <link href="/2023/12/27/pkl%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B/"/>
+    <url>/2023/12/27/pkl%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B/</url>
+    
+    <content type="html"><![CDATA[<p>真就是基础不牢，地动山摇，后悔Python课没好好听了</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取.pkl文件</span></span><br><span class="line">pkl_file_path = <span class="string">&#x27;/mnt/disk1/yyh/Person_reID_baseline_pytorch-master/id_path_CUHK.pkl&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(pkl_file_path, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> pkl_file:</span><br><span class="line">    id_path_dict = pickle.load(pkl_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印字典内容</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">id</span>, path <span class="keyword">in</span> id_path_dict.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;ID: <span class="subst">&#123;<span class="built_in">id</span>&#125;</span>, Path: <span class="subst">&#123;path&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure><p>读文件</p><p>rb以二进制的形式读取文件</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取 JSON 文件</span></span><br><span class="line">json_file_path = <span class="string">&#x27;/mnt/disk1/wcj/code/IRRA/data/CUHK-PEDES/reid_raw.json&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(json_file_path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> json_file:</span><br><span class="line">    data = json.load(json_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建字典，每个文件路径对应一个ID</span></span><br><span class="line">path_id_dict = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> data:</span><br><span class="line">    id_value = item[<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">    file_path = <span class="string">&#x27;/mnt/disk1/wcj/code/IRRA/data/CUHK-PEDES/imgs/&#x27;</span> + item[<span class="string">&#x27;file_path&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将当前文件路径作为键，对应的ID作为值</span></span><br><span class="line">    path_id_dict[file_path] = id_value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存为 .pkl 文件</span></span><br><span class="line">pkl_file_path = <span class="string">&#x27;/mnt/disk1/yyh/Person_reID_baseline_pytorch-master/path_id_CUHK.pkl&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(pkl_file_path, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> pkl_file:</span><br><span class="line">    pickle.dump(path_id_dict, pkl_file)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Dictionary saved to <span class="subst">&#123;pkl_file_path&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>写文件</p><p>wb</p><p>以二进制的格式写文件，会覆盖原有文件</p><p>ab</p><p>以二进制的格式写文件，在文末追加</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>python pkl</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>跟着李沐读论文——transformer</title>
+    <link href="/2023/12/27/%E8%AE%BA%E6%96%87%E6%9C%AF%E8%AF%AD/"/>
+    <url>/2023/12/27/%E8%AE%BA%E6%96%87%E6%9C%AF%E8%AF%AD/</url>
+    
+    <content type="html"><![CDATA[<p>layer law</p><p>batch law</p><p>横着切，竖着切</p><p><img src="/%E8%AE%BA%E6%96%87%E6%9C%AF%E8%AF%AD/image-20231227201609321.png" alt="image-20231227201609321"></p><p>decoder</p><p>multi head</p><p>auto regression自回归 以前时刻的输出作为当前的输入</p><p>transformer 模型中解码器有一个mask保证在当前时刻是看不到之后的输出的</p><p>分类器是可以包含很多层的，可以包含全连接层和激活函数，一般分类器的最后都是加上一个softmax激活函数</p><p>softmax指数函数会强调置信度高的地方，降低置信度低的地方，适合用做多分类问题的输出层</p><p>classifier(分类器)通常是指整个用来分类的模块或网络层，可能包括多个子层，以及激活函数等</p><p>classification head (分类头)通常是指分类结构的顶部</p><p>所以分类头一般是指分类器的最后一部分，在一定语境下两个也可以是同义的</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>跟着李沐读论文 论文术语</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra</title>
+    <link href="/2023/12/27/irra/"/>
+    <url>/2023/12/27/irra/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra模型使用指南</title>
+    <link href="/2023/12/26/irra%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <url>/2023/12/26/irra%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+    
+    <content type="html"><![CDATA[<p><img src="/irra%E6%A8%A1%E5%9E%8B%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/image-20231226163818025.png" alt="image-20231226163818025"></p><p>提取的特征文件</p><p>dense resnet50 swin</p><p>老师说的resnet101  vit模型代码里面没有啊</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>VIT</title>
+    <link href="/2023/12/26/VIT/"/>
+    <url>/2023/12/26/VIT/</url>
+    
+    <content type="html"><![CDATA[<p>Vision Transformer</p><p>VIT需要数据集很大，效果才能很明显</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>backbone network</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>论文</title>
+    <link href="/2023/12/26/%E8%AE%BA%E6%96%87/"/>
+    <url>/2023/12/26/%E8%AE%BA%E6%96%87/</url>
+    
+    <content type="html"><![CDATA[<p>实验</p><p>itcn</p><p>vit</p><p>resnet </p><p>resnet101</p><p>swin</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>论文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra图像id保存</title>
+    <link href="/2023/12/25/irra%E5%9B%BE%E5%83%8Fid%E4%BF%9D%E5%AD%98/"/>
+    <url>/2023/12/25/irra%E5%9B%BE%E5%83%8Fid%E4%BF%9D%E5%AD%98/</url>
+    
+    <content type="html"><![CDATA[<p>irra模型训练</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用text_encode提特征</span></span><br><span class="line">        text_feats = self.base_model.encode_text(caption_ids)</span><br><span class="line">        t_feats = text_feats[torch.arange(text_feats.shape[<span class="number">0</span>]), caption_ids.argmax(dim=-<span class="number">1</span>)].<span class="built_in">float</span>()</span><br><span class="line"></span><br><span class="line">        logit_scale = self.logit_scale</span><br><span class="line">        ret.update(&#123;<span class="string">&#x27;temperature&#x27;</span>: <span class="number">1</span> / logit_scale&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;itc&#x27;</span> <span class="keyword">in</span> self.current_task:</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;itc_loss&#x27;</span>:objectives.compute_itc(i_feats, t_feats, logit_scale)&#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;sdm&#x27;</span> <span class="keyword">in</span> self.current_task:</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;sdm_loss&#x27;</span>:objectives.compute_sdm(i_feats, t_feats, batch[<span class="string">&#x27;pids&#x27;</span>], logit_scale)&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;cmpm&#x27;</span> <span class="keyword">in</span> self.current_task:</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;cmpm_loss&#x27;</span>:objectives.compute_cmpm(i_feats, t_feats, </span><br><span class="line">                                                            </span><br><span class="line">                                                            </span><br><span class="line">                                                            </span><br><span class="line">                                                            [<span class="string">&#x27;pids&#x27;</span>])&#125;)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;id&#x27;</span> <span class="keyword">in</span> self.current_task:</span><br><span class="line">            image_logits = self.classifier(i_feats.half()).<span class="built_in">float</span>()</span><br><span class="line">            text_logits = self.classifier(t_feats.half()).<span class="built_in">float</span>()</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;id_loss&#x27;</span>:objectives.compute_id(image_logits, text_logits, batch[<span class="string">&#x27;pids&#x27;</span>])*self.args.id_loss_weight&#125;)</span><br><span class="line"></span><br><span class="line">            image_pred = torch.argmax(image_logits, dim=<span class="number">1</span>)</span><br><span class="line">            text_pred = torch.argmax(text_logits, dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            image_precision = (image_pred == batch[<span class="string">&#x27;pids&#x27;</span>]).<span class="built_in">float</span>().mean()</span><br><span class="line">            text_precision = (text_pred == batch[<span class="string">&#x27;pids&#x27;</span>]).<span class="built_in">float</span>().mean()</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;img_acc&#x27;</span>: image_precision&#125;)</span><br><span class="line">            ret.update(&#123;<span class="string">&#x27;txt_acc&#x27;</span>: text_precision&#125;)</span><br></pre></td></tr></table></figure><p>四种损失函数itc,sdm,cmpm,id</p><p>图片准确率比文本准确率还高</p><p>那么batch[‘pids’]</p><p>修改：</p><p>生成正负样本</p><p>定义损失函数（对比学习，三元组损失）</p><p>task:</p><p>1.代码都写一份呗  pkl</p><p>一份id作为键，path作为值</p><p>一份path作为键，id作为值</p><p>2.再训练几个用来提取图片特征的模型</p><p>resnet50 resnet100</p><p>swin </p><p>VIT</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>json文件</title>
+    <link href="/2023/12/25/json%E6%96%87%E4%BB%B6/"/>
+    <url>/2023/12/25/json%E6%96%87%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<p><strong>JSON</strong></p><p>javascript object notation </p><p>js对象表示法</p><p>CUHK-PEDES数据集</p><p>每个元素是用字典表示的，然后所有元素放在一个列表里面是吗，字典里面的键有split captions file_path processed_tokens id</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>数据集</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra数据集</title>
+    <link href="/2023/12/25/irra%E6%95%B0%E6%8D%AE%E9%9B%86/"/>
+    <url>/2023/12/25/irra%E6%95%B0%E6%8D%AE%E9%9B%86/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>sdm损失函数</title>
+    <link href="/2023/12/24/sdm%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
+    <url>/2023/12/24/sdm%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<p>term</p><p><strong>loss function</strong> 损失函数 定义<strong>单个样本</strong>与<strong>真实值</strong>之间的误差</p><p><strong>cost function</strong> 代价函数 定义一个<strong>batch</strong>或者整个<strong>数据集</strong>与真实值之间的误差</p><p><strong>objective function</strong> 目标函数 泛指任意可以被优化的函数</p><p>损失函数是代价函数的一部分，代价函数是目标函数的一种类别</p><p>用来最小化目标函数常用的方法就是<strong>梯度下降法</strong>（gradient decent)</p><p>损失函数衡量模型作出的预测与真实值（<strong>ground truth</strong>)之间的偏离程度</p><p>损失函数有两大类别，<strong>回归（regression)损失</strong>,<strong>分类（classification)损失</strong></p><p><strong>分类损失</strong></p><p>计算机本质上都是在做分类问题，计算机只会0101</p><p><strong>熵</strong></p><p>熵是用于描述对<strong>不确定性</strong>的度量</p><blockquote><p>传输1比特的信息意味着将接收者的不确定性降低2倍。 —— 香浓</p></blockquote><p><img src="/sdm%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/image-20231224210029301.png" alt="image-20231224210029301"></p><p>X是随机变量，P(xi)是X取值为xi的概率</p><p>熵是非负的</p><p><strong>交叉熵</strong></p><p>交叉熵则是用来衡量两个概率分布之间的相似度</p><p><img src="/sdm%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/image-20231224210825781.png" alt="image-20231224210825781"></p><p>P(xi)是真实的概率分布，Q(xi)是模型给出的概率分布</p><p><img src="/sdm%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/image-20231224211313632.png" alt="image-20231224211313632"></p><p>讲得太好了，大师我悟了</p><p>信息的不确定性降两倍，log2(x),所以公式里面才会出现对数</p><p>用真实分布去<strong>加权计算</strong>模型分布的<strong>负对数概率</strong>，对混乱程度需要的表示位数进行加权，</p><p>交叉熵是KL散度的一种特殊情况</p><p>SDM</p><p>similarity distribution matching</p><p>相似度分布匹配</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>损失函数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra修改损失函数</title>
+    <link href="/2023/12/24/irra%E4%BF%AE%E6%94%B9%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"/>
+    <url>/2023/12/24/irra%E4%BF%AE%E6%94%B9%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<p><strong>sdm</strong></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>电桥</title>
+    <link href="/2023/12/24/%E7%94%B5%E6%A1%A5/"/>
+    <url>/2023/12/24/%E7%94%B5%E6%A1%A5/</url>
+    
+    <content type="html"><![CDATA[<p><strong>应变</strong></p><p>物体在受到外部力或应变时，其形状、大小或体积可能会发生变化，这种变化称为应变。</p><p><strong>桥式电路</strong></p><p>电桥是一种电路结构，通常用来测量电阻或者检测物理量的变化。</p><p><strong>平衡电桥</strong></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>电路</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Girls_can_change_the_world</title>
+    <link href="/2023/12/24/Girls-can-change-the-world/"/>
+    <url>/2023/12/24/Girls-can-change-the-world/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://ejoy-english.com/go/video/girls-can-change-the-world/53">Girls Can Change the World | eJOY English (ejoy-english.com)</a></p><p>Girls can change the world</p><p>I am really <strong>passionate</strong> about the climate change. 充满热情的</p><p>My interest is to find a cure for <strong>breast cancer</strong> because my mom had it.乳腺癌</p><p>I wanna make sure that we’re able to have a <strong>self-sustaining</strong> environment 自给自足的</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>英语打卡</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模型训练结果</title>
+    <link href="/2023/12/24/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/"/>
+    <url>/2023/12/24/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/</url>
+    
+    <content type="html"><![CDATA[<p><strong>训练结果</strong></p><p>损失函数loss&#x3D;mlm+id+sdm</p><p>epoch 50</p><p>训练图片编码器+文本编码器</p><p>速度1min20s</p><p>最终loss 10</p><p>最终准确率70多</p><p>损失函数loss&#x3D;sdm+id</p><p>epoch18 达到了最高准确率 40</p><p>训练文本编码器</p><p>速度4s</p><p>最终loss </p><p>最终准确率37.8</p><p>抽空把博客给整理一下，把图片不能显示的问题解决了，然后设置按时传到网站上</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>gpu</title>
+    <link href="/2023/12/24/gpu/"/>
+    <url>/2023/12/24/gpu/</url>
+    
+    <content type="html"><![CDATA[<p>LINUX终端查看GPU使用情况</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure><p> NVIDIA System Management Interface</p><p>LINUX终端查看cpu内存情况</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure><p>gpu显存</p><p><img src="/gpu/image-20231224122742957.png" alt="image-20231224122742957"></p><p>cpu内存</p><p><img src="/gpu/image-20231224134306991.png" alt="image-20231224134306991"></p><p>Cpu</p><p>中央处理器</p><p>RAM条 <strong>内存</strong></p><p>我电脑只有16个G</p><p>GPU</p><p>图形处理器</p><p>GPU Memory <strong>显存</strong></p><p>显卡内存，图形存储器</p><p>4090显存24G</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模型数据转移</title>
+    <link href="/2023/12/24/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
+    <url>/2023/12/24/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/</url>
+    
+    <content type="html"><![CDATA[<p>tips</p><p><strong>查看数据是在cpu还是在gpu</strong></p><p><em>python包pdb(python debugger)</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line">pdb.set_trace()</span><br></pre></td></tr></table></figure><p>终于懂了老师之前说的可能一次全部加载gpu会放不下的意思了</p><p>我真服了，之前不搜，白走了这么久的弯路</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/image-20231224141055528.png" alt="image-20231224141055528"></p><p>特征文件只有83M，gpu显存妥妥的可以放的下啊</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/image-20231224141844676.png" alt="image-20231224141844676"></p><p>特征全部放到gpu上</p><p>报错</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/image-20231224135614090.png"></p><p>后面的数据集的build函数会出问题，因为build函数写的是处理cpu上的数据</p><p>特征全部放到cpu上</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/image-20231224142236040.png" alt="image-20231224142236040"></p><p>直接把.cuda() 改成.cpu()就可以了</p><p>.cuda()里面可以传参数选定使用哪块gpu，.cpu()不可以传参数</p><p>卧槽，换了之后巨快训练</p><p>我真的是服了我之前，数据都放在外存，每个batch都去外存取，怎么想的啊，你怎么敢的</p><p>4s一批次，之前一分半一批次，啊啊啊，真的难绷，这还是放在cpu上的</p><p>内存五十多g，显存24G,哈哈哈哈</p><p>硬件好软件写的稀巴烂也不行啊，暴殄天物啊</p><p>现在训练比原来快了十倍了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模型冻结</title>
+    <link href="/2023/12/23/%E6%A8%A1%E5%9E%8B%E5%86%BB%E7%BB%93/"/>
+    <url>/2023/12/23/%E6%A8%A1%E5%9E%8B%E5%86%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>傅里叶变换</title>
+    <link href="/2023/12/23/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/"/>
+    <url>/2023/12/23/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/</url>
+    
+    <content type="html"><![CDATA[<p><strong>傅里叶级数</strong>和<strong>傅里叶变换</strong></p><p><strong>无穷级数</strong></p><p><strong>级数</strong><br>$$<br>\sum_{n&#x3D;0}^{\infty}a_n<br>$$<br>级数可以是<strong>收敛</strong>的，也可以是<strong>发散</strong>的</p><p>级数是一种数学结构，表示无穷多个数的和</p><p><strong>幂级数</strong><br>$$<br>\sum_{n&#x3D;0}^{\infty}a_nx^n<br>$$<br>每个项都是常量乘以变量的幂</p><p>幂级数有时可以表示为一个函数，当 x 取某些值时，级数收敛于一个特定的函数值。</p><p><strong>泰勒级数</strong></p><p>泰勒级数展开的目的是在给定点附近用多项式逼近原始函数。</p><p>在特定点展开成无穷级数来模拟函数</p><p>应用：<strong>函数逼近</strong> <strong>极值问题</strong> <strong>微分方程</strong> <strong>信号处理和控制系统</strong></p><p><strong>麦克劳林级数</strong></p><p>在零点展开的泰勒级数</p><p>把复杂的函数表示为<strong>幂级数</strong><br>$$<br>e^x&#x3D;1+x+\frac{x^2}{2!}+\frac{x^3}{3!}…<br>$$</p><p><strong>傅里叶级数</strong></p><p>任何<strong>周期函数</strong>都可以表示成正弦函数和余弦函数之和<br>$$<br>f(x)&#x3D;a_0+\sum_{n&#x3D;1}^{\infty}[a_ncos(2{\pi}nf_0t)+b_nsin(2{\pi}nf_0t)]<br>$$<br>傅里叶级数是一种特殊的级数形式，是正弦和余弦叠加的级数形式</p><p>傅里叶级数的核心思想就是<strong>任何一个周期函数都可以表示为不同频率的正弦和余弦函数的叠加。</strong></p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223174820638.png" alt="image-20231223174820638"></p><p>让我们以一种直观的方式来理解傅里叶级数。想象一个音乐盒，这个音乐盒里的旋律是我们要研究的周期性函数。</p><ol><li><strong>周期性函数就像音乐盒的旋律：</strong> 如果我们把音乐盒的旋律看作是一个周期性函数，那么这个旋律在一段时间内会重复。这个周期可以类比为函数的周期。</li><li><strong>正弦和余弦函数就像音乐盒的基本音符：</strong> 傅里叶级数告诉我们，任何复杂的旋律都可以由一系列简单的正弦和余弦函数组成，就像任何复杂的周期函数都可以由一系列正弦和余弦函数的组合构成。这些正弦和余弦函数可以被看作是音乐盒的基本音符。</li><li><strong>傅里叶系数就像音符的振幅：</strong> 傅里叶系数告诉我们每个正弦和余弦函数在这个旋律中的“重要性”，就像每个音符在音乐盒旋律中的振幅一样。</li><li><strong>级数的逼近性质就像用有限音符逼近旋律：</strong> 当我们播放音乐盒时，如果只选择有限的音符，我们可能无法完美地重现原始旋律，但我们可以逼近。傅里叶级数也是这样，通过选择适当数量的正弦和余弦函数，我们可以逼近原始的周期函数。</li><li><strong>高频率的音符就像复杂的细节：</strong> 如果我们选择高频率的音符，就像在傅里叶级数中选择较大的 <em>n</em>，我们可以更好地捕捉周期函数的细节和急剧的变化。</li></ol><p>这个类比有助于理解傅里叶级数的核心思想：任何周期性的复杂函数都可以通过适当选择的正弦和余弦函数的组合来表示。就像音乐盒的旋律可以通过简单的音符组成，周期函数的形状可以通过简单的正弦和余弦函数组成。</p><p>基本频率f_0 频率 n*f_0</p><p><strong>时域</strong></p><p>信号在时间轴上的变化</p><p><strong>频域</strong></p><p>信号在频率轴上的变化</p><p><strong>复平面</strong></p><p>复数构成的平面</p><p>实数用一个实轴表示，而复数需要使用一个复平面来表示</p><p><strong>基波</strong></p><p>频率最小的那个波，通常是第一个谐波</p><p><strong>谐波</strong></p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223192859162.png" alt="image-20231223192859162"></p><p><strong>傅里叶变换</strong></p><p>将时域信号里面的的不同频率，不同振幅的信号分解出来</p><p><strong>逆傅里叶变换</strong></p><p><strong>拉普拉斯变换</strong></p><p>将时域函数变成复平面上的函数</p><p>拉普拉斯变换可以将时域上的<strong>微分方程</strong>转换为复频域上的<strong>代数方程</strong></p><p><strong>具体例子</strong></p><p>弹簧–质点系统的微分方程：</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223200131503.png" alt="image-20231223200131503"></p><p>m表示质点质量，c表示阻尼，k表示弹性系数，x(t)是位移，F(t)是外力</p><p>时域函数x(t)拉普拉斯变换为X(s),时域函数F(t)拉普拉斯变换后F(s),s是复平面上的复数，<em>s</em>&#x3D;<em>σ</em>+<em>jω</em></p><p>微分方程通过拉普拉斯变换后：</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223200305119.png" alt="image-20231223200305119"></p><p>传递函数</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223200828465.png" alt="image-20231223200828465"></p><p>特征方程</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223200923837.png" alt="image-20231223200923837"></p><p><strong>逆拉普拉斯变换</strong></p><p>通过傅里叶变换和拉普拉斯变换可以将时域信号变成频域信号，频域函数通常是复平面上的函数</p><p>通过逆傅里叶变换和逆拉普拉斯变换可以将频域信号变成时域信号</p><p>在控制系统中，拉普拉斯变换用于分析系统的稳定性和动态响应，而傅里叶变换则更适合分析信号的频谱特性。</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223201207987.png" alt="image-20231223201207987"></p><p>该说不说，chatgpt讲的好啊，是真的形象啊</p><p>补充关于<strong>线性时不变系统</strong>里面的一些知识点</p><p><strong>传递函数</strong></p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223204247835.png" alt="image-20231223204247835"></p><p>传递函数是输出除以输入，关于复频域变量s的函数</p><p><img src="/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2/image-20231223204432818.png" alt="image-20231223204432818"></p><p><strong>特征方程</strong></p><p>分母一般就是特征方程，其值决定了系统的稳定性和动态响应</p><p>（线代里面也有特征方程，特征向量，现在已经忘关了，抽时间看看）</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>高数 自控</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>论文阅读1</title>
+    <link href="/2023/12/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB1/"/>
+    <url>/2023/12/23/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB1/</url>
+    
+    <content type="html"><![CDATA[<p>WPE</p><p>setting背景</p><p>大量数据集</p><p>新的数据集（样本量很少）</p><p>n位k shot</p><p>什么是shot</p><p>迁移学习</p><p>高斯分布？？？（正态分布）</p><p>什么叫特征符合高斯分布？</p><p>特征就是预测结果，那个类别大，在那个地方的值就大，使用softmax激活函数将数值向量归一化为一个概率分布向量</p><p>topk</p><p>similarity measure怎么计算的</p><p>概率分布，预测概率属于什么分布</p><p>什么叫原型？</p><p>关系原型？</p><p>不确定性</p><p>prototype</p><p>三元组</p><p>分类，预测一个值</p><p>文章分类</p><p>第一篇差不多听懂了</p><p>第二篇第三篇不懂</p><p><strong>原型模型（Prototype Model）：</strong> 在监督学习中，原型模型是一种基于实例的学习方法。该方法的核心思想是将每个类别表示为该类别中所有实例的平均值或中心点。当有新实例需要分类时，通过比较新实例与每个类别的中心点的相似度来进行分类。</p><p>伪标签</p><p>模型冻结</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>论文阅读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>前后端连接bug</title>
+    <link href="/2023/12/22/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5bug/"/>
+    <url>/2023/12/22/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%BF%9E%E6%8E%A5bug/</url>
+    
+    <content type="html"><![CDATA[<p>找了这么久的bug，通过前端console.log(useId)，在控制台看到输出为2，没有任何问题，还以为是前端成功发送了，问题一定出在后端，没想到找了这么久，问题居然还是出在前端</p><p>解决思路</p><p>首先后端排查</p><p>数据库执行语句完全没有任何问题，把前端显示的值放在数据库中执行是能正确查询的</p><p>然后后端返回值，先替换成随便写的数据，也是能返回前端的。</p><p>所以问题就出在前端向后端发送以及后端查询这部分</p><p>排查是后端查询的问题，也直接把2赋值给后端让它不用去从前端数据库解析，结果也能成果执行</p><p>所以问题就是在后端并不能从前端传来的数据中解析到数据</p><p>可是控制台显示前端的数据没有问题啊</p><p>body: ‘userId&#x3D;’ + encodeURIComponent(userId)</p><p>body: JSON.stringify({ userId: userId })</p><p>问题就在这里，</p><p>居然是前端传的这个数据形式后端不能解析，气死我了，虽然我也看不懂第一个传的是什么形式，但当时想着chatgpt写的应该是不会有问题的，结果没想到问题就在这</p><p>担心接口问题</p><p>没想到编码不能被解析  啊啊啊</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs 网站开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>检索模型VSM</title>
+    <link href="/2023/12/21/%E6%A3%80%E7%B4%A2%E6%A8%A1%E5%9E%8BVSM/"/>
+    <url>/2023/12/21/%E6%A3%80%E7%B4%A2%E6%A8%A1%E5%9E%8BVSM/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>信息检索</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>构建k近邻矩阵</title>
+    <link href="/2023/12/21/%E6%9E%84%E5%BB%BAk%E8%BF%91%E9%82%BB%E7%9F%A9%E9%98%B5/"/>
+    <url>/2023/12/21/%E6%9E%84%E5%BB%BAk%E8%BF%91%E9%82%BB%E7%9F%A9%E9%98%B5/</url>
+    
+    <content type="html"><![CDATA[<p><strong>TF（词频，Term Frequency）</strong>：衡量一个词在文档中的出现频率。通常采用词频除以文档总词数的方式计算，以消除文档长度的影响。</p><p><strong>IDF（逆文档频率，Inverse Document Frequency）</strong>：衡量一个词对整个文档集合的重要性。</p><p>IDF</p><p>逆文档频率</p><p>TF-IDF矩阵</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>信息检索</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>xml文档树</title>
+    <link href="/2023/12/20/xml%E6%96%87%E6%A1%A3%E6%A0%91/"/>
+    <url>/2023/12/20/xml%E6%96%87%E6%A1%A3%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<p><strong>项目示例代码</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 XML 文档树</span></span><br><span class="line">        doc = ET.Element(<span class="string">&quot;doc&quot;</span>)</span><br><span class="line">        ET.SubElement(doc, <span class="string">&quot;id&quot;</span>).text = <span class="string">&quot;%d&quot;</span>%(i)</span><br><span class="line">        ET.SubElement(doc, <span class="string">&quot;url&quot;</span>).text = news[<span class="number">1</span>]</span><br><span class="line">        ET.SubElement(doc, <span class="string">&quot;title&quot;</span>).text = news[<span class="number">2</span>]</span><br><span class="line">        ET.SubElement(doc, <span class="string">&quot;datetime&quot;</span>).text = news[<span class="number">0</span>]</span><br><span class="line">        ET.SubElement(doc, <span class="string">&quot;body&quot;</span>).text = body</span><br><span class="line">        <span class="comment"># 创建 XML 文档对象并写入文件</span></span><br><span class="line">        tree = ET.ElementTree(doc)</span><br><span class="line">        tree.write(doc_dir_path + <span class="string">&quot;%d.xml&quot;</span>%(i), encoding = doc_encoding, xml_declaration = <span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 更新计数器</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        <span class="comment"># 每抓取 500 条新闻后，等待 3 分钟</span></span><br><span class="line">        <span class="keyword">if</span> i%<span class="number">500</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Sleeping for 3 minute&quot;</span>)</span><br><span class="line">            time.sleep(<span class="number">180</span>)</span><br></pre></td></tr></table></figure><p>看着这段代码</p><p>看得懂吗？不懂才对。</p><p>ET.Element</p><p>ET.SubElement</p><p>xml树，xml文档，这些都是什么啊？</p><p>带着疑问去学</p><p><strong>什么是xml</strong></p><p>xml与html类似，都是<em>标记</em>语言，但是html是用<em>呈现数据</em>，而xml是用来<em>存储</em>和<em>传递</em>数据，xml以<em>文档</em>的形式保存</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">person</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>John Doe<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">age</span>&gt;</span>30<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">city</span>&gt;</span>New York<span class="tag">&lt;/<span class="name">city</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">person</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>这种用标签包裹信息就是标记语言,总而言之，xml是一种用来存储和传递数据的语言，xml是一种用来存储和传递数据的语言,xml是一种用来存储和传递数据的语言！！！重要的事说三遍</p><p><strong>xml树</strong></p><p>python中常用来解析xml文档的数据结构，将xml描述成树状结构。</p><p>好，问题来了，上面看不懂的代码就是使用了python的xml解析库。</p><p>让我们先放放，去看看python的xml解析库中都有什么？</p><p><strong>python解析xml库</strong></p><p><code>xml.etree.ElementTree</code></p><p>python中最常见的用来解析xml文档的库，解析为树状结构</p><p><em>用法</em></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br></pre></td></tr></table></figure><p>看见ET一般就是指python的xml树状结构解析库</p><p>树状结构的特点</p><p>根节点，叶节点</p><p>节点之间存在父子的关系</p><p>因此，xml树状解析库可以将xml表示成树状结构，找出文档中根节点元素以及其它节点，从而表示出标签之间的关系</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.etree.ElementTree <span class="keyword">as</span> ET</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析XML字符串</span></span><br><span class="line">xml_string = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;root&gt;</span></span><br><span class="line"><span class="string">    &lt;person&gt;</span></span><br><span class="line"><span class="string">        &lt;name&gt;John Doe&lt;/name&gt;</span></span><br><span class="line"><span class="string">        &lt;age&gt;30&lt;/age&gt;</span></span><br><span class="line"><span class="string">        &lt;city&gt;New York&lt;/city&gt;</span></span><br><span class="line"><span class="string">    &lt;/person&gt;</span></span><br><span class="line"><span class="string">&lt;/root&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root = ET.fromstring(xml_string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历XML树</span></span><br><span class="line"><span class="keyword">for</span> person <span class="keyword">in</span> root.findall(<span class="string">&#x27;person&#x27;</span>):</span><br><span class="line">    name = person.find(<span class="string">&#x27;name&#x27;</span>).text</span><br><span class="line">    age = person.find(<span class="string">&#x27;age&#x27;</span>).text</span><br><span class="line">    city = person.find(<span class="string">&#x27;city&#x27;</span>).text</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Name: <span class="subst">&#123;name&#125;</span>, Age: <span class="subst">&#123;age&#125;</span>, City: <span class="subst">&#123;city&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>寻找对应名字的元素，和字典中键来查找类似</p><p>这样，就有一棵完美的树了，还可以从树里面取出想要的数据</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>信息检索</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模型训练错误</title>
+    <link href="/2023/12/20/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E9%94%99%E8%AF%AF/"/>
+    <url>/2023/12/20/%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E9%94%99%E8%AF%AF/</url>
+    
+    <content type="html"><![CDATA[<p>当模型训练到一定epoch时，被打断了</p><p>怎么回复模型状态，重新接着训练？</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>经验总结 模型训练</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra模型修改中遇到的问题</title>
+    <link href="/2023/12/20/irra%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/12/20/irra%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p><strong>steps</strong></p><p>first:修改dataloader,把batch里面加上返回图片特征。batch会自动打包，在batch里面用图片路径获取图片特征时使用的就是一个路径。不需要处理路径列表，加载许多图片特征。</p><p>second:修改模型文件里面的irra模型类，把forward方法里面的使用图片编码器给替换成直接从batch字典里面读取图片特征。</p><p>third:修改utils文件中的metric文件</p><p><strong>bugs</strong></p><p>首先当发现直接把图片特征放在batch里面一起返回回来，（居然没有让我做toTensor操作，batch加载看来功能很多啊），注释掉了图片编码器函数），以为就把模型改好了</p><p>然后发现后面模型训练一轮要进行验证checkpoint并且保存时，开始报错（怪了，那每一轮不同批次准确率是怎么确定的，怎么不报错啊),然后发现报错了，utils文件中的metric文件进行模型验证的时候使用到了图片编码器函数。（现在看来如果不直接注释掉图片编码器函数会怎么样呢，准确率会很低，图片编码器没被训练到？）</p><p>就开始了漫漫修改之路</p><p>首先在metric文件中修改传入图片编码器的数据，之前是图片列表，修改成图片路径列表</p><p>然后方式1，直接在metrc文件里面吧图片编码器部分给替换成提取特征的函数。</p><p>在方法1遇到的问题，首先和直接用在batch里面使用的提取特征函数，用不了，因为一个图片路径就是路径，一个图片路径是路径列表，是很多个</p><p>然后吧提特征函数换成列表的，结果然后提取的特征是np数组，不可以使用。接着改成tensor数据类型，然后是很多个tensor，事实上只能返回一个tensor，接着又用stack函数，把很多个tensor压缩成一个tensor。</p><p>后面还有一些奇奇怪怪的错误，没有把tensor类型数据放在gpu上等。还是具体细节不清楚啊</p><p>方法二</p><p>在model的build文件中修改</p><p>模型把图片编码器部分改了之后训练起来真的超级超级慢</p><p>为什么</p><p>明明少训练了一部分，结果训练速度慢了三倍</p><p>模型改了之后</p><p>xxxxxxxxxx pythonCopy codedef forward(self, batch):    ret &#x3D; dict()​    caption_ids &#x3D; batch[‘caption_ids’]    image_feats &#x3D; self.load_image_features(batch[‘image_feature_path’])    text_feats &#x3D; self.base_model.encode_text(caption_ids)​    i_feats &#x3D; image_feats[:, 0, :].float().detach()  # 使用detach()防止梯度更新    t_feats &#x3D; text_feats[torch.arange(text_feats.shape[0]), caption_ids.argmax(dim&#x3D;-1)].float()​    logit_scale &#x3D; self.logit_scale    ret.update({‘temperature’: 1 &#x2F; logit_scale})​    # 其余的任务处理保持不变…​    return retpython</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/image-20231221134033962.png" alt="image-20231221134033962"></p><p>我还怕会是我去来的图片特征不对</p><p>想想用之前模型训练的文本编码器是通过哪一个图片编码器的特征对比学习的，现在换成了另一个模型提取的图片特征，两个特征的相似度低应该才是正常的</p><p>问题</p><p>怎么调试啊，需要传递参数的时候</p><p>我已经忘了之前是怎么调试的了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs 主干网络替换</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>变量大小查看</title>
+    <link href="/2023/12/20/%E5%8F%98%E9%87%8F%E5%A4%A7%E5%B0%8F%E6%9F%A5%E7%9C%8B/"/>
+    <url>/2023/12/20/%E5%8F%98%E9%87%8F%E5%A4%A7%E5%B0%8F%E6%9F%A5%E7%9C%8B/</url>
+    
+    <content type="html"><![CDATA[<p>跑深度学习模型进行数据处理时会遇到很多变量类型，常见的有字典，元组，列表，张量</p><p>字典：通过键来进行索引</p><p>元组：通过下标进行索引（不可变）   </p><p>列表：通过下标进行索引（可变）</p><p>（字典和元组都是有序的，元组一般比较短，所以经常没有给出下标索引，而是直接按顺序就赋值了 edg:t&#x3D;tuple((1,2)),x,y&#x3D;t  元组用(),列表用[]）</p><p>张量：tensor</p><p><strong>确定变量类型</strong></p><p>使用type()函数确定变量类型</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">variable = <span class="number">42</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(variable))  <span class="comment"># &lt;class &#x27;int&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">variable = <span class="string">&quot;Hello, World!&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(variable))  <span class="comment"># &lt;class &#x27;str&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">variable = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(variable))  <span class="comment"># &lt;class &#x27;list&#x27;&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p><strong>查看不同类型变量的大小</strong></p><p><strong>张量</strong>：使用shape属性</p><p><strong>列表</strong>：</p><p><strong>元组</strong>：</p><p><strong>字典</strong></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>模型代码调试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pytorch中对张量的处理</title>
+    <link href="/2023/12/20/pytorch%E4%B8%AD%E5%AF%B9%E5%BC%A0%E9%87%8F%E7%9A%84%E5%A4%84%E7%90%86/"/>
+    <url>/2023/12/20/pytorch%E4%B8%AD%E5%AF%B9%E5%BC%A0%E9%87%8F%E7%9A%84%E5%A4%84%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<p>Pytorch中torch.cat函数将一个列表中的张量按照指定的维度拼接成一个张量</p><p>张量列表-&gt;张量    维度不变</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设 gids 是一个包含两个张量的列表</span></span><br><span class="line">tensor1 = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">tensor2 = torch.tensor([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">gids=[tensor1,tensor2]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 torch.cat 沿着第 0 维（行）拼接这两个张量</span></span><br><span class="line">result = torch.cat(gids, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"><span class="built_in">print</span>(result.shape)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出</span></span><br><span class="line">tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">torch.Size([<span class="number">6</span>])</span><br></pre></td></tr></table></figure><p>这样result就是一个一维的张量了，包含了两个原始的两个张量信息</p><p>Pytorch中torch.stack函数将一个列表中的张量在一个新的维度上堆叠成一个张量</p><p>张量列表-&gt;张量 维度改变</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设 gids 是一个包含两个张量的列表</span></span><br><span class="line">tensor1 = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">tensor2 = torch.tensor([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])</span><br><span class="line">gids=[tensor1,tensor2]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 torch.stack 沿着第 0 维（行）堆叠这两个张量</span></span><br><span class="line">result = torch.stack(gids, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line"><span class="built_in">print</span>(result.shape)</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#输出</span><br><span class="line">tensor([[1, 2, 3],</span><br><span class="line">        [4, 5, 6]])</span><br><span class="line"></span><br><span class="line">torch.Size([2, 3])        </span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>pytorch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>倒排索引构建</title>
+    <link href="/2023/12/20/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BA/"/>
+    <url>/2023/12/20/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h4 id="什么是倒排索引"><a href="#什么是倒排索引" class="headerlink" title="什么是倒排索引"></a>什么是倒排索引</h4><p>倒排索引以词项为基础，倒排索引以词项为基础，倒排索引以词项为基础！！！</p><p>词项term</p><p>倒排索引提供<strong>由词项到文本的映射</strong></p><p><strong>倒排索引表</strong></p><p><em>词项</em> <em>文档频率</em> <em>文档信息</em>*</p><p>为什么要统计词项在文档中出现的频率，因为频率越高，重要性越低</p><p><strong>倒排索引构建的数据库posting的具体格式</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE postings (</span><br><span class="line">    term TEXT PRIMARY KEY,</span><br><span class="line">    df INTEGER,</span><br><span class="line">    docs TEXT</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>信息检索</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>web开发cookie设置</title>
+    <link href="/2023/12/18/web%E5%BC%80%E5%8F%91cookie%E8%AE%BE%E7%BD%AE/"/>
+    <url>/2023/12/18/web%E5%BC%80%E5%8F%91cookie%E8%AE%BE%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<p>我真的是又服气了</p><p>不想敲代码了，敲几天了，要吐了，不行，我考研真不想考计算机了</p><p>这个浏览器保存cookie，为了保存用户登录信息，保存用户id来实现后续功能</p><p>明明前几天的代码还能用的，那天晚上一直改一直改网页开太多了，把我edge都搞崩了</p><p>今天代码改死也没改好，就是不能保存更新cookie，一直显示cookie undefined。</p><p>结果呢，我把edge的cookie信息都清除一下，就好了，你说气人不</p><p>跟修电脑一样，重启再说</p><p>哎，一直不肯清cookie，这不是不想重新登chatgpt嘛，得重新换一下微软账号，不然qq邮箱登不上去openai。</p><p>真服气，麻烦就是省不了啊</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bug web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>服务器渲染模式</title>
+    <link href="/2023/12/15/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/"/>
+    <url>/2023/12/15/%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B8%B2%E6%9F%93%E6%A8%A1%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<p>服务器渲染模式 前端渲染模式</p><p><strong>服务器渲染模式SSR</strong></p><p><em>Server-Side Rendering</em></p><p>python中 render template(‘index.html’)</p><p><strong>服务端处理（PHP）:</strong></p><ul><li>通过 <code>include</code> 引入外部 HTML 模板文件（<code>index_template.php</code>）。</li><li>执行任何 PHP 逻辑或动态内容生成。</li><li>生成最终的 HTML 内容。</li></ul><p> console.<strong>log</strong>(xhr.responseText);</p><p>难怪浏览器输出的是一大页html代码</p><p><strong>客户端渲染CSR</strong></p><p><em>Customer-Side Rendering</em></p><ul><li>使用 AJAX 或其他前端技术从服务端获取数据，通常以 JSON 格式返回。</li><li>在客户端使用 JavaScript 处理这些数据，动态地更新页面内容。这样的方式被称为单页应用（SPA）模型。</li><li>由于客户端渲染，页面的初始加载可能较快，但搜索引擎对于初始页面内容的索引可能会受到一些影响。</li></ul><p>浏览器判断后端相应数据类型</p><p><strong>HTML 页面的响应头</strong></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: text/html; charset=utf-<span class="number">8</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p><strong>JSON 数据的响应头</strong></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/json; charset=utf-<span class="number">8</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>动态模板引擎是一种后端渲染模式吗？</p><p><strong>DOM</strong></p><p>文档对象模型</p><p>document object model</p><p><strong>无刷新分页</strong></p><p><strong>分页逻辑</strong></p><p>使用的是<strong>后端分页</strong>，每次更新页面都向后端发起一次请求，一次获取十条数据。</p><p>如果使用<strong>前端分页</strong>，则一次向后端请求所有数据，每次更新页面不用向后端重新请求，更新速度快。</p><ol><li><p><strong>减轻后端压力：</strong> 后端只需一次性提供全部数据，而不需要为每个页面的请求生成数据。</p></li><li><p><strong>快速切换：</strong> 用户在不同页面之间切换更加迅速，因为不需要等待后端响应。</p><p>如果数据量非常庞大，一次性传输可能会导致较大的网络开销。</p></li></ol><p>search页面</p><p>使用DOM元素</p><p>id&#x3D;x</p><p>x可以作为一个dom元素，在html页面中被选中动态更改。</p><p><strong>网页安全</strong></p><p><strong>版权</strong></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;copy;</span> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">var</span> today = <span class="keyword">new</span> <span class="title class_">Date</span>();</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">var</span> year = today.<span class="title function_">getFullYear</span>();</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">document</span>.<span class="title function_">write</span>(year)</span></span><br><span class="line"><span class="language-javascript">            </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> 新闻网 | Author: klull</span><br></pre></td></tr></table></figure><p>点赞 收藏 功能</p><p>首页想弄个时钟，太麻烦了</p><p>首页和搜索页没分离开，算了时钟功能先舍弃，一般搜索引擎也没放时钟嘛，放其他不用动态更新的也挺美观</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">resultContainer.innerHTML = `</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; max-width: 400px; background-color: #f8f8f8; margin: 0 auto;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">strong</span> <span class="attr">style</span>=<span class="string">&quot;color: #333; display: block; margin-bottom: 10px;&quot;</span>&gt;</span>Welcome to the Search Engine<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: #666; display: block; margin-bottom: 10px;&quot;</span>&gt;</span>Please enter keywords to start your search.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: #666; display: block;&quot;</span>&gt;</span>Current time: $&#123;timeString&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    `;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">resultContainer.innerHTML = `</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display: flex; align-items: center; justify-content: center; height: 100vh;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; max-width: 400px; background-color: #f8f8f8;&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">strong</span> <span class="attr">style</span>=<span class="string">&quot;color: #333; display: block; margin-bottom: 10px;&quot;</span>&gt;</span>Welcome to the Search Engine<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: #666; display: block; margin-bottom: 10px;&quot;</span>&gt;</span>Please enter keywords to start your search.<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: #666; display: block;&quot;</span>&gt;</span>Current time: $&#123;timeString&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    `;</span><br></pre></td></tr></table></figure><p>用户登录信息的保存</p><p>user 表</p><p>user_id user_name user_password</p><p>user_profile表</p><p>user_id user_pic user_收藏 </p><p>text表</p><p>text_id text_点赞</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>前端向后端提交数据</title>
+    <link href="/2023/12/15/%E5%89%8D%E7%AB%AF%E5%90%91%E5%90%8E%E7%AB%AF%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE/"/>
+    <url>/2023/12/15/%E5%89%8D%E7%AB%AF%E5%90%91%E5%90%8E%E7%AB%AF%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE/</url>
+    
+    <content type="html"><![CDATA[<p>前端向后端</p><p>两种按钮</p><p>button按钮 提交方式</p><div class="form-group">     <button type="button" onclick="submitForm()">Login</button></div><p>是不包含任何默认js的，需要自己编写Js代码，使点击按钮时触发对应的js代码行为。</p><p>默认按钮对应的js需要指出提交的数据去往的地址路径，如果没有默认为当前网页的路径</p><p>submit按钮 提交方式</p><form name="search" action="search.php" method="post">                <p>                    <input type="text" id="searchBox" placeholder="Enter keywords...">                    <input type="submit" value="Search" >                </p>            </form><p>submit按钮包含了默认的js，只要点击按钮就会触发提交数据行为。</p><p>可以直接在html里面指出提交的路径，如果没有就默认为当前网页的路径。</p><form>                <p>                    <input type="text" id="searchBox" placeholder="Enter keywords...">                    <input type="button" value="Search" >                </p>            </form> <form>                <p>                    <input type="text" id="searchBox" placeholder="Enter keywords...">                    <button type="button" onclick="submitForm()">Search</button>                </p>            </form>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra模型训练</title>
+    <link href="/2023/12/14/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/"/>
+    <url>/2023/12/14/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/</url>
+    
+    <content type="html"><![CDATA[<p>为什么irra把mlm从损失函数中去掉后速度慢了三倍，怎么会差这么多</p><p>irra代码里面几种损失函数的定义</p><p><strong>sdm_loss</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compute_sdm(i_feats, t_feats, batch[<span class="string">&#x27;pids&#x27;</span>], logit_scale)</span><br></pre></td></tr></table></figure><p><strong>id_loss</strong></p><p><em>1</em></p><p>去掉 图片编码器||使用sdm+id+mlm 使用图像编码器提取特征</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214171105614.png" alt="image-20231214171105614"></p><p>运行情况：</p><p><em>2</em></p><p>去掉 图片编码器+文本编码器+mlm损失函数||使用图像编码器提取特征</p><p>训练到一轮的时候报错，没有文本编码器</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214171317133.png" alt="image-20231214171317133"></p><ol start="3"><li></li></ol><p>好好好，都没训练成功，注释掉了没法用啊</p><p>坏了，掉底子了</p><p>替换错了</p><p>往batch里面加特征键不够用啊</p><p>还得替换特征提取函数</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214172850730.png" alt="image-20231214172850730"></p><p>图片编码器的代码不可以注释掉</p><p>得重新定义encode_image()函数</p><p>开始改，害怕啊</p><p>1、给imagedataset加上图片路径的返回</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214175307936.png" alt="image-20231214175307936"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214175326081.png" alt="image-20231214175326081"></p><ol start="2"><li></li></ol><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214175932164.png" alt="image-20231214175932164"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214175955257.png" alt="image-20231214175955257"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214195107618.png" alt="image-20231214195107618"></p><p>这个bug把上面改的代码都包括到了</p><p>为什么会慢了这么多</p><p>20s变成了1min30s</p><p>离谱</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214202535199.png" alt="image-20231214202535199"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214202546890.png" alt="image-20231214202546890"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214204622225.png" alt="image-20231214204622225"></p><p>好好好，看半天，不能改是吧，原来这个一趟的训练次数是由数据集大小决定的，数据集有那么大，就是要做那么多趟，我佛了</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214205245002.png" alt="image-20231214205245002"></p><p>开始训练后，可得在这挺很大一会，初始化更新这么慢是吧</p><p>找半天temperature的定义</p><p>原来是超参数</p><p><strong>置信度</strong></p><p><strong>temperature</strong>超参数</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214210906507.png" alt="image-20231214210906507"></p><p>偶真的服了，这bug是一个接一个啊</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214211559399.png" alt="image-20231214211559399"></p><p>再改，img_feat.to(device)</p><p>这是要让我把所有bug都感受一遍啊</p><p>返回列表</p><p>改成返回张量</p><p>变成stack张量时发现处理的np</p><p>改成张量</p><p>张量没有放在gpu上</p><p>啊啊啊啊</p><p>这改个bug重新运行就又要十几分钟，真的是伤不起啊</p><p>求求了，不要在报错了</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214213451952.png" alt="image-20231214213451952"></p><p>还搁这改，感觉改不完的错了</p><p>完了，逆天，跑出来啥也不是，寄</p><p>不对，还有希望，mlm好像都被我删掉了</p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214220848012.png" alt="image-20231214220848012"></p><p><img src="/irra%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/image-20231214220909876.png" alt="image-20231214220909876"></p><p>逆天，这真是绝了，搁这完了，啊啊啊，我这要怎么接着排查bug啊，我真的</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>日记</title>
+    <link href="/2023/12/14/%E6%97%A5%E8%AE%B0/"/>
+    <url>/2023/12/14/%E6%97%A5%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>闲谈</p><p>感觉自己好容易就想多了嗨嗨</p><p>妄自菲薄的感觉</p><p>要么就容易觉得自己不简单（当然现在基本不会有这样的感觉了，只觉得自己废物</p><p>就遇到难一点要坚持的事</p><p>就开始担心</p><p>更明显的是在团体中</p><p>担心自己很差劲</p><p>不符合别人期望</p><p>显得和一个废物一样</p><p>王成济老师真的很好</p><p>但我还是总是担心</p><p>会不会觉得我很差劲，会很失望</p><p>我到底何时能改变这些坏心理啊</p><p>哼，感觉都是小时候环境影响的</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>统计学习方法</title>
+    <link href="/2023/12/14/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+    <url>/2023/12/14/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>php学习</title>
+    <link href="/2023/12/13/php%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2023/12/13/php%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p>后端脚本语言php</p><p>对比python 开发，路由定义都是放在后端代码里面，网页的跳转思路主要是看后端</p><p>而使用php开发，网页跳转是前端指定调用哪个后端php文件，网页的开发思路感觉更放在前端，毕竟php代码都是可以直接放在前端的</p><p>php引入文件，类似python import </p><p>require(“..&#x2F;t&#x2F;db.php”);</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>phpstudy中php代码连接数据库</title>
+    <link href="/2023/12/13/phpstudy%E4%B8%ADphp%E4%BB%A3%E7%A0%81%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <url>/2023/12/13/phpstudy%E4%B8%ADphp%E4%BB%A3%E7%A0%81%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    
+    <content type="html"><![CDATA[<p>我真的服了！！！！！！！！</p><p>我都要以为自己是傻逼了</p><p>弄一下午人要崩了</p><p>网页如果只有前端，没有内容显示出来，首先怀疑就是和数据库的连接</p><p>这个破php</p><p>我一直怀疑是我环境没配好，才连不上数据库</p><p>结果真的是</p><p>连数据库的代码<strong>没有指出端口号</strong>啊啊啊啊啊啊</p><p>一般端口就是3306</p><p>但是之前数据库课我安装过mysql了</p><p>已经把3306口给占了</p><p>为了用这个phpstudy,我又装了个mysql，用的3305端口</p><p>没想到啊 没想到</p><p>一下午</p><p>结果就是个端口号没配好</p><p>绝了，emo一分钟</p><p>yeah!!!!!!!!!!!!!</p><p>win</p><p>前后端连好啦，可以往数据库写数据啦</p><p>哈哈哈哈哈加油</p><p>还挺神奇的</p><p>思路没转换过来</p><p>不过是用python还是java写web，都是在后端来定义路由，返回网页渲染</p><p>使用Php</p><p>居然是在前端里面来制定调用后端的Php文件，网页的关系在前端定义了</p><p>我nie马真服了</p><p>就说那个项目怎么一直显示不出来内容，源码里面也没看到php连接数据库，原来是把数据库的文件改路径了</p><p>吐了了了了</p><p>运行别人代码配环境永远最累</p><p>还是自己的代码好</p><p>还有readme文件一定要写好</p><p>涨涨涨记性</p><p>路径路径路径</p><p>很坑很坑很坑</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>解决vscode因空格等代码风格报错</title>
+    <link href="/2023/12/12/%E8%A7%A3%E5%86%B3vscode%E5%9B%A0%E7%A9%BA%E6%A0%BC%E7%AD%89%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%8A%A5%E9%94%99/"/>
+    <url>/2023/12/12/%E8%A7%A3%E5%86%B3vscode%E5%9B%A0%E7%A9%BA%E6%A0%BC%E7%AD%89%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC%E6%8A%A5%E9%94%99/</url>
+    
+    <content type="html"><![CDATA[<p>禁用flake插件就可以了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>环境配置容易出现的问题</title>
+    <link href="/2023/12/12/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%AE%B9%E6%98%93%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/12/12/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%AE%B9%E6%98%93%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<p>一个项目下载好后使用vscode打开，运行项目夹里面的文件，当前的工作路径默认的是打开的文件的路径，因此代码里面的一些使用相对路径的地方会出现错误。</p><p>import os</p><p>获取当前脚本的目录</p><p>current_dir &#x3D; os.path.dirname(os.path.realpath(<strong>file</strong>))</p><p>切换当前工作目录到脚本所在目录</p><p>os.chdir(current_dir)</p><p>加上这两行代码就好了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>python+selenium爬虫报错</title>
+    <link href="/2023/12/11/python-selenium%E7%88%AC%E8%99%AB%E6%8A%A5%E9%94%99/"/>
+    <url>/2023/12/11/python-selenium%E7%88%AC%E8%99%AB%E6%8A%A5%E9%94%99/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>selenium包使用教程</title>
+    <link href="/2023/12/11/selenium%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <url>/2023/12/11/selenium%E5%8C%85%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p><strong>示例代码</strong></p><p>打开edge浏览器对应网址并关闭</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 Edge WebDriver 实例</span></span><br><span class="line">driver = webdriver.Edge()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开网页</span></span><br><span class="line">driver.get(<span class="string">&#x27;https://www.bilibili.com&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭浏览器</span></span><br><span class="line">driver.quit()</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(base) E:\专业课作业\信息检索\scrapy\linyiSearcher-master&gt;D:/Software/Anaconda3_2023_3/python.exe e:/专业课作业/信息检索/scrapy/linyiSearcher-master/1_spider.py</span><br><span class="line">[<span class="number">4572</span>:<span class="number">19380</span>:<span class="number">1211</span>/<span class="number">180136.219</span>:ERROR:policy_logger.cc(<span class="number">156</span>)] :components\enterprise\browser\controller\chrome_browser_cloud_management_controller.cc(<span class="number">161</span>) Cloud management controller initialization aborted <span class="keyword">as</span> CBCM <span class="keyword">is</span> <span class="keyword">not</span> enabled. Please use the `--enable-chrome-browser-cloud-management` command line flag to enable it <span class="keyword">if</span> you are <span class="keyword">not</span> using the official Google Chrome build.</span><br><span class="line"></span><br><span class="line">DevTools listening on ws://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">1691</span>/devtools/browser/2aac968c-2a13-4fe2-a681-5b8d93faf8cd</span><br></pre></td></tr></table></figure><p>我懂了，原来这不是在报错打开的是Chrome</p><p>果然配环境最烦</p><p>这个错误与 Chrome 浏览器的云端管理相关，不直接影响你的 Edge WebDriver。</p><p>Chrome涉及什么云端，链接github,网不好烦死了，还是用edge吧</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>python包 爬虫 web自动化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vscode无法正确解析包补全代码</title>
+    <link href="/2023/12/11/vscode%E6%97%A0%E6%B3%95%E6%AD%A3%E7%A1%AE%E8%A7%A3%E6%9E%90%E5%8C%85%E8%A1%A5%E5%85%A8%E4%BB%A3%E7%A0%81/"/>
+    <url>/2023/12/11/vscode%E6%97%A0%E6%B3%95%E6%AD%A3%E7%A1%AE%E8%A7%A3%E6%9E%90%E5%8C%85%E8%A1%A5%E5%85%A8%E4%BB%A3%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<p>之前是一直显示import 导入包有问题</p><p>没有正确配置python解释器，打开控制面板ctrl +shift+p ,python interpreter 选择正确解释器就可以了</p><p>导入包成功后</p><p>但是还是不能查看包的源码，不能够跳转，并且也不能自动补全，缺少了Python包的解析插件， <strong>Python Extension Pack</strong>，安装这个插件就可以了。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>总线的仲裁方式</title>
+    <link href="/2023/12/11/%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%BB%E8%A3%81%E6%96%B9%E5%BC%8F/"/>
+    <url>/2023/12/11/%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%BB%E8%A3%81%E6%96%B9%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<p><strong>总线仲裁Bus Arbiter</strong></p><p>多个设备同时竞争<em>总线控制权</em>，怎么决定哪个设备获得总线的控制权，就叫做总线仲裁。</p><p><strong>仲裁器Arbiter</strong></p><p>仲裁器来决定设备谁能获得<em>共享资源</em></p><p><strong>总线Bus</strong></p><p>计算机系统是由多个具有独立功能的模块<em>互相连接</em>而成。开发商还提供扩展模块的接口。模块之间需要互相<em>通信</em>，就产生了总线的概念。</p><p>总线是一种在多个模块间（模块之间是可以存在<em>优先级</em>的）传送信息的公共通路。</p><p>总线由传输信息的物理介质（电平信号）以及一套管理信息传输的通用规则（协议）所构成。</p><p><strong>总线标准</strong></p><p>符合相关的电气规范，机械结构规范等等。</p><p><strong>总线分类</strong></p><ul><li><p>片总线</p><p>片总线又成<strong>芯片总线</strong>，是处理器引出的信号线。<em>元件级总线</em>【不懂】</p><p><strong>地址总线</strong></p><p><strong>数据总线</strong></p><p><strong>控制总线</strong></p></li><li><p>内总线</p></li><li><p>外总线</p></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>接口技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>学习效率</title>
+    <link href="/2023/12/11/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/"/>
+    <url>/2023/12/11/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/</url>
+    
+    <content type="html"><![CDATA[<p><img src="/%E5%AD%A6%E4%B9%A0%E6%95%88%E7%8E%87/image-20231211093947464.png" alt="image-20231211093947464"></p><p>确实，环境稍微吵一点有助于避免走神，灯光不用太亮，会发困。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra文件路径追踪</title>
+    <link href="/2023/12/10/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/"/>
+    <url>/2023/12/10/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/</url>
+    
+    <content type="html"><![CDATA[<p>method </p><p>vscode右键选择find in folder,直接搜索path</p><p>bases文件里面的dataset:</p><p><strong>BaseDataset</strong>(<strong>object</strong>)</p><p><strong>ImageTextDataset</strong>(<strong>Dataset</strong>)</p><p><strong>ImageDataset</strong></p><p><strong>TextDataset</strong></p><p><strong>ImageTextMLMDataset</strong></p><p>MLM使用的应该是<strong>ImageTextMLMDataset</strong>这个数据集</p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210143711133.png" alt="image-20231210143711133"></p><p>断点打在<strong>ImageTextMLMDataset</strong>数据集这里，运行train</p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210143842325.png" alt="image-20231210143842325"></p><p>停在这里进去</p><p>debug怎么传入命令行参数</p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210211159439.png" alt="image-20231210211159439"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210211311878.png" alt="image-20231210211311878"></p><p>换是换好了，但是特征的维度不匹配</p><p>原先图片编码器提取的特征</p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212036145.png" alt="image-20231210212036145"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212025474.png" alt="image-20231210212025474"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212348777.png" alt="image-20231210212348777"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212403907.png" alt="image-20231210212403907"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212725263.png" alt="image-20231210212725263"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212747727.png" alt="image-20231210212747727"></p><p> image_feats &#x3D; self.base_model.encode_image(images)        # print(image_feats.shape)        # i_feats &#x3D; image_feats[:, 0, :].float()        # print(i_feats.shape)   image_feats是[64,193,512]，i_feats是[64,512]，这是为什么呢，具体是怎么变化的</p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212856740.png" alt="image-20231210212856740"></p><p><img src="/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/image-20231210212940825.png" alt="image-20231210212940825"></p><p>问题来了</p><p>原模型的特征向量与现模型的长得不一样啊，老师救救我</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>clip论文阅读</title>
+    <link href="/2023/12/07/clip%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <url>/2023/12/07/clip%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</url>
+    
+    <content type="html"><![CDATA[<p>第一页  标题</p><p>大家好，今天我讲的论文是OpenAI在2021年发表在NeurIPS会议上的论文，在这个论文里提出了影响很大的模型CLIP。</p><p>这篇论文的作者团队全部来自OpenAI，然后OpenAI也将代码和预训练模型开源在了github上面。</p><p>首先我们来看看这篇文章的标题，利用自然语言监督学习可迁移的视觉模型。</p><p>标题中有两个关键词，利用自然语言监督以及可迁移。</p><p>怎么利用自然语言监督，就是这篇文章的关键。</p><p>然后他想达到的目的，就是这个迁移性transferable。</p><p>然后什么是迁移性呢，可迁移就是学习一个泛化很好的特征，能够在各种数据集上，不需要预训练就可以取得不错的效果。</p><p>英文表示就是zero-shot</p><p>第二页  </p><p>首先我们来直接看看clip模型是什么</p><p>这个图就是clip模型的结构</p><p>模型的输入</p><p>图片和文字的配对 pair</p><p>图片编码器既可以是个resnet,也可以是个vision transformer</p><p>文本编码器 文本特征</p><p>得到n个图片特征和n个文本特征</p><p>clip就对这n对特征进行对比学习</p><p>对比学习需要正样本和负样本</p><p>配对的就是正样本，沿着对角线的都是正样本</p><p>n*n-n都是负样本</p><p>通过正负样本对比学习，减少手工标注</p><p>openai收集了4亿个图片文本配对</p><p>clip如何做zero-shot推理</p><p>当然是不是zero-shot还存在疑问，因为openai收集的四亿对数据可能就包括了测试中图片文字对</p><p>prompt template</p><p>因为在预训练里面给的都是句子，所以在进行分类任务时把单词不全为句子</p><p>怎么变成句子，也有讲究</p><p>clip论文后面还提出了prompt engineering和prompt ensemble</p><p>计算cosine similarity，计算相似性</p><p>第三页 目录</p><p>clip这篇论文正文有三十多页，大部分都是实验和分析</p><p>第一页讲的摘要，然后一页讲的是引言，接下来几页讲的是方法，主要讲的是预训练，再后面的主要就是讲实验</p><p>第四页 摘要</p><p>目前的视觉系统训练，先有一个固定的，已经提前定义好的物体类别的集合</p><p>模型通过预测这些提前定义好的类别，从而完成模型的训练</p><p>固定的，提前定义好的标签类别</p><p>imagenet固定的1000个类别</p><p>cifar10 10个类</p><p>cifar100 100个类</p><p>提前定义好标签集合</p><p>采用了有限制性的监督信号，限制了模型的泛化性</p><p>不能识别新的物体类别</p><p>每次要预测新的类别，就要重新训练，就不好scale，不好做大做强了</p><p>第五页</p><p>不需要有提前定好的标签类</p><p>因为和自然语言处理的结合，clip学习到的视觉特征，和我们用语言描述出来的某个物体，已经产生了强烈的联系</p><p>比如香蕉，无论是在自然图像里的香蕉，或者素描的香蕉，或者动漫里的香蕉</p><p>clip训练出来的模型都知道是香蕉</p><p>第六页 引言</p><p>summary </p><p>概述</p><p>来自openai 的clip模型</p><p>思路简单</p><p>效果很好</p><p>zero shot</p><p>Learning transferable visual models from natural language supervision</p><p>从自然语言监督学习可迁移视觉模型</p><p>多模态</p><p>对比学习需要正样本和负样本</p><p>配对的就是正样本，沿着对角线的都是正样本</p><p>n*n-n都是负样本</p><p>通过正负样本对比学习，减少手工标注</p><p>openai收集了4亿个图片文本配对</p><p>clip如何做zero-shot推理</p><p>当然是不是zero-shot还存在疑问，因为openai收集的四亿对数据可能就包括了测试中图片文字对</p><p>prompt template</p><p>因为在预训练里面给的都是句子，所以在进行分类任务时把单词不全为句子</p><p>怎么变成句子，也有讲究</p><p>clip论文后面还提出了prompt engineering和prompt ensemble</p><p>计算cosine similarity，计算相似性</p><p>不需要有提前定好的标签类</p><p>因为和自然语言处理的结合，clip学习到的视觉特征，和我们用语言描述出来的某个物体，已经产生了强烈的联系</p><p>比如香蕉，无论是在自然图像里的香蕉，或者素描的香蕉，或者动漫里的香蕉</p><p>clip训练出来的模型都知道是香蕉</p><p>因为网络上的语言和图片有联系，不需要手工去打标签，所以迁移性非常强</p><p>与其说是做到了zero-shot,不如说是利用网络上文本图片省去了手工打标签</p><p>怎么利用自然语言</p><p>做到迁移性好</p><p>摘要</p><p>目前的视觉系统训练，先有一个固定的，已经提前定义好的物体类别的集合</p><p>模型通过预测这些提前定义好的类别，从而完成模型的训练</p><p>固定的，提前定义好的标签类别</p><p>imagenet固定的1000个类别</p><p>cifar10 10个类</p><p>cifar100 100个类</p><p>提前定义好标签集合</p><p>采用了有限制性的监督信号，限制了模型的泛化性</p><p>不能识别新的物体类别</p><p>每次要预测新的类别，就要重新训练，就不好scale，不好做大做强了</p><p>直接从自然语言文本里去的到监督信号</p><p>训练样本 图片文字的配对</p><p>爬了四个亿的图片对</p><p>有了这么大的数据集，就可以对模型进行自监督训练了。</p><p>多模态的对比学习完成模型训练</p><p>在预训练完成后，自然语言就被用来引导模型做物体分类</p><p>也就是之前说过的prompt</p><p>分类也不光局限于已经学到的视觉概念，还能扩展到新的类别，学习到的模型能直接在下游任务去做zero-shot推理</p><p>ground truth标注答案</p><p>参数调整</p><p>temperature参数设为可学习参数</p><p>视觉模型</p><p>resnet或者 vision transformer</p><p>文本使用的transformer</p><p>实验部分</p><p>什么是zero-shot transfer</p><p>clip的核心和精华所在</p><p>zero-shot 迁移的动机</p><p>之前自监督或者无监督的方法</p><p>主要研究的是特征学习的能力，目标是学一种泛化性比较好的特征，但是即使学到了泛化性很好的特征，想要应用到下游任务时，还是需要有标签的数据进行模型微调</p><p>如何训练一个模型，接下来不用再训练，微调了呢</p><p>所以这就是作者研究zero shot 迁移的动机，借助文本训练好了又大又好的模型</p><p>用文本做引导，很灵活的做zero-shot的迁移学习</p><p>prompt engineer and ensembling</p><p>提示 文本的引导作用</p><p>polysemy</p><p>多义性</p><p>constrcutive crane 起重机</p><p>crane 鹤</p><p>remote 远的</p><p>遥控器</p><p>a photo of ‘ ‘</p><p>指出来是个名词，解决一些歧义性问题</p><p>distribution gap</p><p>进行zero shot 迁移时，指出应用场景，都非常有用</p><p>limitation</p><p>数据集重叠</p><p>包括了下游数据集</p><p>不足和局限</p><p>扩大clip规模弥补十几个点的差距，不现实 sota state of art 特定任务中目前表现最好的模型</p><p>总结</p><p>43分钟代码讲解</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>论文阅读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>解空间树</title>
+    <link href="/2023/12/07/%E8%A7%A3%E7%A9%BA%E9%97%B4%E6%A0%91/"/>
+    <url>/2023/12/07/%E8%A7%A3%E7%A9%BA%E9%97%B4%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<p>解空间树</p><p>表示问题解空间的结构</p><p>结点node 表示问题的<strong>状态</strong></p><p>边edge表示问题的<strong>转移</strong></p><p>子集树（组合树）每个节点的子节点代表添加或不添加</p><p>排列树 每个节点的子节点代表添加或交换</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法设计与分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>out_of_memory</title>
+    <link href="/2023/12/06/out-of-memory/"/>
+    <url>/2023/12/06/out-of-memory/</url>
+    
+    <content type="html"><![CDATA[<p>模型训练时超出cuda内存</p><p>目前解决方法</p><p>把控制台关掉</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>r</title>
+    <link href="/2023/12/06/r/"/>
+    <url>/2023/12/06/r/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模型替换bugs</title>
+    <link href="/2023/12/06/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/"/>
+    <url>/2023/12/06/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/</url>
+    
+    <content type="html"><![CDATA[<p>运行代码使用sh run_irra.sh</p><p>那么debug运行呢，怎么把参数传进去呢</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#图片编码器</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode_image</span>(<span class="params">self, image</span>):</span><br><span class="line">        x = self.base_model.encode_image(image)</span><br><span class="line">        <span class="keyword">return</span> x[:, <span class="number">0</span>, :].<span class="built_in">float</span>()</span><br><span class="line">        <span class="comment"># return x.float() # for CLIP ResNet visual model</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode_text</span>(<span class="params">self, text</span>):</span><br><span class="line">        x = self.base_model.encode_text(text)</span><br><span class="line">        <span class="keyword">return</span> x[torch.arange(x.shape[<span class="number">0</span>]), text.argmax(dim=-<span class="number">1</span>)].<span class="built_in">float</span>()</span><br></pre></td></tr></table></figure><p>注释掉这段代码并没有影响</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206202415641.png" alt="image-20231206202415641"></p><p>具体怎么看大小啊</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206202845996.png" alt="image-20231206202845996"></p><p>好了，使用.shape或者.size()</p><p>数据大小</p><p>batch[‘caption_ids’].shape</p><p>[128,77]</p><p>二维，一个批次128个个描述，每个</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206203349401.png" alt="image-20231206203349401"></p><p>好好好，实际内容果然看不懂一点</p><p>在预处理里面被处理了的，那我怎么对应到原数据集里面实际图片呢</p><p>好好好</p><p>batch里面有一个image_ids,128张图片，然后对应的值就是图片的id,具体是怎么从图片名里面薅出来的，在还原回去吧，肯定要通过dataset文件看看了</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206204020041.png" alt="image-20231206204020041"></p><p>&#x2F;mnt&#x2F;disk1&#x2F;yyh&#x2F;IRRA-main&#x2F;datasets&#x2F;cuhkpedes.py</p><p>去这个代码里面找数据集是怎么被预处理的</p><p>然后batch[image_ids]是怎么获取的，然后还原回去</p><p>找不到image_ids的来源啊</p><p>打开json文件</p><p>ctrl+shif+p</p><p>输入json</p><p>或者</p><p>ctrl+alt+m</p><p>一个batch有pids,caption_ids,image_ids,images</p><p>pids 大小128</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206232337258.png" alt="image-20231206232337258"></p><p>都是行人的id</p><p>caption_ids</p><p>[128,77]</p><p>image_ids</p><p>[128]</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206232649532.png" alt="image-20231206232649532"></p><p>image_ids都是图片的什么，序号？唯一的，怎么对应到图片路径？</p><p>images</p><p>[128,3,384,128]</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231206232832528.png" alt="image-20231206232832528"></p><p>batch追踪</p><p>首先使用build_dataloader函数，数据集中取出train_loader</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231207130217076.png" alt="image-20231207130217076"></p><p>build_dataloader函数实现</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231207130913413.png" alt="image-20231207130913413"></p><p>然后do_train，传入train_loader</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231207130136167.png" alt="image-20231207130136167"></p><p>do_train函数中迭代train_loader获取batch</p><p><img src="/%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2bugs/image-20231207130357480.png" alt="image-20231207130357480"></p><p>batch就是这么来的，然后传到model里面进行训练</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra模型替换</title>
+    <link href="/2023/12/06/irra%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2/"/>
+    <url>/2023/12/06/irra%E6%A8%A1%E5%9E%8B%E6%9B%BF%E6%8D%A2/</url>
+    
+    <content type="html"><![CDATA[<ol><li><p><strong>不调用 <code>self.base_model</code> 进行图像特征提取</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pythonCopy codeimages = batch[<span class="string">&#x27;images&#x27;</span>]</span><br><span class="line">caption_ids = batch[<span class="string">&#x27;caption_ids&#x27;</span>]</span><br><span class="line"><span class="comment"># image_feats, text_feats = self.base_model(images, caption_ids)</span></span><br><span class="line">image_feats = self.load_image_features(batch[<span class="string">&#x27;image_feature_path&#x27;</span>])</span><br><span class="line">text_feats = self.base_model.encode_text(caption_ids)</span><br></pre></td></tr></table></figure><p>在这里，我使用了一个假设的 <code>load_image_features</code> 函数，你需要替换它为实际用于加载图片特征的函数。<code>load_image_features</code> 函数的实现应该负责从文件中读取保存的图片特征，并将其作为 <code>image_feats</code> 返回。</p></li><li><p><strong>不更新图像特征的梯度</strong>： 在上述修改后，确保不对 <code>image_feats</code> 部分进行梯度更新，以防止它们参与训练：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pythonCopy code</span><br><span class="line">i_feats = image_feats[:, <span class="number">0</span>, :].<span class="built_in">float</span>().detach()  <span class="comment"># 使用detach()防止梯度更新</span></span><br></pre></td></tr></table></figure><p>在这里，我添加了 <code>.detach()</code> 方法，这会使得 <code>i_feats</code> 不再参与梯度计算，从而实现图像特征不更新的效果。</p></li><li><p><strong>修改训练数据</strong>： 确保在训练数据中传递正确的 <code>image_feature_path</code>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pythonCopy code</span><br><span class="line">batch = &#123;<span class="string">&#x27;caption_ids&#x27;</span>: ..., <span class="string">&#x27;mlm_ids&#x27;</span>: ..., <span class="string">&#x27;mlm_labels&#x27;</span>: ..., <span class="string">&#x27;image_feature_path&#x27;</span>: ...&#125;</span><br></pre></td></tr></table></figure></li></ol><p>请注意，为了成功运行，你需要根据你的实际情况修改 <code>load_image_features</code> 函数，确保它能够正确地从文件中加载图片特征。此外，为了确保 <code>image_feats</code> 不参与训练，确保在计算损失时使用 <code>.detach()</code> 或 <code>.clone().detach()</code>。</p><p>最终修改的 <code>forward</code> 方法可能如下所示：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pythonCopy codedef forward(self, batch):</span><br><span class="line">    ret = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    caption_ids = batch[<span class="string">&#x27;caption_ids&#x27;</span>]</span><br><span class="line">    image_feats = self.load_image_features(batch[<span class="string">&#x27;image_feature_path&#x27;</span>])</span><br><span class="line">    text_feats = self.base_model.encode_text(caption_ids)</span><br><span class="line"></span><br><span class="line">    i_feats = image_feats[:, <span class="number">0</span>, :].<span class="built_in">float</span>().detach()  <span class="comment"># 使用detach()防止梯度更新</span></span><br><span class="line">    t_feats = text_feats[torch.arange(text_feats.shape[<span class="number">0</span>]), caption_ids.argmax(dim=-<span class="number">1</span>)].<span class="built_in">float</span>()</span><br><span class="line"></span><br><span class="line">    logit_scale = self.logit_scale</span><br><span class="line">    ret.update(&#123;<span class="string">&#x27;temperature&#x27;</span>: <span class="number">1</span> / logit_scale&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其余的任务处理保持不变...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>irra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>phpmyadmin登陆</title>
+    <link href="/2023/12/05/phpmyadmin%E7%99%BB%E9%99%86/"/>
+    <url>/2023/12/05/phpmyadmin%E7%99%BB%E9%99%86/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://blog.csdn.net/weixin_45743302/article/details/117153490">记录phpstudy集成环境中phpmyadmin的相关配置以及遇到的一些问题_白沙染赤的博客-CSDN博客</a></p><p>配置文件</p><p>config.default.php</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>循环神经网络RNN</title>
+    <link href="/2023/12/02/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRNN/"/>
+    <url>/2023/12/02/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRNN/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>encoder-decoder和Seq2Seq</title>
+    <link href="/2023/12/02/Encoder-Decoder%E5%92%8CSeq2Seq/"/>
+    <url>/2023/12/02/Encoder-Decoder%E5%92%8CSeq2Seq/</url>
+    
+    <content type="html"><![CDATA[<p>Encoder-Decoder</p><p>Encoder-Decoder 这个框架很好的诠释了机器学习的核心思路：</p><blockquote><p>将现实问题转化为数学问题，通过求解数学问题，从而解决现实问题。</p></blockquote><p>Encoder 又称作编码器。它的作用就是「将现实问题转化为数学问题」</p><p>将输入转换为向量</p><p><img src="/Encoder-Decoder%E5%92%8CSeq2Seq/image-20231202160757974.png" alt="image-20231202160757974"></p><p>Decoder 又称作解码器，他的作用是「求解数学问题，并转化为现实世界的解决方案」</p><p>将向量转换为输出</p><p><img src="/Encoder-Decoder%E5%92%8CSeq2Seq/image-20231202160833282.png" alt="image-20231202160833282"></p><p><img src="/Encoder-Decoder%E5%92%8CSeq2Seq/image-20231202185634257.png" alt="image-20231202185634257"></p><p>attention机制</p><p>将输入转换为向量序列</p><p>attention机制解决信息过长，信息丢失的问题</p><p>seq2seq框架</p><p>一种特殊的Encoder-Decoder框架</p><p>机器学习四大部分</p><p>算法 决策 参数 模型</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>自然语言处理 NLP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>clip</title>
+    <link href="/2023/12/02/clip/"/>
+    <url>/2023/12/02/clip/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Learning-Transferable-Visual-Models-From-Natural-Language-Supervision"><a href="#Learning-Transferable-Visual-Models-From-Natural-Language-Supervision" class="headerlink" title="Learning Transferable Visual Models From Natural Language Supervision"></a>Learning Transferable Visual Models From Natural Language Supervision</h1><ul><li><h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2></li><li><h2 id="Clip"><a href="#Clip" class="headerlink" title="Clip"></a>Clip</h2></li><li><h2 id="IRRA"><a href="#IRRA" class="headerlink" title="IRRA"></a>IRRA</h2></li></ul><p>从自然语言natural language supervision监督学习可转移视觉模型</p><p>what is transferable models？</p><p>可转移视觉模型  可转移是什么意思</p><p>comparison</p><p>zero-short learning</p><p>利用可转移模型来解决零训练的情况</p><p>CLIP（Contrastive Language-Image Pre-training）</p><p>contrastive 对比</p><p>what is contrastive model </p><p><strong>contrastive language-Image Pre-training</strong></p><p>Bert</p><p>Bidirectional Encoder Representation from Transformers</p><p>双向 </p><p>transformer</p><p>transformer模型的提出论文<a href="https://arxiv.org/pdf/1706.03762.pdf">Attention is all you need</a>。创新点：引入了注意力机制</p><p>[^编码器-解码器结构]: </p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>论文阅读</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>irra代码</title>
+    <link href="/2023/11/30/irra%E4%BB%A3%E7%A0%81/"/>
+    <url>/2023/11/30/irra%E4%BB%A3%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<p>batch 数据批次</p><p>collate 函数：处理数据批次的函数</p><p>数据加载器dataloader的每个迭代中都会返回一个批次的数据，而’collate’函数则用于处理这个批次的数据，以便适应模型的输入要求。</p><p>当数据集的样本具有不同的大小或结构，’collate’函数非常有用。</p><p>它接收一个包含样本的列表，然后整理成一个批次，以便能输入到模型中。</p><p>整理通常包括</p><p>将不同长度的序列填充到相同的长度</p><p>将图像和标签打包成一个字典</p><p>我服了</p><p>纠结了我三星期的调式bug</p><p>xxxxxxxxxx pythonCopy codedef forward(self, batch):    ret &#x3D; dict()​    caption_ids &#x3D; batch[‘caption_ids’]    image_feats &#x3D; self.load_image_features(batch[‘image_feature_path’])    text_feats &#x3D; self.base_model.encode_text(caption_ids)​    i_feats &#x3D; image_feats[:, 0, :].float().detach()  # 使用detach()防止梯度更新    t_feats &#x3D; text_feats[torch.arange(text_feats.shape[0]), caption_ids.argmax(dim&#x3D;-1)].float()​    logit_scale &#x3D; self.logit_scale    ret.update({‘temperature’: 1 &#x2F; logit_scale})​    # 其余的任务处理保持不变…​    return retpython</p><p><em>斜体</em></p><p>就可以更改到指定目录了</p><p>优化器和学习率调度器的区别</p><p>优化器optimizer，调整模型参数，最小化训练损失函数。通过梯度下降或其他优化算法来更新模型参数，使得模型在训练数据上能够逐渐收敛到最优值。</p><p>学习率调度器 lrscheduler,学习率调度器用来自动调整学习率的大小，改善模型的训练性能。适当的学习率可以加速模型的收敛、提高稳定性，并有助于克服训练过程中的困难。</p><p>常见的学习率调度器包括固定学习率、学习率衰减、余弦退火学习率、学习率梯度调度等。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid 代码</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>web开发</title>
+    <link href="/2023/11/29/web%E5%BC%80%E5%8F%91/"/>
+    <url>/2023/11/29/web%E5%BC%80%E5%8F%91/</url>
+    
+    <content type="html"><![CDATA[<p>java后端开发</p><p>后端服务器环境使用Apache tomcat,为什么需要web服务器呢？</p><p>php后端开发</p><p>Apache HTTP Server Nginx</p><p>python后端开发</p><p>Django内置</p><p>flask内置</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>bugs</title>
+    <link href="/2023/11/13/bugs/"/>
+    <url>/2023/11/13/bugs/</url>
+    
+    <content type="html"><![CDATA[<p>dataloaders &#x3D; {x: <strong>torch</strong>.utils.data.DataLoader(image_datasets[x], batch_size&#x3D;opt.batchsize,</p><p>​                       shuffle&#x3D;True, num_workers&#x3D;2, pin_memory&#x3D;False,</p><p>​                       prefetch_factor&#x3D;2, persistent_workers&#x3D;True) <em># 8 workers may work faster</em></p><p>​       for x in [‘train’, ‘val’]}</p><p>  File “train.py”, line 597, in <module><br>    model &#x3D; train_model(model, criterion, optimizer_ft, exp_lr_scheduler,<br>  File “train.py”, line 255, in train_model<br>    for iter, data in enumerate(dataloaders[phase]):<br>  File “&#x2F;home&#x2F;stu&#x2F;anaconda3&#x2F;envs&#x2F;yyh_env&#x2F;lib&#x2F;python3.8&#x2F;site-packages&#x2F;torch&#x2F;utils&#x2F;data&#x2F;dataloader.py”, line 349, in <strong>iter</strong><br>    self._iterator._reset(self)<br>  File “&#x2F;home&#x2F;stu&#x2F;anaconda3&#x2F;envs&#x2F;yyh_env&#x2F;lib&#x2F;python3.8&#x2F;site-packages&#x2F;torch&#x2F;utils&#x2F;data&#x2F;dataloader.py”, line 852, in _reset<br>    data &#x3D; self._get_data()<br>  File “&#x2F;home&#x2F;stu&#x2F;anaconda3&#x2F;envs&#x2F;yyh_env&#x2F;lib&#x2F;python3.8&#x2F;site-packages&#x2F;torch&#x2F;utils&#x2F;data&#x2F;dataloader.py”, line 1029, in _get_data<br>    raise RuntimeError(‘Pin memory thread exited unexpectedly’)<br>RuntimeError: Pin memory thread exited unexpectedly</p><p>pin memory设置为false就可以了</p><p><img src="/image-20231115152128314.png" alt="image-20231115152128314"></p><p>服了，这又是什么bug</p><p><img src="/image-20231115202527552.png" alt="image-20231115202527552"></p><p><img src="/image-20231115205908431.png" alt="image-20231115205908431"></p><p><img src="/image-20231115230924667.png" alt="image-20231115230924667"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid代码</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>特征提取</title>
+    <link href="/2023/11/07/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/"/>
+    <url>/2023/11/07/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>特征提取保存</title>
+    <link href="/2023/11/02/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%BF%9D%E5%AD%98/"/>
+    <url>/2023/11/02/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%BF%9D%E5%AD%98/</url>
+    
+    <content type="html"><![CDATA[<p>使用pickle进行特征保存</p><p>[Swin (all tricks+Circle 224x224)]模型</p><p>python train.py –use_swin –name swin_p0.5_circle_w5  –erasing_p 0.5 –circle –warm_epoch 5;  python test.py –name swin_p0.5_circle_w5 命令行参数</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid 特征提取</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>reid代码实战</title>
+    <link href="/2023/11/01/reid%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98/"/>
+    <url>/2023/11/01/reid%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ Quick Question. How to recognize the images of the same ID?</span><br></pre></td></tr></table></figure><p>特征提取</p><p>特征匹配</p><p>不对啊，market 1051的图片命名是使用标签的，还是人为准备好的数据集，是由label的，有监督学习</p><p>那么自行进行的弱监督学习</p><p>网络自己进行的特征提取是怎么做到的呢</p><p>主干网络</p><p>backbone network</p><p>预训练模型</p><p>pretrained model</p><p>学习一下numpy</p><p>学习一下几种主干网络  backbone network</p><p>跑一下代码</p><p>读一下论文</p><p>了解怎么替换骨干网络</p><p>colab运行reid步骤</p><p>配置环境</p><p>1.使用requirements.txt</p><p>packagename&#x3D;&#x3D;version</p><p>cd 到包含requirements.txt的文件夹中</p><p>pip install -r requirements.txt</p><p>-r 中的r 表示依赖项选项，即requirement的缩写</p><p>每次更改环境只需要在requirements.txt文件中更改，重新运行即可</p><p>注意，在goole colab中使用命令行执行cmd时要加上!，切换路径要加上%</p><p>本地配置环境实现环境隔离使用虚拟环境就好了，google colab中好像每次重新打开就是新环境了，都得重新配置</p><p><code>AlexNet</code>, <code>VGG16</code>,</p><p>test</p><p><img src="/reid%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98/image-20231101100848392.png" alt="image-20231101100848392"></p><p>linux终端命令格式</p><p>numpy</p><p>感知机 perceptonper</p><p>感知机就是</p><p>多层感知机</p><p>resnet模型</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid 行人重识别 深度学习与神经网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>小土堆视频学习</title>
+    <link href="/2023/10/20/%E5%B0%8F%E5%9C%9F%E5%A0%86%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2023/10/20/%E5%B0%8F%E5%9C%9F%E5%A0%86%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p>踩坑点</p><p>不要把文件名命名为常见的包的名，会报错,import error </p><p>transforms使用，transforms就是一个工具包，使用里面的类要先初始化类称为一个对象，然后在调用对象解决问题</p><p>实用技巧</p><p>ctrl+p查看函数所需参数</p><p>长按ctrl去查看源代码中给出的函数用法</p><p>使用alt+enter显示错误自动补充导入包</p><p><img src="/%E5%B0%8F%E5%9C%9F%E5%A0%86%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/image-20231025191318691.png" alt="image-20231025191318691"></p><p><img src="/%E5%B0%8F%E5%9C%9F%E5%A0%86%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/image-20231025191352216.png" alt="image-20231025191352216"></p><p>不使用module，直接使用一层网络，输出的结果也是一样的？？？</p><p>所以构建module的作用是保存了神经网络的训练参数，便于后面的训练吗？</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>神经网络与数据学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据操作</title>
+    <link href="/2023/10/19/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/"/>
+    <url>/2023/10/19/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>环境配置</title>
+    <link href="/2023/10/19/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <url>/2023/10/19/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<p>day1李沐《动手学深度学习》</p><p>电脑</p><p>anaconda scikit-learn环境</p><p>JupterNotebook运行</p><p>存疑</p><p>有必要换成电脑的ubuntu运行吗</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>神经网络与深度学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>导航栏复用</title>
+    <link href="/2023/10/19/%E5%AF%BC%E8%88%AA%E6%A0%8F%E5%A4%8D%E7%94%A8/"/>
+    <url>/2023/10/19/%E5%AF%BC%E8%88%AA%E6%A0%8F%E5%A4%8D%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<p>网页前端开发使用bootstrap框架</p><p>html学习各种标签</p><p>css学习各种选择器 id选择器# 属性选择器. 类选择器 selector</p><p>js</p><p>写导航栏时希望每个网页共用一个导航栏</p><p>解决方案（仅限于学习了前端知识）：</p><p>每个网页都粘贴一遍代码，缺点：一改全改</p><p>使用iframe 缺点：属于网页嵌入显示在另一个网页中，不好排版，使用下拉菜单栏时距离不好控制，尽量不要使用iframe,否则只会给自己找麻烦</p><p>。。。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>web开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo推送到gitee网页无法更新</title>
+    <link href="/2023/09/23/hexo%E6%8E%A8%E9%80%81%E5%88%B0gitee%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0/"/>
+    <url>/2023/09/23/hexo%E6%8E%A8%E9%80%81%E5%88%B0gitee%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0/</url>
+    
+    <content type="html"><![CDATA[<p>使用hexo往gitee更新博客，网页无显示</p><p>首先hexo clean hexo generate hexo deploy</p><p>本地可以显示新更新网页</p><p>但是通过gitee访问未更新</p><p>解决方法</p><p><img src="/1.png" alt="1"></p><p>在gitee pages服务中重新更新</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bug</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>线性回归模型</title>
+    <link href="/2023/09/23/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/"/>
+    <url>/2023/09/23/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>辗转相除法</title>
+    <link href="/2023/09/05/%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95/"/>
+    <url>/2023/09/05/%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p>复习一下一个简单但很有用的算法</p><p>辗转相除求最大公因数</p><p>算法的核心就是数学知识，这个算法也就是发现了一个数学规律并且应用</p><p>当求a和b两个数的最大公因（约）数时，用a-b（假设a大于b)求出来的这个值一定是最大公因数的倍数（可以用公式推出来的</p><p>在设计算法时，忽视这个规律，直接去枚举所有的数来判断是否能整除显然复杂了，用这个减出来的数就可以排除掉很多</p><p>取余也能体现出减法，而且省略掉许多不必要的减法</p><p>%在算法里面非常常见</p><p>void </p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>差分与前缀和</title>
+    <link href="/2023/09/04/%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+    <url>/2023/09/04/%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<p>每日算法打卡</p><p>差分数组 b[] 1 2 3 4 5</p><p>前缀和数组 a[] 1 3 6 10 15</p><p>insert函数，改变差分数组的两个值来改变前缀和数组的一段范围内的所有值</p><p>void insert(int l, int r, int c)</p><p>{</p><p>​b[l]+&#x3D;c;</p><p>​b[r+1]-&#x3D;c;</p><p>}</p><p>关键点：想要改变一个数组内连续范围增加或减少同一个值，可以构造差分数组来帮助降低时间复杂度</p><p>已知a 构造b  原理b[i]&#x3D;a[i]-a[i-1]</p><p>简化</p><p>for(int i&#x3D;1;i&lt;&#x3D;n;i++)insert(i,i,a[i]);通过insert函数构造出差分数组，当然也可以直接用公式（使用这个函数不需要初始化b数组为0？）</p><p>由差分数组还原出前缀和数组</p><p>a[i]&#x3D;a[i-1]+b[i];</p><p>或者直接再把b当做前缀和数组b[i]+&#x3D;b[i-1];</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ad学习</title>
+    <link href="/2023/08/03/ad%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2023/08/03/ad%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>altuim designer pcb设计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>词根词缀学习</title>
+    <link href="/2023/07/25/%E8%AF%8D%E6%A0%B9%E8%AF%8D%E7%BC%80%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2023/07/25/%E8%AF%8D%E6%A0%B9%E8%AF%8D%E7%BC%80%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>1</title>
+    <link href="/2023/07/24/1/"/>
+    <url>/2023/07/24/1/</url>
+    
+    <content type="html"><![CDATA[<p>快递电话号码写错了，真倒霉，等了这么久的holocubic的外壳，还以为今天可以拿到，结果电话没打到我手机，明天补送，惨兮兮</p><p>上午科四考了，这么久终于把驾照拿了，今天也算有收获，回来时一路红灯都没熄火，真顺，有驾照嘿嘿就是不一样</p><p>晚上把typora和hexo网页插入图片的博客写了</p><p>我的holocubic，急急急急急，迫不及待要拿到我的外壳啊啊啊啊啊啊啊</p><p>可以开新坑了，下一个复刻太极创客的太乐小车</p><p>下下一个，立创开源广场雪花灯</p><p>还有Holocubic板子发热有点严重，后面把屏幕板改成给主板供电，以及自己试试写固件，烧一下自己的程序，专门复刻别人的有什么意思是吧</p><p>还有，做一个单词本的软件，电脑上面背的，holocubic上面显示</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo+typora博客中添加图片</title>
+    <link href="/2023/07/21/hexo-typora%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/"/>
+    <url>/2023/07/21/hexo-typora%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87/</url>
+    
+    <content type="html"><![CDATA[<p>在typora中图片格式!加上[]加上() 中括号里面是图片信息描述，圆括号里面是图片路径</p><p>图片路径可以分为三种  <strong>绝对路径 相对路径 网络路径</strong></p><p><em>网络路径</em>可以不用将图片插在博客文件夹里面，直接到网站去复制一下别人的图片链接。</p><p>优点，不占内存</p><p>缺点，链接可能会失效，打开网页时加载图片相对较慢，其它网站可能不给引用，加载不显示，总之就不是自己的哈哈</p><p><img src="https://img2.baidu.com/it/u=4268481969,128088531&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500" alt=" 网络路径"></p><p><em>绝对路径</em>，文件夹在自己电脑的位置写死了，不好移动，也不好部署到gitee或github上，否决</p><p><img src="E:\Pictures\1.jpeg" alt="直接在typora中插入图片，默认是绝对路径"></p><p><em>相对路径</em>，设置图片相对当前博客文件夹source的位置</p><p>在source里面放blog和pic文件夹，然后路径使用\pic\文件名</p><p>虽然typora里面没有显示出来图片，但在网页中显示出来了</p><p><img src="/%5Cpic%5C1.jpeg" alt="相对路径"></p><p>但是这就挺麻烦的呢，所有日志的图片都放在一个文件夹里面，按照一般习惯都是相应图片和相应博客有对应关系的，这种方法都没有对应关系，修改都不好弄。</p><p>但是开发者都考虑到了，于是可以去全局配置文件里面设置一下</p><p>post_asset_folder: true</p><p>这样使用hexo new 的时候在生成md文件时也会生成同名文件夹，里面用来存放图片</p><p>怎么显示图片呢</p><p>再写相对路径又多一级，好麻烦好像</p><p><img src="/1.jpg"></p><p>但是不用，直接写相应文件夹里面的文件名就行，这就很方便了</p><p>只能说typore和hexo真的是挺兼容的，真的是天生一对嘿嘿</p><p>网上有使用插件的，但我觉得已经很方便了直接引用文件名</p><p>剩下还有点不方便的就是每次往相应文件夹插入图片，如果我复制图片typora能自动帮我复制到对应图片文件夹就好了，这就可以使用typora的偏好设置了</p><p><img src="/u=1185492631,1304693633&fm=253&fmt=auto&app=138&f=JPEG.jpeg" alt="直接复制网络图片"></p><p>相应同名图片文件夹就有了这张图片呢，这真的是太方便了哈哈哈</p><p><img src="/u=2616026941,1797983244&fm=253&fmt=auto&app=138&f=JPEG.jpeg" alt="img"></p><p>不过还是有个小bug，typora的相对路径是以source 为根目录，而hexo的根目录是用的图片文件夹，这就导致插入图片的相对路径每次都要删一下前面，有点小麻烦，而且typora看不到图片</p><p>哦补充一下，这个自动生成相应同名图片文件夹需要下载插件</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>技术</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>holocubic复刻</title>
+    <link href="/2023/07/21/holocubic/"/>
+    <url>/2023/07/21/holocubic/</url>
+    
+    <content type="html"><![CDATA[<p>记录第一次复刻项目</p><p>稚晖君的holocubic</p><p>购买材料</p><p>工具：电烙铁 焊锡丝 热风枪 加热台 焊锡膏 助焊剂 洗板水 </p><p>热风枪买的是华谊的代工产品，100块，挺好用的</p><p>加热台随便买的400w的，9元</p><p>焊锡膏：10元</p><p>助焊剂：8元</p><p>洗板水：10元</p><p>元器件：第一次用bom表配元器件，零散的元件淘宝下单30元，同样的元器件如果单价比较贵直接购买不要放在bom表单里面更便宜，比较贵的mpu8050陀螺仪，cp2012, esp32 15元</p><p>外壳：稚晖君原版naive版本要打印两个外壳，使用群文件里面的Metal版本只用打印一个外壳，在立创的三维猴下单的，新用户可以有15元的快递免费劵，外壳3d打印可以有透明，半透明，白色等选择，透明半透明比较贵，而且我也比较喜欢白色款式，还有一个盲盒随机材料，所以一共打印了两份Metal外壳，耗费6元</p><p>踩坑：</p><p>一开始是在立创开源广场搜索的holocubic项目，直接找了一个高访问量的就打印板子和bom表下单了，资料匮乏，项目也有部分问题，对于新手复刻实在不友好，复刻到了cp2012可以被电脑识别后死活esp32不能和电脑通信，而且后面就算接着做下去缺少相应固件资料以及排错指导，只好中途放弃。后面加群发现Holocubic的项目被各位大佬们完善的真的很好，教程也真的是非常照顾小白了。所以以后如果复刻而自己又没有相应基础的项目还是要找资料完善的以及加qq群及时交流。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>holocubic复刻</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>太乐小车</title>
+    <link href="/2023/07/21/%E5%A4%AA%E4%B9%90%E5%B0%8F%E8%BD%A6/"/>
+    <url>/2023/07/21/%E5%A4%AA%E4%B9%90%E5%B0%8F%E8%BD%A6/</url>
+    
+    <content type="html"><![CDATA[<p>学习太极创客的太乐小车项目</p><p>arduino uno主板+L293D电机驱动扩展板</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>arduino uno</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>我的第一篇博客</title>
+    <link href="/2023/07/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2023/07/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    
+    <content type="html"><![CDATA[<p>之前一直想搭建一个服务器，但是租服务器好像挺贵的，也不是很用得着，只是觉得在浏览器输入网址的感觉很酷，现在用hexo和gitee pages很方便。</p><p>写些什么呢，要不要能被其他人看到呢，想技术相关的分享来反推自己学习，可是又不想自己日常被看到，毕竟日记都是写给自己看的，就像小学写日记，如果要给老师看的，总会有些写的不太自在。</p><p>博客，接触到这个词真的挺晚的，反正是在大学我才有电脑的，大学之前我可能连电脑开关机都不太会。</p><p>记录些什么呢，技术肯定是要的，电子相关可能算是我难得的和学习有关的爱好了，运动可以记录一下乒乓球，乒乓球也是一个顶顶重要的爱好，或许还可以记录一下听的广播剧，这也算是我的一个打法时间的小兴趣。哦对了，做饭日常记录一波，炸厨房的日常也很有意思的。</p><p>大学专业课也可以记录一下。</p><p>果然是日常，写得没有什么逻辑，想到什么就些什么，这种自在的感觉真好。</p><p>大二暑假</p><p>目标：搭建一个网页，和风灵玉秀相关的</p><p>做出来holocubic</p><p>做出来智能小车，最好能加上机械臂</p><p>多打球，多去游泳<img src="E:\Pictures\1632553134965.jpg" alt="1632553134965"></p><p>多做些种类的美食</p><p><img src="E:\Pictures\1.jpeg"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

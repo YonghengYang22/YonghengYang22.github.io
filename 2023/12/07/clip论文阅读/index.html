@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="klull">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一页  标题 大家好，今天我讲的论文是OpenAI在2021年发表在NeurIPS会议上的论文，在这个论文里提出了影响很大的模型CLIP。 这篇论文的作者团队全部来自OpenAI，然后OpenAI也将代码和预训练模型开源在了github上面。 首先我们来看看这篇文章的标题，利用自然语言监督学习可迁移的视觉模型。 标题中有两个关键词，利用自然语言监督以及可迁移。 怎么利用自然语言监督，就是这篇文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="clip论文阅读">
+<meta property="og:url" content="http://example.com/2023/12/07/clip%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一页  标题 大家好，今天我讲的论文是OpenAI在2021年发表在NeurIPS会议上的论文，在这个论文里提出了影响很大的模型CLIP。 这篇论文的作者团队全部来自OpenAI，然后OpenAI也将代码和预训练模型开源在了github上面。 首先我们来看看这篇文章的标题，利用自然语言监督学习可迁移的视觉模型。 标题中有两个关键词，利用自然语言监督以及可迁移。 怎么利用自然语言监督，就是这篇文章">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-07T11:17:26.000Z">
+<meta property="article:modified_time" content="2023-12-07T17:13:06.300Z">
+<meta property="article:author" content="klull">
+<meta property="article:tag" content="论文阅读">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>clip论文阅读 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="clip论文阅读"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-07 19:17" pubdate>
+          December 7, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">clip论文阅读</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>第一页  标题</p>
+<p>大家好，今天我讲的论文是OpenAI在2021年发表在NeurIPS会议上的论文，在这个论文里提出了影响很大的模型CLIP。</p>
+<p>这篇论文的作者团队全部来自OpenAI，然后OpenAI也将代码和预训练模型开源在了github上面。</p>
+<p>首先我们来看看这篇文章的标题，利用自然语言监督学习可迁移的视觉模型。</p>
+<p>标题中有两个关键词，利用自然语言监督以及可迁移。</p>
+<p>怎么利用自然语言监督，就是这篇文章的关键。</p>
+<p>然后他想达到的目的，就是这个迁移性transferable。</p>
+<p>然后什么是迁移性呢，可迁移就是学习一个泛化很好的特征，能够在各种数据集上，不需要预训练就可以取得不错的效果。</p>
+<p>英文表示就是zero-shot</p>
+<p>第二页  </p>
+<p>首先我们来直接看看clip模型是什么</p>
+<p>这个图就是clip模型的结构</p>
+<p>模型的输入</p>
+<p>图片和文字的配对 pair</p>
+<p>图片编码器既可以是个resnet,也可以是个vision transformer</p>
+<p>文本编码器 文本特征</p>
+<p>得到n个图片特征和n个文本特征</p>
+<p>clip就对这n对特征进行对比学习</p>
+<p>对比学习需要正样本和负样本</p>
+<p>配对的就是正样本，沿着对角线的都是正样本</p>
+<p>n*n-n都是负样本</p>
+<p>通过正负样本对比学习，减少手工标注</p>
+<p>openai收集了4亿个图片文本配对</p>
+<p>clip如何做zero-shot推理</p>
+<p>当然是不是zero-shot还存在疑问，因为openai收集的四亿对数据可能就包括了测试中图片文字对</p>
+<p>prompt template</p>
+<p>因为在预训练里面给的都是句子，所以在进行分类任务时把单词不全为句子</p>
+<p>怎么变成句子，也有讲究</p>
+<p>clip论文后面还提出了prompt engineering和prompt ensemble</p>
+<p>计算cosine similarity，计算相似性</p>
+<p>第三页 目录</p>
+<p>clip这篇论文正文有三十多页，大部分都是实验和分析</p>
+<p>第一页讲的摘要，然后一页讲的是引言，接下来几页讲的是方法，主要讲的是预训练，再后面的主要就是讲实验</p>
+<p>第四页 摘要</p>
+<p>目前的视觉系统训练，先有一个固定的，已经提前定义好的物体类别的集合</p>
+<p>模型通过预测这些提前定义好的类别，从而完成模型的训练</p>
+<p>固定的，提前定义好的标签类别</p>
+<p>imagenet固定的1000个类别</p>
+<p>cifar10 10个类</p>
+<p>cifar100 100个类</p>
+<p>提前定义好标签集合</p>
+<p>采用了有限制性的监督信号，限制了模型的泛化性</p>
+<p>不能识别新的物体类别</p>
+<p>每次要预测新的类别，就要重新训练，就不好scale，不好做大做强了</p>
+<p>第五页</p>
+<p>不需要有提前定好的标签类</p>
+<p>因为和自然语言处理的结合，clip学习到的视觉特征，和我们用语言描述出来的某个物体，已经产生了强烈的联系</p>
+<p>比如香蕉，无论是在自然图像里的香蕉，或者素描的香蕉，或者动漫里的香蕉</p>
+<p>clip训练出来的模型都知道是香蕉</p>
+<p>第六页 引言</p>
+<p>summary </p>
+<p>概述</p>
+<p>来自openai 的clip模型</p>
+<p>思路简单</p>
+<p>效果很好</p>
+<p>zero shot</p>
+<p>Learning transferable visual models from natural language supervision</p>
+<p>从自然语言监督学习可迁移视觉模型</p>
+<p>多模态</p>
+<p>对比学习需要正样本和负样本</p>
+<p>配对的就是正样本，沿着对角线的都是正样本</p>
+<p>n*n-n都是负样本</p>
+<p>通过正负样本对比学习，减少手工标注</p>
+<p>openai收集了4亿个图片文本配对</p>
+<p>clip如何做zero-shot推理</p>
+<p>当然是不是zero-shot还存在疑问，因为openai收集的四亿对数据可能就包括了测试中图片文字对</p>
+<p>prompt template</p>
+<p>因为在预训练里面给的都是句子，所以在进行分类任务时把单词不全为句子</p>
+<p>怎么变成句子，也有讲究</p>
+<p>clip论文后面还提出了prompt engineering和prompt ensemble</p>
+<p>计算cosine similarity，计算相似性</p>
+<p>不需要有提前定好的标签类</p>
+<p>因为和自然语言处理的结合，clip学习到的视觉特征，和我们用语言描述出来的某个物体，已经产生了强烈的联系</p>
+<p>比如香蕉，无论是在自然图像里的香蕉，或者素描的香蕉，或者动漫里的香蕉</p>
+<p>clip训练出来的模型都知道是香蕉</p>
+<p>因为网络上的语言和图片有联系，不需要手工去打标签，所以迁移性非常强</p>
+<p>与其说是做到了zero-shot,不如说是利用网络上文本图片省去了手工打标签</p>
+<p>怎么利用自然语言</p>
+<p>做到迁移性好</p>
+<p>摘要</p>
+<p>目前的视觉系统训练，先有一个固定的，已经提前定义好的物体类别的集合</p>
+<p>模型通过预测这些提前定义好的类别，从而完成模型的训练</p>
+<p>固定的，提前定义好的标签类别</p>
+<p>imagenet固定的1000个类别</p>
+<p>cifar10 10个类</p>
+<p>cifar100 100个类</p>
+<p>提前定义好标签集合</p>
+<p>采用了有限制性的监督信号，限制了模型的泛化性</p>
+<p>不能识别新的物体类别</p>
+<p>每次要预测新的类别，就要重新训练，就不好scale，不好做大做强了</p>
+<p>直接从自然语言文本里去的到监督信号</p>
+<p>训练样本 图片文字的配对</p>
+<p>爬了四个亿的图片对</p>
+<p>有了这么大的数据集，就可以对模型进行自监督训练了。</p>
+<p>多模态的对比学习完成模型训练</p>
+<p>在预训练完成后，自然语言就被用来引导模型做物体分类</p>
+<p>也就是之前说过的prompt</p>
+<p>分类也不光局限于已经学到的视觉概念，还能扩展到新的类别，学习到的模型能直接在下游任务去做zero-shot推理</p>
+<p>ground truth标注答案</p>
+<p>参数调整</p>
+<p>temperature参数设为可学习参数</p>
+<p>视觉模型</p>
+<p>resnet或者 vision transformer</p>
+<p>文本使用的transformer</p>
+<p>实验部分</p>
+<p>什么是zero-shot transfer</p>
+<p>clip的核心和精华所在</p>
+<p>zero-shot 迁移的动机</p>
+<p>之前自监督或者无监督的方法</p>
+<p>主要研究的是特征学习的能力，目标是学一种泛化性比较好的特征，但是即使学到了泛化性很好的特征，想要应用到下游任务时，还是需要有标签的数据进行模型微调</p>
+<p>如何训练一个模型，接下来不用再训练，微调了呢</p>
+<p>所以这就是作者研究zero shot 迁移的动机，借助文本训练好了又大又好的模型</p>
+<p>用文本做引导，很灵活的做zero-shot的迁移学习</p>
+<p>prompt engineer and ensembling</p>
+<p>提示 文本的引导作用</p>
+<p>polysemy</p>
+<p>多义性</p>
+<p>constrcutive crane 起重机</p>
+<p>crane 鹤</p>
+<p>remote 远的</p>
+<p>遥控器</p>
+<p>a photo of ‘ ‘</p>
+<p>指出来是个名词，解决一些歧义性问题</p>
+<p>distribution gap</p>
+<p>进行zero shot 迁移时，指出应用场景，都非常有用</p>
+<p>limitation</p>
+<p>数据集重叠</p>
+<p>包括了下游数据集</p>
+<p>不足和局限</p>
+<p>扩大clip规模弥补十几个点的差距，不现实 sota state of art 特定任务中目前表现最好的模型</p>
+<p>总结</p>
+<p>43分钟代码讲解</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="print-no-link">#论文阅读</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>clip论文阅读</div>
+      <div>http://example.com/2023/12/07/clip论文阅读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>klull</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 7, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/10/irra%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA/" title="irra文件路径追踪">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">irra文件路径追踪</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/07/%E8%A7%A3%E7%A9%BA%E9%97%B4%E6%A0%91/" title="解空间树">
+                        <span class="hidden-mobile">解空间树</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
