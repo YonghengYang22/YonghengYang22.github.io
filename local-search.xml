@@ -4,6 +4,95 @@
   
   
   <entry>
+    <title>直流电动机</title>
+    <link href="/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/"/>
+    <url>/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>下载minist数据集时报错</title>
+    <link href="/2024/03/18/%E4%B8%8B%E8%BD%BDminist%E6%95%B0%E6%8D%AE%E9%9B%86%E6%97%B6%E6%8A%A5%E9%94%99/"/>
+    <url>/2024/03/18/%E4%B8%8B%E8%BD%BDminist%E6%95%B0%E6%8D%AE%E9%9B%86%E6%97%B6%E6%8A%A5%E9%94%99/</url>
+    
+    <content type="html"><![CDATA[<p><strong>使用tensorflow 和 keara 下载minist数据集时报错</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Load the data and split it between train and test sets</span><br>(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()<br></code></pre></td></tr></table></figure><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">URL <span class="hljs-keyword">fetch</span> failure <span class="hljs-keyword">on</span> https://<span class="hljs-keyword">storage</span>.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz: <span class="hljs-keyword">None</span> <span class="hljs-comment">-- [WinError 10061] 由于目标计算机积极拒绝，无法连接。 Output is truncated. View as a scrollable element or open in a text editor. Adjust cell output settings...</span><br></code></pre></td></tr></table></figure><p>真的很坑，这个翻译过来看起来是网络的问题，第一反应是开梯子或者关梯子</p><p>但是实际原因居然是因为路径里面不能有中文</p><p>把路径改成英文就可以了</p><p>尽量用英文路径，不要用中文路径，不然很容易出现一些奇奇怪怪的错误还找不到原因</p><p>不懂，难道是偶然，到底是关梯子好的还是改路径好的？</p><p>因为回答里面没一个提到路径的                                              </p><p>​                                          </p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bugs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>力矩平衡</title>
+    <link href="/2024/03/18/%E5%8A%9B%E7%9F%A9%E5%B9%B3%E8%A1%A1/"/>
+    <url>/2024/03/18/%E5%8A%9B%E7%9F%A9%E5%B9%B3%E8%A1%A1/</url>
+    
+    <content type="html"><![CDATA[<p><strong>力矩</strong></p><p>定义：力矩是一种使物体能绕轴产生转动的力</p><p>计算公式：<br>$$<br>\tau &#x3D; r \times F<br>$$</p><p>$$<br>\tau 发音为tao,此处表示为力矩，\tau在物理学中可以用来表示力矩，还可以用来表示时间常数<br>$$</p><p>$$<br>\tau &#x3D; r \cdot F \cdot \sin(\theta)<br>$$</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>自动控制原理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一点闲谈</title>
+    <link href="/2024/03/15/%E4%B8%80%E7%82%B9%E9%97%B2%E8%B0%88/"/>
+    <url>/2024/03/15/%E4%B8%80%E7%82%B9%E9%97%B2%E8%B0%88/</url>
+    
+    <content type="html"><![CDATA[<p><strong>一点乱记</strong></p><p>这周算是有点颓废的一周</p><p>不想弄代码，不想看了，感觉很迷茫，觉得做下去没有意义了</p><p>后续有其它方向，可是我已经没有精力去尝试了。</p><p>现在可能就是，每天网上，可以跑一下代码了，改代码是真不想弄了</p><p>每次改动，从能跑，高兴，到跑的挺好，激动，到最后，一直突不破那道坎，涨不了点，失望，灰心</p><p>很难不怀疑这么做下去的意义了，如果我大二，没事干，可以，可以这么不追求结果，因为只要在学习，就算没结果，东西是学到了。</p><p>可现在我不能了啊，我得追求产出了，这么一个没有保证得事情。</p><p>还有关于跨考，究竟适合我吗</p><p>从学得这几天来看，我觉得学的还挺有意思得，虽然学得很慢，但是很充实。</p><p>有电路，有数学。虽然我并没有特别喜欢数学，但是这种建立在物理世界上得数学，一个公式是能找到物理实体去解释得，我还是挺喜欢这种的。</p><p>我没有很喜欢计算机，因为我始终觉得计算机只是一个工具，专门学没什么意思。或者那种偏工程性质的，纯写软件的，也是在人们制定的规则中去实现，就像学一门新的语言一样。</p><p>规则都是人类规定的，我不喜欢学这种规则，我喜欢学物理中，数学中，已经被证实的，永恒的是对的知识。</p><p>对哪些知识我可以联想到生活中的实体，我能有一个直观的感受，就算后面会越学越偏理论，抽象，但始终有个出发点，有个物理实体</p><p>而计算机太偏逻辑了，我感觉我在逻辑思维方面并没有优势，虽然也能学会，但是学的很累，没意思。</p><p>好了好了，没必要想这么多</p><p>对了这个博客，断了这么久，要是可以在网页中编辑就好用了，上网搜搜，搭个动态的部署到本地不就好了嘛？不过那样就没有托管了，不能直接访问网址了，还是先静态吧,markdown里面编辑也挺好</p><p>想想我控制学到哪里了</p><p>拉式变换</p><p>拉式逆变换都学了</p><p>把结构图，关系流图再学了，争取这一周把第二章结束吧</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>复数中三角函数与指数的转换关系.md</title>
+    <link href="/2024/03/15/%E5%A4%8D%E6%95%B0%E4%B8%AD%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E6%95%B0%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB-md/"/>
+    <url>/2024/03/15/%E5%A4%8D%E6%95%B0%E4%B8%AD%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E6%95%B0%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB-md/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>自动控制原理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title></title>
     <link href="/2024/03/14/embedding_space/"/>
     <url>/2024/03/14/embedding_space/</url>
