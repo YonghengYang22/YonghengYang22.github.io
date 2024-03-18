@@ -4,6 +4,292 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2024/03/14/embedding_space/"/>
+    <url>/2024/03/14/embedding_space/</url>
+    
+    <content type="html"><![CDATA[<p>embedding space </p><p>嵌入空间</p><p>有一组数据</p><p>表示很多个动物</p><p>动物有体重，身高，毛发这些数据，有很多个数据</p><table><thead><tr><th>动物序号</th><th>体重</th><th>身高</th><th>毛发</th></tr></thead><tbody><tr><td>1</td><td>5kg</td><td>1meter</td><td>black</td></tr><tr><td>2</td><td>10kg</td><td>1.4meter</td><td>white</td></tr><tr><td>3</td><td>2kg</td><td>0.8meter</td><td>grey</td></tr></tbody></table><p>这样的一组数据信息，怎么表示在计算机里面呢</p><p>数据库用的是表，神经网络用的是向量vector</p><p>各个数据统一一个向量表示，就是统一到一个向量空间里面，叫做嵌入空间</p><p>当各个动物的数据都表示为向量了，动物之间的差异就可以使用向量来衡量了</p><p>(5，1，rgb)</p><p>(10,1.4,rgb)</p><p>(2,0.8,rgb)</p><p>怎么比较呢，<strong>感觉各个维度可以给不同权重啊</strong></p><p>这个仅仅简单把各个类型值作为一个维度，感觉向量空间的表示肯定有更好的方式</p><p>神经网络里面衡量向量的相似度</p><p>欧式距离（少用）l1 l2两种欧式距离，就是平方差距离</p><p>余弦距离  （常用） 越接近1，越靠近，越接近-1，越远离</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/kl%E6%95%A3%E5%BA%A6/"/>
+    <url>/2024/03/14/kl%E6%95%A3%E5%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240127100957401.png" alt="image-20240127100957401"></p><p>t2i_loss &#x3D; t2i_pred ***** (<strong>F</strong>.<strong>log_softmax</strong>(text_proj_image, dim&#x3D;1) <strong>-</strong> <strong>torch</strong>.<strong>log</strong>(labels_distribute + epsilon))</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240127101049315.png" alt="image-20240127101049315"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/latex/"/>
+    <url>/2024/03/14/latex/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/linux%E5%91%BD%E4%BB%A4/"/>
+    <url>/2024/03/14/linux%E5%91%BD%E4%BB%A4/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/simCLR/"/>
+    <url>/2024/03/14/simCLR/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/softmax/"/>
+    <url>/2024/03/14/softmax/</url>
+    
+    <content type="html"><![CDATA[<p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121145555103.png" alt="image-20240121145555103"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/torch.mean/"/>
+    <url>/2024/03/14/torch.mean/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/torch.randint%20(2)/"/>
+    <url>/2024/03/14/torch.randint%20(2)/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/torch.randint/"/>
+    <url>/2024/03/14/torch.randint/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/torch.topk/"/>
+    <url>/2024/03/14/torch.topk/</url>
+    
+    <content type="html"><![CDATA[<p>torch.topk</p><p>返回张量中前k个值和对应的序列</p><p>values,indices&#x3D;torch.topk(input,k,dim&#x3D;none,largest&#x3D;True,sorted&#x3D;True,out)</p><p>input输入张量</p><p>dim是否按维度排序</p><p>largest&#x3D;True  最大在前面</p><p>sorted&#x3D;True 返回的值和序列是保持原始张量顺序还是保持大小顺序</p><p>out用于保存输出张量</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/torch.where/"/>
+    <url>/2024/03/14/torch.where/</url>
+    
+    <content type="html"><![CDATA[<p>torch.where(condition,x,y)</p><p>返回一个新的张量</p><p>如果condition为真，则对应为x的值，如果为假，则是y的值</p><p>如果有一个mask</p><p>mask为true的地方保留为x的值</p><p>mask为false的地方保留为y的值</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E7%AC%AC%E5%9B%9B%E6%AC%A1%E7%BB%84%E4%BC%9A/"/>
+    <url>/2024/03/14/%E7%AC%AC%E5%9B%9B%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
+    
+    <content type="html"><![CDATA[<p>minibatch</p><p>benchmark</p><p>normalization</p><p>baseline </p><p>benchmark</p><p>metric 三个有什么区别</p><p>neutral中性的</p><p>mer  multimodal emotion  recognization 多模态情感识别</p><p>乘法改成加法</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121000800665.png" alt="image-20240121000800665"></p><p>什么-3什么的，听不懂一点  怎么改啊</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E7%AC%AC%E4%BA%94%E6%AC%A1%E7%BB%84%E4%BC%9A/"/>
+    <url>/2024/03/14/%E7%AC%AC%E4%BA%94%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%871_simCLR/"/>
+    <url>/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%871_simCLR/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%872_simCLRv2/"/>
+    <url>/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%872_simCLRv2/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%873_IRRA/"/>
+    <url>/2024/03/14/%E5%AF%92%E5%81%87%E8%AE%BA%E6%96%873_IRRA/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1/"/>
+    <url>/2024/03/14/%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1/</url>
+    
+    <content type="html"><![CDATA[<p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121132154411.png" alt="image-20240121132154411"></p><p>多分类问题</p><p>真实标签y是一个概率分布   </p><p>y真实概率分布</p><p>y^预测概率分布</p><p>yi真实标签的第i个元素</p><p>yi^预测标签的第i个元素</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121133232020.png" alt="image-20240121133232020"></p><p>交叉熵能衡量两个概率分布之间的相似性</p><p>为什么引入对数</p><p>对数缓慢增长，对小概率的增长更加敏感</p><p><strong>对数可以将更小的概率映射到更大的值</strong>   交叉熵   损失函数    增加置信度</p><p><strong>指数可以将更大的概率映射得更大</strong>    softmax   分类头         放大损失函数值</p><p>有的公式是把softmax和交叉熵放一起了</p><p>所以既有对预测得分的处理成概率，又有计算损失函数部分</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121133943304.png" alt="image-20240121133943304"></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121150101001.png" alt="image-20240121150101001"></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240121171801545.png" alt="image-20240121171801545"></p><p>likelihood</p><p>似然</p><p>我突然懂了</p><p>老师的意思是</p><p>把softmax进行给置信度那一部分</p><p>不要把负样本置信度给放的太大   改成加法</p><p>应用的创新点在哪里？？？</p><p>怎么加，怎么弄</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E4%B8%89%E5%85%83%E7%BB%84%E6%8D%9F%E5%A4%B1/"/>
+    <url>/2024/03/14/%E4%B8%89%E5%85%83%E7%BB%84%E6%8D%9F%E5%A4%B1/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%92%B8%E9%A6%8F/"/>
+    <url>/2024/03/14/%E6%95%B0%E6%8D%AE%E9%9B%86%E8%92%B8%E9%A6%8F/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E7%BB%84%E4%BC%9A3/"/>
+    <url>/2024/03/14/%E7%BB%84%E4%BC%9A3/</url>
+    
+    <content type="html"><![CDATA[<p>正交</p><p>private </p><p>shared</p><p>background motivation innovation</p><p>对抗网络  gan</p><p>两个模型pk </p><p>两个模型交叉训练</p><p>两个模型一起训练  gradient reversal layers</p><p>GRL反梯度下降</p><p>两个域</p><p>私有域公有域距离远离</p><p>用向量正交计算Loss</p><p>scale缩放</p><p>scaler标量</p><p>正样本 乘法</p><p>噪声 加法</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/%E7%BB%84%E4%BC%9A4/"/>
+    <url>/2024/03/14/%E7%BB%84%E4%BC%9A4/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/03/14/2024-3-3%E7%BB%84%E4%BC%9A/"/>
+    <url>/2024/03/14/2024-3-3%E7%BB%84%E4%BC%9A/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>irra实验结果</title>
     <link href="/2024/01/03/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/"/>
     <url>/2024/01/03/irra%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C/</url>
