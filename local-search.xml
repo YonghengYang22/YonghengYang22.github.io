@@ -4,13 +4,267 @@
   
   
   <entry>
-    <title>直流电动机</title>
-    <link href="/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/"/>
-    <url>/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/</url>
+    <title>day1</title>
+    <link href="/2024/10/12/day1/"/>
+    <url>/2024/10/12/day1/</url>
+    
+    <content type="html"><![CDATA[<p><em>论文阅读清单</em></p><ul><li><input disabled="" type="checkbox"> Learning Transferable Visual Models From Natural Language Supervision</li><li><input disabled="" type="checkbox"> Learning to Prompt for Vision-Language Models</li><li><input disabled="" type="checkbox"> Conditional Prompt Learning for Vision-Language Models </li><li><input disabled="" type="checkbox"> A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</li></ul><p>复现论文</p><p>A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/09/19/%E6%AF%8F%E6%97%A5%E5%AE%89%E6%8E%92/"/>
+    <url>/2024/09/19/%E6%AF%8F%E6%97%A5%E5%AE%89%E6%8E%92/</url>
+    
+    <content type="html"><![CDATA[<ul><li><input checked="" disabled="" type="checkbox"> 收集实习信息</li><li><input disabled="" type="checkbox"> 整理桌面所有文件 35min</li><li><input disabled="" type="checkbox"> 整理所有博客2h</li><li><input disabled="" type="checkbox"> 制作简历2h</li><li><input disabled="" type="checkbox"> 出考研资料</li><li><input disabled="" type="checkbox"> 为东风的面试做准备，主要复盘人工智能方面的知识，我打算面人工智能方向的课题</li></ul><p>this weekend</p><p>go back home, repair my holocubic, and add an additional function, maybe connect to the xiaomi band                                                             watch and get     the daily step count. oh no , another task , repair my keyboard, the blank key sometimes not work. </p><p>all in all</p><p>小米  </p><p>京东</p><p>科大讯飞（小小坚定了我学人工智能方向）</p><p>想学</p><p>1.模拟电路</p><p>2.数字电路</p><p>3.绘制pcb板</p><p>4.机器学习</p><p>5.统计学</p><p>i have made up my mind that i will major in artificial intelligence, and make hardware a kind of hobby，cuz  life cannot be full of work, aslo something novel and you are interested and can give you a highly sense of accomplishment.</p><p>i will surely continue my pingpang practice, hope i can become a high level amateur.</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>软件工程期末复习</title>
+    <link href="/2024/06/25/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/"/>
+    <url>/2024/06/25/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="第1章-软件工程基础"><a href="#第1章-软件工程基础" class="headerlink" title="第1章 软件工程基础"></a>第1章 软件工程基础</h1><h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h4><p>软件&#x3D;程序+数据+文档</p><p>软件对比硬件的故障曲线</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625123356168.png" alt="image-20240625123356168" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625123406956.png" alt="image-20240625123406956" style="zoom:33%;" /></p><p>系统软件  支撑软件 应用软件</p><h4 id="软件危机"><a href="#软件危机" class="headerlink" title="软件危机"></a>软件危机</h4><p>计算机软件在<strong>开发</strong>和<strong>维护</strong>过程中遇到的一系列问题</p><h4 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h4><p>三要素：方法、工具和过程</p><h4 id="软件生命周期"><a href="#软件生命周期" class="headerlink" title="软件生命周期"></a>软件生命周期</h4><p>从提出软件产品开始，直到该软件产品被淘汰的全过程</p><ol><li>可行性研究与计划</li><li>需求分析</li><li>总体设计</li><li>详细设计</li><li>实现</li><li>集成测试</li><li>确认测试</li><li>使用和维护</li></ol><h4 id="软件过程模型（软件生命周期模型）"><a href="#软件过程模型（软件生命周期模型）" class="headerlink" title="软件过程模型（软件生命周期模型）"></a>软件过程模型（软件生命周期模型）</h4><p>软件生命周期模型是跨越整个生命周期的系统开发、运作、维护所实施的全部工作和任务的结构框架。</p><ul><li>瀑布模型</li><li>快速原型模型</li><li>增量模型</li><li>螺旋模型</li><li>喷泉模型</li></ul><h5 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h5><p>阶段间具有顺序性和依赖性</p><p>推迟实现</p><p>文档驱动</p><p>缺乏灵活性，不适用需求不明确的情况，客户后期才能看到软件，前期客户看不到软件确要提出明确需求是不实际的。</p><h5 id="快速原型模型"><a href="#快速原型模型" class="headerlink" title="快速原型模型"></a>快速原型模型</h5><p>快速建立反映用户主要需求的原型系统，反复由用户评价修正需求，开发出最终产品。</p><p>如名，就是快速有个原型</p><h5 id="增量模型"><a href="#增量模型" class="headerlink" title="增量模型"></a>增量模型</h5><p>把软件产品作为一系列增量构建来设计、编码、继承和测试</p><h5 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h5><p>大型软件开发，进行风险评估</p><h5 id="喷泉模型"><a href="#喷泉模型" class="headerlink" title="喷泉模型"></a>喷泉模型</h5><p>软件生命周期的各个阶段是相互重叠和多次反复的</p><h1 id="第2章-软件项目管理基础"><a href="#第2章-软件项目管理基础" class="headerlink" title="第2章 软件项目管理基础"></a>第2章 软件项目管理基础</h1><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a><strong>概念</strong></h4><p>软件项目管理是为了使软件项目能够按照预定的成本、进度、质量顺利完成，而对成本、人员、进度、质量、风险等进行分析和管理的活动。</p><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a><strong>目的</strong></h4><p>让软件项目，尤其是大型项目的整个软件生命周期（从分析、设计、编码到测试、维护全过程）都能在管理者的控制之下，以预定的成本，按期、按质完成软件，然后交付用户使用。</p><h4 id="项目管理三角形"><a href="#项目管理三角形" class="headerlink" title="项目管理三角形"></a><strong>项目管理三角形</strong></h4><p><strong>成本 时间  项目范围</strong></p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625130116242.png" alt="image-20240625130116242" style="zoom:50%;" /><p>软件工作的质量会受成本、时间、项目范围的限制 </p><h4 id="项目进度计划"><a href="#项目进度计划" class="headerlink" title="项目进度计划"></a>项目进度计划</h4><p>进度计划是指把工作量分配给特定的软件工程任务并规定完成各项任务的起止日期，从而将估算的项目工作量分布于计划好的项目持续期内。</p><h4 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625131110868.png" alt="image-20240625131110868" style="zoom:33%;" /><p>竖着看一个颜色结束表示三个工艺结束刮完一面墙。横着看一个颜色结束表述一面墙的这个工艺结束，横着整个结束就是这项工艺整个结束。</p><h1 id="第3章-软件需求分析基础"><a href="#第3章-软件需求分析基础" class="headerlink" title="第3章 软件需求分析基础"></a>第3章 软件需求分析基础</h1><h4 id="软件需求的概念"><a href="#软件需求的概念" class="headerlink" title="软件需求的概念"></a>软件需求的概念</h4><p>指明系统必须实现什么的规格说明，它描述了系统的行为、特性或属性，是在开发过程中对系统的约束。</p><p>软件需求是用户对目标软件系统的要求和期望。 </p><h4 id="软件需求的分类"><a href="#软件需求的分类" class="headerlink" title="软件需求的分类"></a>软件需求的分类</h4><p>功能需求 性能需求 可靠性和可用性需求 安全保密要求 出错处理需求 接口需求 约束性需求 逆向需求</p><h5 id="结构化分析模型"><a href="#结构化分析模型" class="headerlink" title="结构化分析模型"></a>结构化分析模型</h5><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625132302250.png" alt="image-20240625132302250" style="zoom: 33%;" /><h4 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h4><p>0层DFD</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625132452043.png" alt="image-20240625132452043" style="zoom:25%;" /><p>矩形：数据的源点或终点     人员 部分 传感器装置</p><p>圆角矩形：数据加工&#x2F;处理</p><p>箭头：数据流</p><p>开口矩形：数据存储</p><h4 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h4><p>用以描述系统中的每个数据和加工的具体含义，采用半形式化方法表达。要对数据流图中出现的所有名字（数据流、加工、数据存储）进行定义。</p><h1 id="第4章-软件设计基础"><a href="#第4章-软件设计基础" class="headerlink" title="第4章 软件设计基础"></a>第4章 软件设计基础</h1><h4 id="模块独立性的概念、意义"><a href="#模块独立性的概念、意义" class="headerlink" title="模块独立性的概念、意义"></a>模块独立性的概念、意义</h4><p>具有独立功能且和其他模块没过多作用。</p><p>容易分工合作<br>容易测试和维护，修改工作量较小，错误传播范围小，扩充功能容易</p><h4 id="模块独立性的两个度量标准：耦合、内聚"><a href="#模块独立性的两个度量标准：耦合、内聚" class="headerlink" title="模块独立性的两个度量标准：耦合、内聚"></a>模块独立性的两个度量标准：耦合、内聚</h4><p>高内聚、低耦合</p><h4 id="耦合、内聚的几种类型"><a href="#耦合、内聚的几种类型" class="headerlink" title="耦合、内聚的几种类型"></a>耦合、内聚的几种类型</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625144659331.png" alt="image-20240625144659331" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625144721447.png" alt="image-20240625144721447" style="zoom:50%;" /><h1 id="第5章-软件体系结构设计"><a href="#第5章-软件体系结构设计" class="headerlink" title="第5章 软件体系结构设计"></a>第5章 软件体系结构设计</h1><h4 id="·-数据流图映射成软件结构图：变换型、事务型"><a href="#·-数据流图映射成软件结构图：变换型、事务型" class="headerlink" title="· 数据流图映射成软件结构图：变换型、事务型"></a>· 数据流图映射成软件结构图：变换型、事务型</h4><h1 id="第7章-构件级设计"><a href="#第7章-构件级设计" class="headerlink" title="第7章 构件级设计"></a>第7章 构件级设计</h1><h4 id="·过程设计工具：程序流程图、盒图（N-S图）、PAD图、判定表-树、PDL"><a href="#·过程设计工具：程序流程图、盒图（N-S图）、PAD图、判定表-树、PDL" class="headerlink" title="·过程设计工具：程序流程图、盒图（N-S图）、PAD图、判定表&#x2F;树、PDL"></a>·过程设计工具：程序流程图、盒图（N-S图）、PAD图、判定表&#x2F;树、PDL</h4><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145127733.png" alt="image-20240625145127733" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145144458.png" alt="image-20240625145144458" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145206636.png" alt="image-20240625145206636" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145233890.png" alt="image-20240625145233890" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145317814.png" alt="image-20240625145317814" style="zoom:25%;" /></p><h1 id="第8章-面向对象的概念和建模符号"><a href="#第8章-面向对象的概念和建模符号" class="headerlink" title="第8章 面向对象的概念和建模符号"></a>第8章 面向对象的概念和建模符号</h1><h4 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h4><p>统一建模语言</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145720773.png" alt="image-20240625145720773" style="zoom:25%;" /><p>用例图、类图、状态图、顺序图、活动图</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145754070.png" alt="image-20240625145754070" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625145822241.png" alt="image-20240625145822241" style="zoom:25%;" /></p><h1 id="第9章-面向对象的需求获取与分析"><a href="#第9章-面向对象的需求获取与分析" class="headerlink" title="第9章 面向对象的需求获取与分析"></a>第9章 面向对象的需求获取与分析</h1><h4 id="用例模型"><a href="#用例模型" class="headerlink" title="用例模型"></a>用例模型</h4><h4 id="OOA方法：注意分析类的三种类型（边界类、控制类、实体类）"><a href="#OOA方法：注意分析类的三种类型（边界类、控制类、实体类）" class="headerlink" title="OOA方法：注意分析类的三种类型（边界类、控制类、实体类）"></a>OOA方法：注意分析类的三种类型（边界类、控制类、实体类）</h4><h1 id="第10章-面向对象设计"><a href="#第10章-面向对象设计" class="headerlink" title="第10章 面向对象设计"></a>第10章 面向对象设计</h1><h4 id="OOD：包含系统设计、对象设计"><a href="#OOD：包含系统设计、对象设计" class="headerlink" title="OOD：包含系统设计、对象设计"></a>OOD：包含系统设计、对象设计</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625151820130.png" alt="image-20240625151820130" style="zoom:33%;" /><h4 id="画类图"><a href="#画类图" class="headerlink" title="画类图"></a>画类图</h4><h1 id="第11章-软件测试"><a href="#第11章-软件测试" class="headerlink" title="第11章 软件测试"></a>第11章 软件测试</h1><h4 id="软件测试的目的"><a href="#软件测试的目的" class="headerlink" title="软件测试的目的"></a>软件测试的目的</h4><p>目的是希望以最低代价，以尽可能多地找出软件中潜在的各种错误和缺陷。</p><h4 id="测试的分类"><a href="#测试的分类" class="headerlink" title="测试的分类"></a>测试的分类</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625150813875.png" alt="image-20240625150813875" style="zoom:33%;" /><p>· 黑盒测试：边界值分析法、等价类划分法</p><p>· 白盒测试：逻辑覆盖、基本路径测试</p><h1 id="第12章-软件维护"><a href="#第12章-软件维护" class="headerlink" title="第12章 软件维护"></a>第12章 软件维护</h1><h4 id="软件维护的概念和类型（纠错性维护、适应性维护、完善性维护、预防性维护）"><a href="#软件维护的概念和类型（纠错性维护、适应性维护、完善性维护、预防性维护）" class="headerlink" title="软件维护的概念和类型（纠错性维护、适应性维护、完善性维护、预防性维护）"></a>软件维护的概念和类型（纠错性维护、适应性维护、完善性维护、预防性维护）</h4><h5 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h5><p>是指在软件的运行&#x2F;维护阶段由软件厂商向客户所提供的服务工作。<br>是在软件交付使用后，为了改正错误或满足新的需求而修改软件的过程。</p><h5 id="纠错性维护"><a href="#纠错性维护" class="headerlink" title="纠错性维护"></a>纠错性维护</h5><p>在软件投入运行一段时间后，可能会暴露出一部分在测试阶段没有发现的错误，为改正这些错误而对软件进行修改</p><h5 id="适应性维护"><a href="#适应性维护" class="headerlink" title="适应性维护"></a>适应性维护</h5><p>为了适应计算机的飞速发展，使软件适应外部新的硬件和软件环境或者数据环境发生的变化，而对软件进行修改</p><h5 id="完善性维护"><a href="#完善性维护" class="headerlink" title="完善性维护"></a>完善性维护</h5><p>用户需求经常变化，在软件使用过程中，用户可能会对软件提出新的功能和性能要求，为了满足这些新的要求而对软件进行修改，使之在功能和性能上得到完善和增强</p><h5 id="预防性维护"><a href="#预防性维护" class="headerlink" title="预防性维护"></a>预防性维护</h5><p>为了提高软件的可维护性和可靠性等目标，不等用户提出维护申请，主动采用先进的软件工程方法对需要维护的软件或软件中的某一部分重新进行设计、编码和测试，为以后进一步改进软件打下良好基础</p><h4 id="软件维护的副作用和类型"><a href="#软件维护的副作用和类型" class="headerlink" title="软件维护的副作用和类型"></a>软件维护的副作用和类型</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240625151030077.png" alt="image-20240625151030077" style="zoom:80%;" />]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>软件工程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>转动惯量</title>
+    <link href="/2024/06/21/%E8%BD%AC%E5%8A%A8%E6%83%AF%E9%87%8F/"/>
+    <url>/2024/06/21/%E8%BD%AC%E5%8A%A8%E6%83%AF%E9%87%8F/</url>
+    
+    <content type="html"><![CDATA[<p><strong>定义</strong></p><p>转动惯量是物体旋转惯性的一种量度，描述了物体对其选择运动的抗拒程度。它取决与物体的质量和旋转轴的位置</p><p>$$I&#x3D;mr^2$$</p><p>旋转系统的微分方程<br>$$<br>J\ddot{\theta}+b\dot \theta+k\theta&#x3D;T_{in}<br>$$<br>惯性项$$J\ddot \theta$$</p><p>类比线性系统中的ma</p><p>阻尼项$$b\dot \theta $$</p><p>类似线性系统中的摩擦力，与角速度成正比</p><p>回复项$$k\theta$$</p><p>类似线性系统中的弹力kx,与角位移成正比</p><p>外部力矩$$T_{in}$$</p><p>作用在系统上的外部输入力矩，类比线性系统的作用力F</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>机械系统</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>希腊字母表</title>
+    <link href="/2024/06/21/%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D%E8%A1%A8/"/>
+    <url>/2024/06/21/%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="希腊字母表"><a href="#希腊字母表" class="headerlink" title="希腊字母表"></a>希腊字母表</h3><table><thead><tr><th>大写字母</th><th>小写字母</th><th>名称</th><th>常见用途</th></tr></thead><tbody><tr><td>Α</td><td>α</td><td>Alpha (αλφα)</td><td>角度、系数、衰减常数</td></tr><tr><td>Β</td><td>β</td><td>Beta (βητα)</td><td>贝塔系数、角度、磁通密度</td></tr><tr><td>Γ</td><td>γ</td><td>Gamma (γαμμα)</td><td>γ射线、希腊字母伽马分布、欧拉常数</td></tr><tr><td>Δ</td><td>δ</td><td>Delta (δελτα)</td><td>改变量、偏差、克罗内克函数</td></tr><tr><td>Ε</td><td>ε</td><td>Epsilon (εψιλον)</td><td>小量、介电常数</td></tr><tr><td>Ζ</td><td>ζ</td><td>Zeta (ζητα)</td><td>阻尼系数、统计学中的zeta函数</td></tr><tr><td>Η</td><td>η</td><td>Eta (ητα)</td><td>量子效率、统计学中的效率</td></tr><tr><td>Θ</td><td>θ</td><td>Theta (θητα)</td><td>角度、温度、时间常数</td></tr><tr><td>Ι</td><td>ι</td><td>Iota (ιωτα)</td><td>微小量、某些特定的物理常数</td></tr><tr><td>Κ</td><td>κ</td><td>Kappa (καππα)</td><td>波数、弹性系数、热导率</td></tr><tr><td>Λ</td><td>λ</td><td>Lambda (λαμδα)</td><td>波长、特征值、热传导系数</td></tr><tr><td>Μ</td><td>μ</td><td>Mu (μυ)</td><td>微米、磁导率、动摩擦系数</td></tr><tr><td>Ν</td><td>ν</td><td>Nu (νυ)</td><td>频率、波数</td></tr><tr><td>Ξ</td><td>ξ</td><td>Xi (ξι)</td><td>变量、随机变量</td></tr><tr><td>Ο</td><td>ο</td><td>Omicron (ομικρον)</td><td>极小量</td></tr><tr><td>Π</td><td>π</td><td>Pi (πι)</td><td>圆周率、乘积符号、数学常数</td></tr><tr><td>Ρ</td><td>ρ</td><td>Rho (ρω)</td><td>密度、抵抗率、相关系数</td></tr><tr><td>Σ</td><td>σ</td><td>Sigma (σιγμα)</td><td>标准差、和、表面张力</td></tr><tr><td>Τ</td><td>τ</td><td>Tau (ταυ)</td><td>时间常数、剪切应力、寿命</td></tr><tr><td>Υ</td><td>υ</td><td>Upsilon (υψιλον)</td><td>核外电子能量、希腊字母upsilon粒子</td></tr><tr><td>Φ</td><td>φ</td><td>Phi (φι)</td><td>黄金比例、磁通量、角度</td></tr><tr><td>Χ</td><td>χ</td><td>Chi (χι)</td><td>卡方分布、磁化率</td></tr><tr><td>Ψ</td><td>ψ</td><td>Psi (ψι)</td><td>波函数、流函数</td></tr><tr><td>Ω</td><td>ω</td><td>Omega (ωμεγα)</td><td>角速度、电阻、固有频率</td></tr></tbody></table><p>不是，是谁叫我zeta读的kersi:</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>latex</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>二阶系统标准形式</title>
+    <link href="/2024/06/21/%E4%BA%8C%E9%98%B6%E7%B3%BB%E7%BB%9F%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F-md/"/>
+    <url>/2024/06/21/%E4%BA%8C%E9%98%B6%E7%B3%BB%E7%BB%9F%E6%A0%87%E5%87%86%E5%BD%A2%E5%BC%8F-md/</url>
+    
+    <content type="html"><![CDATA[<p><strong>一阶系统的标准形式</strong></p><p><em>传递函数形式</em><br>$$<br>H(S)&#x3D;\frac{K}{\tau s+1}<br>$$<br>$$\tau$$：时间常数</p><p>时间常数代表系统的响应速度，时间常数$$\tau$$越大，系统的响应速度越慢</p><p>K:系统增益</p><p><em>响应特性</em></p><p>单位阶跃响应</p><p>$$r(t)&#x3D;1(t\ge0)$$</p><p>$$c(t)&#x3D;K(1-e^{-\frac{t}{\tau}})$$</p><p>$$\tau$$为2                                                                                 $$\tau$$为20</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240621202628538.png" alt="image-20240621202628538" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240621202739408.png" alt="image-20240621202739408" style="zoom:33%;" /></p><p><strong>二阶系统的标准形式</strong></p><p><em>传递函数形式</em><br>$$<br>H(s)&#x3D;\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}<br>$$<br>没有零点</p><p>$$\omega_n$$：自然频率</p><p>自然频率是系统在没有阻尼的情况下的自由振荡的频率。它决定了系统的振荡速度。</p><p>$$\zeta$$：阻尼比</p><p>阻尼比是一个无量纲参数，它表示系统的阻尼程度。不同的阻尼比对应不同类型的响应：</p><ul><li><p>$$\zeta$$&#x3D;0：无阻尼，系统响应是持续振荡的</p></li><li><p>0&lt;$$\zeta$$&lt;1:欠阻尼，系统响应是振荡衰减的</p></li><li><p>$$\zeta$$&#x3D;1:临界阻尼，系统响应不振荡且快速达到稳态</p></li><li><p>$$\zeta$$&gt;1:过阻尼，系统响应不振荡且缓慢达到稳态</p></li></ul><p>二阶系统的单位阶跃响应</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240621200044013.png" style="zoom: 33%;" /><h2 id="一阶系统和二阶系统的实际应用"><a href="#一阶系统和二阶系统的实际应用" class="headerlink" title="一阶系统和二阶系统的实际应用"></a>一阶系统和二阶系统的实际应用</h2><p><strong>一阶系统</strong></p><p>一阶系统的动态行为可以用一个一阶微分方程来描述，通常只设计到单个储能元件，（如电容或电感）。一阶系统的响应是单调的，不会出现振荡。（不振荡的意思是如果输入是不振荡的，那输出不震荡，输入振荡，输出也振荡</p><p><strong>当输入是正弦函数时，尽管输出函数是振荡的（因为正弦函数本身是振荡的），但这种振荡完全是由输入频率决定的，系统不会引入新的振荡频率（等到频域分析）</strong></p><p>1.电气系统的RC电路</p><p>电阻-电容（RC)是一个典型的一阶系统。其电压响应可以描述为一个一阶微分方程。</p><p>$$H(s)&#x3D;\frac{1}{RCs+1}$$</p><p>2.流体系统中的液位控制</p><p>一个具有恒定流入流出的水箱，液位的变化可以通过一阶系统来描述。</p><p>$$H(S)&#x3D;\frac{1}{\tau s+1}$$</p><p>3.热系统中的温度控制</p><p>一个简单的热系统，比如加热一个物体的过程，可以用一阶系统来描述，温度的变化是单调的，没有振荡。</p><p>$$H(s)&#x3D;\frac{K}{\tau s +1}$$</p><p><strong>二阶系统</strong></p><p>二阶系统的行为可以用一个二阶微分方程来描述，通常涉及到两个储能元件（如电感和电容）。它们的响应可以是振荡的（欠阻尼），或单调的（过阻尼或临界阻尼）。（什么叫做振荡的，振荡的是只在输入不是振荡的单位阶跃信号的情况下，输出是否振荡吗，还是输入也可以是振荡的？应该是特别针对单位阶跃响应的）</p><p>1.电器系统中的RCL电路</p><p>电阻-电感-电容（RLC）是典型的二阶系统。其电压或电流响应都可以描述为一个二阶微分方程。</p><p>$$H(s)&#x3D;\frac{1}{LCs^2+RCs+1}$$</p><p>2.机械系统中的质量-弹簧-阻尼器系统</p><p>一个具有弹簧和阻尼器的质量系统，其运动方程是一个二阶微分方程</p><p>$$H(s)&#x3D;\frac{1}{ms^2+fs+k}$$</p><p>f:阻尼系数（知道为什么二阶系统中叫阻尼比不叫阻尼系数了吧）  k:弹簧弹性系数  </p><p>3.控制系统的伺服电机控制</p><p>伺服电机的控制通常是二阶的，尤其是涉及到位置控制时，其动态响应可以描述为 一个二阶系统。</p><p>$$\frac{K}{Js^2+Bs+K}$$</p><p>J:转动惯量  B:阻尼系数  K:系统增益</p><h2 id="一阶系统与二阶系统的区分"><a href="#一阶系统与二阶系统的区分" class="headerlink" title="一阶系统与二阶系统的区分"></a>一阶系统与二阶系统的区分</h2><p>1.储能元件数量</p><p>一阶系统：一个储能元件（电容或电感）ps:电容：电流对电压变化的响应 电感：电压对电流变化的响应</p><p>二阶系统：两个储能元件（一个电容一个电感或一个弹簧一个质量块）</p><p>2.响应特性</p><p>一阶系统：响应是单调的，没有振荡（其实我对这里的振荡还是没有理解太清楚），系统的动态行为由一个时间常数决定。</p><p>二阶系统：响应可以是振荡的也可以是单调的，取决于系统的阻尼比，系统的动态行为由自然频率和阻尼比共同决定。</p><p>3.传递函数形式<br>$$<br>一阶系统 \frac{K}{\tau s+1}<br>二阶系统\frac{\omega_n}{s^2+2\zeta\omega_n s +\omega_n^2}<br>$$</p><h6 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h6><p>$$<br>K \tau \zeta \omega_n在具体系统中体现为什么<br>$$</p><p><em>1.增益K（此增益非彼增益）</em></p><p><em>定义</em></p><p>系统增益是指输出与输入的比例关系</p><p><em>实际体现</em></p><p>电器系统：放大器中输出电流或电压与输入电流或电压之比 ps 特哥作业的这个习题还没做</p><p>机械系统 ：力学中系统的位移响应与施加力之间的比例关系（不是与加速度？为什么是位移</p><p>热力系统：热力系统中输出温度变化与输入热量之间的关系</p><p>2.时间常数$$\tau$$</p><p><em>定义</em></p><p>时间常数$$tau$$是描述系统响应速度的参数，它表示系统达到其最终值约63%所需的时间（存疑）</p><p>怎么求时间常数？记得特哥讲过可以根据实验的方法，但是没提过63%这个值啊</p><p><em>实际体现</em></p><p>机械系统：在RC电路中，时间常数$$\tau$$&#x3D;RC表示电容器充电到其最终电压63%所需的时间</p><p>3.自然频率$$\omega_n$$</p><p><em>定义</em></p><p>自然频率指系统在没有阻尼的情况下自由振荡的固有频率。</p><p><em>实际体现</em></p><p>机械系统 :质量-弹簧-阻尼器系统，自然频率$$\omega_n&#x3D;\sqrt{\frac{k}{m}}$$</p><p>电气系统：LC电路中，自然频率$$\omega_n&#x3D;\frac{1}{\sqrt{LC}}$$</p><p>结构工程：自然频率表示结构在收到冲击或地震时的固有振动频率</p><p>4.阻尼比$$\zeta$$</p><p><em>定义</em></p><p>阻尼比是描述系统阻尼程度的参数，表示系统的阻尼和临界阻尼的比值</p><p>在控制系统中，阻尼比表示系统收到干扰后的振荡程度。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>自动控制原理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>cross_entropy</title>
+    <link href="/2024/04/01/cross-entropy/"/>
+    <url>/2024/04/01/cross-entropy/</url>
+    
+    <content type="html"><![CDATA[<p><strong>信息熵</strong></p><p><em>例子</em></p><p>两条信息</p><p>1.信息x:明天要下雨</p><p>2.信息y:太阳从东边升起</p><p>信息熵x&gt;y</p><p><em>定义</em></p><p>直观感受，x包含的信息比y包含的信息多，y的信息没有用，用来评价这种信息的价值，叫做信息熵。</p><p>专业说法：消除不确定性所需信息量的度量。</p><p><em>公式</em></p><p>x都是离散型的随机变量  x&#x3D;{x1,x2,x3,…xn}</p><p>信息xi的信息熵  xi发生的概率是p(xi)</p><p>那么xi的信息熵就是-log(p(xi))   函数图像也符合，概率越大，信息熵越小</p><p>概率越小，不确定性越大，信息熵越大</p><p><strong>熵（香农熵）</strong></p><p><em>引入</em></p><p>信息熵是衡量一个离散型的变量为给定值时包含的信息量，消除不确定性所需信息量的量度。衡量的是一个变量。</p><p>那么如果要衡量整个概率分布的熵呢？不是取特定值包含的信息，而是这一个概率分布包含的信息量，或许成为这个概率分布的混乱程度更加准确。</p><p><em>定义</em></p><p>有一个概率分布P(ps 该复习概率分布了，X与x的区别都不熟悉了，概率分布的一些基本写法都忘记了)</p><p>我们可以用香农熵（简称熵）来对整个概率分布的平均信息量来进行描述。</p><p><em>公式</em><br>$$<br>H(x)&#x3D;-\sum _{i&#x3D;1}^{n}p(x_i)log(p(xi))<br>$$</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>机器学习 熵</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>tf_zpk</title>
+    <link href="/2024/03/27/tf-zpk/"/>
+    <url>/2024/03/27/tf-zpk/</url>
+    
+    <content type="html"><![CDATA[<p><strong>微分方程</strong></p><p>RC电路充电情景</p><p><em>公式</em><br>$$<br>RC\frac{dV(t)}{d(t)}+V(t)&#x3D;V_{in}(t)<br>$$<br><em>代码</em></p><p>talk is cheap, show me the code</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">R=<span class="hljs-number">1</span>; <span class="hljs-comment">%Ohm</span><br>C=<span class="hljs-number">1</span>; <span class="hljs-comment">%Farad</span><br>Vin=<span class="hljs-number">5</span>; <span class="hljs-comment">% Input voltage in Volts</span><br><br><span class="hljs-comment">%Define the differential equation</span><br>dVdt=@(t,V)(Vin-V)/(R*C);<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>matlab 自动控制原理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>tf</title>
+    <link href="/2024/03/27/tf/"/>
+    <url>/2024/03/27/tf/</url>
     
     <content type="html"><![CDATA[]]></content>
     
     
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>3.24</title>
+    <link href="/2024/03/24/3-24/"/>
+    <url>/2024/03/24/3-24/</url>
+    
+    <content type="html"><![CDATA[<p><strong>杂谈</strong></p><p>今天又去家教喽</p><p>还挺精神，家教回来居然没有死掉，以后还是不要坐公交了，就坐地铁喽</p><p>下午学控制，晚上学高数</p><p>控制</p><p>电容在复数域的等效  复阻抗</p><p>R&#x3D;1&#x2F;Cs</p><p>还有那个电路，不是电桥电路，就是普通的串并联电路</p><p>高数</p><p>极限的性质</p><p>唯一性</p><p>极限的值是唯一的，有极限极限不是无穷</p><p>局部有界性</p><p>连续区间内一定有极限，有极限不一定连续  极限存在必有界 因此如果一个开区间，两端的取值是没有极限的，那么就不是局部有界</p><p>局部保号性</p><p>所有光环靠近std都是和std同号的，什么什么追求什么什么，balabala哲学的一段话</p><p>英语单词复习100，学习100</p><p>晚上超市踩雷，巨难吃那烘焙里面的什么蛋糕盒子，真恶心那味道</p><p>就这些喽，给今天表现打7分吧</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>考研 日记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>i2t_loss</title>
+    <link href="/2024/03/23/i2t-loss/"/>
+    <url>/2024/03/23/i2t-loss/</url>
+    
+    <content type="html"><![CDATA[<p><strong>i2t loss</strong></p><p>五天啊，花了我五天，终于能跑了</p><p>说实话，经过这么几个月的炼丹，我明白了一个道理，<em>永远不要提前开香槟</em>，你永远不知道不跑到最后，这个模型的结果是怎么样的。</p><p>现在写这心情也是忐忑的，我不知道这个得分的加权究竟是准确的还是不准确的。</p><p>图片是不准确的，需要一个评价标准。</p><p>因为我的图像特征是提取好的，所以我使用的是特征值，而不是直接图像的三通道值。</p><p>其实之间老师说的熵是可以尝试的，但是我没有尝试，可能之前人真的麻了，真不想弄这个了，看不到希望。</p><p>但是我觉得还是值得一试的，在这个任务里，只要别用对比学习中用最难的，都好说，我可以什么都没学到，但是这个任务中我一定学到了一个东西，不要在不准的数据集里面去使用最难样本的这种loss。</p><p>好了回到正题。</p><p>实现这个loss的细节有，首先准备好图片特征，图片特征都是有id，有path的。</p><p>计算所有图片样本的score</p><p>然后在每个类内评价图片，把图片从类里面删去</p><p>。。。</p><p>刚看了眼结果，心又凉了。。。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>行人重识别 多模态</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>3.22</title>
+    <link href="/2024/03/22/3-22/"/>
+    <url>/2024/03/22/3-22/</url>
+    
+    <content type="html"><![CDATA[<p><strong>数学</strong></p><p>学完了函数图像这一节</p><p><strong>六个基本初等函数</strong></p><hr><p>常数函数{铅垂线法}</p><p>幂函数{y&#x3D;x^2 y&#x3D;x^3  }</p><p>指数函数{}</p><p>对数函数{}</p><p>三角函数{}</p><p><strong>基本初等函数的性质</strong></p><p>奇偶性</p><p>单调性</p><p>周期性</p><p>然后极限开了头</p><p>极限的定义</p><p>无限逼近法</p><p>超实数法</p><p>自动控制原理</p><p>方框图的组成{信号流 引出点 反馈点  方框}</p><p>方框图的传递函数的简化规则</p><p>好多条，只记得最基本的</p><p>今天虽然旷了早八，上午打了一上午游戏，睡了一下午加打游戏，但晚上还是学了很久的</p><p>打6分吧</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>每日小结 考研</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>sdm_loss修改</title>
+    <link href="/2024/03/18/sdm-loss%E4%BF%AE%E6%94%B9/"/>
+    <url>/2024/03/18/sdm-loss%E4%BF%AE%E6%94%B9/</url>
+    
+    <content type="html"><![CDATA[<p><em>实验</em></p><p>t2i（<a href="https://arxiv.org/pdf/1903.06325.pdf">1903.06325.pdf (arxiv.org)</a>）论文中的公式1，2</p><p>构造软标签</p><p>DBSCAN聚类出来软标签，是通过Image和image聚类出来的</p><p>计算图像与图像之间的相似度，除了可以用余弦来计算（但是可能不太好），还可以使用<strong>借助一个新的数据集</strong>，通过计算图像与新的数据集中图片的相似度来衡量两个图片的相似度，该图片与数据集中n张图片计算相似度用softmax得到一个相似分布，比较两个图像之间的分布来衡量图像之间的相似度。</p><p>新的数据集通过使用DBSCAN聚类算法确定聚类中心，可能1000个，但是可能得在一个batch里面去找聚类中心，可能找不到？？？（什么意思）  如果一个batch64太小了，可能要改成128或者更大</p><p>DBSCAN要在一个batch里面做</p><p>i2t（<a href="https://arxiv.org/pdf/2301.00930.pdf">2301.00930.pdf (arxiv.org)</a>）</p><p>64个图像 去 检索64个文本</p><p>每个图像softmax预测出来的概率分布和64个文本的标签分布算Kl距离</p><p>（是这里把batch调大一些吗？因该不是）</p><p>每个图像算出来一个Loss,算出来64个loss，给这64个loss加上权重（就类似之前得用熵来衡量，但老师找的这个肯定效果更好） </p><p>具体怎么<strong>加权重</strong>呢？</p><p>一个员工的价值不是由自身价值衡量的，而是由这个公司缺少他后衡量的</p><p>于是，衡量一个样本的 权重，使用的方法是通过样本集的价值减去样本集中去掉这个样本后剩下的价值</p><p>这个价值是怎么计算的呢</p><p>衡量样本价值可以在训练之前就做好</p><p><strong>衡量样本价值</strong></p><p>1.余弦相似度计算H_inner</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">H_inner = torch.matmul(a, a.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))<br></code></pre></td></tr></table></figure><p>2.调整H_inner得到相似的矩阵H</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240318214152330.png" alt="image-20240318214152330"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">H_inner = torch.matmul(a, a.transpose(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))<br><span class="hljs-keyword">del</span> a<br>H = H_inner*(np.pi-torch.acos(H_inner))/(<span class="hljs-number">2</span>*np.pi)<br><span class="hljs-keyword">del</span> H_inner<br>H.fill_diagonal_(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)<br><br>invH = torch.inverse(H)<br><span class="hljs-keyword">del</span> H<br></code></pre></td></tr></table></figure><p>看看别人的代码写的多漂亮，不用的变量都及时移除了</p><p><em>计算CG-score的公式</em></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240318220843988.png" alt="image-20240318220843988"></p><p>y:所有图片的标签</p><p>H:相似度矩阵，通过Hinner计算的出来的</p><p>CG(i)：第i个图片的复杂性差距得分</p><p>到底是CG_score得分高好还是低好呢</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240319143733427.png" alt="image-20240319143733427"></p><p>5000个图片计算score需要一分钟</p><p>十分钟处理完50000张</p><p>很快啊，cifar10是五万张图片，十分钟就处理完了</p><p>有值了都好说</p><p>但是原来代码是直接计算数据集中图片的 cg-score，我是计算cuhk数据集的图像score还是特征的score呢</p><p>感觉可能是特征好一点，毕竟我不是用图像训练的，是用图像特征训练的</p><p>每个图片和 对应得分是怎么对应起来的呢</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240319154004361.png" alt="image-20240319154004361"></p><p>训练集中一个batch取出来的图片都是shuffle打乱过的</p><p>image_ids是从0开始的</p><p>训练数据集已经弄好了，现在就等着把得分pkl文件计算出来了</p><p>计算cg-score</p><p>1.准备好特征文件，包含图片id，图片特征，图片路径</p><p>2.加载一个id内的图片，选取对应id的图片，然后也选取不同id的图片，由ratio确定比例（cifar10是10个类别，5000张图片，因此源代码构造的10000*10000的相似矩阵，我也那么做，那我岂不是构造不到10*10的矩阵，好奇怪啊。而且一万多个类别，循环次数增大1000倍，gpu擅长并行，矩阵大小虽然减小很多但速度并不明显，可能后面计算矩阵的逆会很快，那也说不定速度是增还是减</p><ol start="3"><li></li></ol><p>人改麻了</p><p>把chosen_curr_list形状改好了，4个元素，每个元素是（1*512）的tensor</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20240320230913027.png" alt="image-20240320230913027"></p><p>现在要把chosen_another_list形状也改好</p><p>麻了形状真难改，看来对numpy，pytorch这些对张量操作的代码都要记清楚，chatgpt还是不是很擅长这个</p><p>pos 和 neg不记得是那个方法里面的了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>reid 损失函数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>解决hexo+gitee博客推送后页面没更新</title>
+    <link href="/2024/03/18/%E8%A7%A3%E5%86%B3hexo-gitee%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E5%90%8E%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9B%B4%E6%96%B0/"/>
+    <url>/2024/03/18/%E8%A7%A3%E5%86%B3hexo-gitee%E5%8D%9A%E5%AE%A2%E6%8E%A8%E9%80%81%E5%90%8E%E9%A1%B5%E9%9D%A2%E6%B2%A1%E6%9B%B4%E6%96%B0/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>直流电动机</title>
+    <link href="/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/"/>
+    <url>/2024/03/18/%E7%9B%B4%E6%B5%81%E7%94%B5%E5%8A%A8%E6%9C%BA/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.cnblogs.com/byeyear/p/6254145.html">https://www.cnblogs.com/byeyear/p/6254145.html</a></p><p>基本概念</p><p>绕组和线圈</p><p>绕组就是多组线圈</p><p>转动惯量</p><p>转动惯量在转动力学中相当于线性力学的质量</p><p><strong>直流电动机</strong></p><p><em>反电动势</em></p><p>Eb&#x3D;Ce*w</p><p>反电动势的大小和角速度成正比</p><p>E&#x3D;BLV</p><p><em>力矩</em></p><p>Mm&#x3D;CmI</p><p>力矩大小和电流成正比</p><p>F&#x3D;BIL</p><p>力矩平衡</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>自动控制原理 元器件</tag>
+      
+    </tags>
     
   </entry>
   
@@ -1673,7 +1927,7 @@
     <link href="/2023/09/23/hexo%E6%8E%A8%E9%80%81%E5%88%B0gitee%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0/"/>
     <url>/2023/09/23/hexo%E6%8E%A8%E9%80%81%E5%88%B0gitee%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0/</url>
     
-    <content type="html"><![CDATA[<p>使用hexo往gitee更新博客，网页无显示</p><p>首先hexo clean hexo generate hexo deploy</p><p>本地可以显示新更新网页</p><p>但是通过gitee访问未更新</p><p>解决方法</p><p><img src="/1.png" alt="1"></p><p>在gitee pages服务中重新更新</p>]]></content>
+    <content type="html"><![CDATA[<p>使用hexo往gitee更新博客，网页无显示</p><p>首先hexo clean hexo generate hexo deploy</p><p>本地可以显示新更新网页</p><p>但是通过gitee访问未更新</p><p>解决方法</p><p><img src="/2023/09/23/hexo%E6%8E%A8%E9%80%81%E5%88%B0gitee%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%9B%B4%E6%96%B0/1.png" alt="1"></p><p>在gitee pages服务中重新更新</p>]]></content>
     
     
     
