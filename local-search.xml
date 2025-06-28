@@ -4,11 +4,455 @@
   
   
   <entry>
-    <title>day1</title>
-    <link href="/2024/10/12/day1/"/>
-    <url>/2024/10/12/day1/</url>
+    <title>6.19周报</title>
+    <link href="/2025/06/16/6-19%E5%91%A8%E6%8A%A5/"/>
+    <url>/2025/06/16/6-19%E5%91%A8%E6%8A%A5/</url>
     
-    <content type="html"><![CDATA[<p><em>论文阅读清单</em></p><ul><li><input disabled="" type="checkbox"> Learning Transferable Visual Models From Natural Language Supervision</li><li><input disabled="" type="checkbox"> Learning to Prompt for Vision-Language Models</li><li><input disabled="" type="checkbox"> Conditional Prompt Learning for Vision-Language Models </li><li><input disabled="" type="checkbox"> A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</li></ul><p>复现论文</p><p>A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>这周主要是看了几个facial expression recognition任务的基于视频的数据集，最终选择CK+数据集。以及具体学习了面部对齐方法中的AAM方法，后续再进行一些实验看看效果。</p><h2 id="视频表情识别数据集"><a href="#视频表情识别数据集" class="headerlink" title="视频表情识别数据集"></a>视频表情识别数据集</h2><p>数据集是在paperswithcode去找的</p><h3 id="AFEW"><a href="#AFEW" class="headerlink" title="AFEW"></a>AFEW</h3><p>acted facial expressions in the wild。</p><p>从电影中选取的视频片段</p><p>分类任务：七分类。【Angry Disgust Fear Happy Sad Surprise Neutral】</p><p>一个视频片段对应一个情绪类别</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250616153420384.png" alt="image-20250616153420384" style="zoom:30%;" /><p><em>为什么在这个数据集上的表情识别任务最高也只在20年刷到了65，还是基础的resnet，没人来刷吗，后面出来的Vit之类的模型没人试试吗？</em></p><p>【题外话，怎么判断一个任务有没有做的意义，有的数据集上没有什么人去做，点也没有被刷的很高，是因为一些小众一些的数据集就没有刷点的意义了吗】</p><h3 id="AFEW-VA"><a href="#AFEW-VA" class="headerlink" title="AFEW-VA"></a>AFEW-VA</h3><p>V:Valence效价，衡量情绪的正负[-1,1]</p><p>A:Arousal（唤醒度），衡量情绪激活程度[-1,1]</p><p>回归问题</p><p>逐帧标注数据集，每个帧或滑动窗口都有VA值，以及其对应的68维面部关键点</p><p>用途：<strong>情绪轨迹建模</strong>，情感计算(<em>抑郁症任务和情感计算任务是否有相通点？</em>)</p><p>情绪轨迹建模这个思想和对关键点进行轨迹建模形成光流的这个思想感觉有点相似。<em>话说老师提到光流的目的是什么，是让我把面部关键点随时间变化形成的光流作为特征输入模型还是能通过面部关键点轨迹去做对齐呢？</em></p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250616183346574.png" alt="image-20250616183346574" style="zoom:33%;" /><h3 id="CK-数据集"><a href="#CK-数据集" class="headerlink" title="CK+数据集"></a>CK+数据集</h3><p>123个个体，593个视频序列，每个序列从中性表情过度到峰值表情。327个序列有情绪标签。</p><p>情绪标签有7个类别，0&#x3D;neutral 1&#x3D;anger  2&#x3D;contempt 3&#x3D;disgust 4&#x3D;fear 5&#x3D;happy 6&#x3D;sadness 7&#x3D;surprise</p><p>数据集包含视频序列的帧，每帧的情感标签，动作单元标签，68维关键点这四个部分</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250618224708702.png" alt="image-20250618224708702" style="zoom:33%;" /><h2 id="抑郁症检测数据集"><a href="#抑郁症检测数据集" class="headerlink" title="抑郁症检测数据集"></a>抑郁症检测数据集</h2><h3 id="LMVD"><a href="#LMVD" class="headerlink" title="LMVD"></a>LMVD</h3><p><a href="https://github.com/helang818/LMVD">LMVD</a>是一个多模态的抑郁症数据集，包含nonverbal的视觉特征和音频特征，其中视觉特征包含FAU,facial landmarks,eye gaze,head pose</p><h3 id="DVlog"><a href="#DVlog" class="headerlink" title="DVlog"></a>DVlog</h3><p>和LMVD类似，但是没有包含head pose信息</p><h2 id="Deprssion-Detection和FER的相同与不同"><a href="#Deprssion-Detection和FER的相同与不同" class="headerlink" title="Deprssion Detection和FER的相同与不同"></a>Deprssion Detection和FER的相同与不同</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ul><li>输入的模态都包含视频或者图像</li><li>都是对面部视觉信号的分析，都会使用一些面部动作单元AU，面部关键点等作为特征来分析</li><li>数据预处理都会进行人脸检测与裁剪，面部对齐，时间序列建模</li></ul><h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><ul><li>抑郁症检测检测出来的是个体的抑郁程度，不会因为不同帧表情不同而出现不同的检测结果。表情识别是针对每帧的表情进行检测，每帧之间的结果可以不同。</li><li>抑郁症是分类任务，标签可以通过量表PHQ-9来标注，表情识别可以是分类任务，固定的情绪类别，也可以是回归任务，得到情绪的效价valence以及唤醒都arousal。</li><li>表情是情绪的外在表现，抑郁症则是情绪长期异常状态。抑郁症通常伴随<strong>情绪表达异常</strong>，如：微笑减少、愉悦表情减少（低效价）；面部活动减少（低唤醒）；中性&#x2F;悲伤表情持续时间变长</li></ul><p>在抑郁症检测中也有通过表情识别模型提取情绪时间序列，再做情绪轨迹建模分析（如情绪起伏少 → 抑郁倾向）。<a href="https://www.sciencedirect.com/science/article/abs/pii/S1047320318302761">Facial expression video analysis for depression detection in Chinese patients - ScienceDirect</a></p><h2 id="面部对齐方法"><a href="#面部对齐方法" class="headerlink" title="面部对齐方法"></a>面部对齐方法</h2><p>之前那篇综述里面模型方面一共提到了6个面部对齐的模型，主要了解了一下AAM面部对齐方法</p><h3 id="Active-Apperance-Models-AAMS"><a href="#Active-Apperance-Models-AAMS" class="headerlink" title="Active Apperance Models(AAMS)"></a>Active Apperance Models(AAMS)</h3><p>[^AAMS]: T. Cootes, G. Edwards, and C. Taylor. Active Appearance Models. <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 23(6):681–685, 2001</p><p>AAM是一种可以对人脸进行建模、跟踪和识别的方法，同时考虑了形状变化(shape variation)和外观变化（apperance variation)。AAM可以用在人脸视频或图像中对面部进行自动对齐，提取特征。</p><p>AAM 的 <strong>形状 <code>s</code></strong> 用二维网格（三角网）表示，顶点坐标用向量 <code>[x1, y1, x2, y2, ..., xn, yn]</code> 表示，共 n 个点（通常是人脸关键点）。</p><p>这些关键点可以通过线性方式建模为：<br>$$<br>s &#x3D; s_0 + \sum_{i&#x3D;1}^{m} p_i s_i<br>$$</p><ul><li><code>s0</code>：基础形状（base shape），可以看作是所有训练样本的平均形状；</li><li><code>si</code>：第 i 个形状变化向量（表示一个形变方向）；</li><li><code>pi</code>：对应的形状参数（权重）。</li></ul><p>形状参数p分为两个类型刚性和非刚性</p><table><thead><tr><th>类型</th><th>含义</th></tr></thead><tbody><tr><td>ps（刚性）</td><td>对应 平移、旋转、缩放 等仿射变换</td></tr><tr><td>po（非刚性）</td><td>对应 表情变化（如张嘴、眯眼等）</td></tr></tbody></table><p>使用 Procrustes 对齐来估计 <code>s0</code> —— 把不同图像中的人脸关键点对齐成一致形状，求平均。<br>使用AAM得到两个特征SPTS和CAPP，然后将这两个特征输入到后续模型中。</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250618233544772.png" alt="image-20250618233544772" style="zoom:50%;" /><p><strong>SPTS</strong>（Similarity-normalized Shape）：形状参数，去除了位置&#x2F;角度&#x2F;尺度影响</p><p><strong>CAPP</strong>（Canonical Appearance）：外观特征，如纹理、灰度分布等</p><p>姿态角可以通过关键点计算，应该可以不用在面部对齐的时候保留信息</p><h2 id="多种面部对齐方法对比"><a href="#多种面部对齐方法对比" class="headerlink" title="多种面部对齐方法对比"></a>多种面部对齐方法对比</h2><table><thead><tr><th>方法</th><th>建模维度</th><th>是否支持纹理</th><th>是否支持3D</th><th>鲁棒性</th><th>适用场景</th></tr></thead><tbody><tr><td>ASM</td><td>2D</td><td>❌ 无纹理建模</td><td>❌</td><td>弱</td><td>基本轮廓点检测</td></tr><tr><td>AAM</td><td>2D</td><td>✅ 联合纹理建模</td><td>❌</td><td>中</td><td>表情分析、人脸对齐</td></tr><tr><td>3D-PDM</td><td>3D</td><td>❌ 无纹理建模</td><td>✅</td><td>较强</td><td>多视角、人脸姿态估计</td></tr><tr><td>3DMM</td><td>3D</td><td>✅ 完整建模</td><td>✅</td><td>强</td><td>3D人脸重建、动画、AR</td></tr><tr><td>Bayesian</td><td>2D&#x2F;3D</td><td>✅（可选）</td><td>可选</td><td>中</td><td>学术研究，建模不确定性</td></tr><tr><td>Heatmaps</td><td>2D&#x2F;3D</td><td>✅（隐式）</td><td>可扩展</td><td>非常强</td><td>关键点检测、工业落地</td></tr></tbody></table><h2 id="知识补充"><a href="#知识补充" class="headerlink" title="知识补充"></a>知识补充</h2><h3 id="情绪轨迹建模"><a href="#情绪轨迹建模" class="headerlink" title="情绪轨迹建模"></a>情绪轨迹建模</h3><p>“情绪轨迹建模（Emotion Trajectory Modeling）” 是指对<strong>随时间变化的情绪状态</strong>进行建模和分析的过程，核心是捕捉情绪在一段时间内的<strong>动态演变过程</strong>，而不是只做一个时刻的情绪分类或回归。</p><p>在一段视频中，人物可能从“平静” → “愤怒” → “悲伤” → “平静”。这种时间序列就是情绪轨迹。</p><p>情绪轨迹比单点情绪更能反映<strong>内在状态变化</strong>和<strong>行为意图</strong>。</p><h2 id="后续方向"><a href="#后续方向" class="headerlink" title="后续方向"></a>后续方向</h2><p>打算在CK+数据集上试验一些面部对齐的方法，不过CK+论文的基准方法当时就是使用的AAM进行面部对齐得到对齐后的面部特征输入到SVM中进行分类的，作为对齐来试试其它的面部对齐方法</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>周报</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>端午节周报</title>
+    <link href="/2025/06/02/%E7%AB%AF%E5%8D%88%E8%8A%82%E5%91%A8%E6%8A%A5/"/>
+    <url>/2025/06/02/%E7%AB%AF%E5%8D%88%E8%8A%82%E5%91%A8%E6%8A%A5/</url>
+    
+    <content type="html"><![CDATA[<h2 id="基础知识："><a href="#基础知识：" class="headerlink" title="基础知识："></a>基础知识：</h2><h4 id="人脸关键点建模"><a href="#人脸关键点建模" class="headerlink" title="人脸关键点建模"></a>人脸关键点建模</h4><p>通常采用68个关键点对人脸进行建模。另外可以加上头部的姿态角（欧拉角）</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250602160214496.png" alt="image-20250602160214496" style="zoom:50%;" /><p>图像通常是平面的，对人脸关键点的定位采用二维坐标x,y。但是实际的人脸是处于三维坐标中，为了表示一些三维的信息，对人脸的信息又可以加上三个空间中的角度，raw,yaw roll。分别对应向左向右看，上下点头，左右偏头。</p><p>其中roll左右偏头这个角度正好在xy这个平面上，对这个角度的校正比较容易，和对图像进行旋转是一样的。</p><p>另外两个角度涉及到了三维的信息，难以还原。</p><h4 id="LMVD数据集"><a href="#LMVD数据集" class="headerlink" title="LMVD数据集"></a>LMVD数据集</h4><p>视觉特征：</p><p>facial landmark面部关键点</p><p>head pose 头部姿态</p><p>FAU面部动作单元</p><p>eye gaze</p><h4 id="面部对齐（Face-alignment"><a href="#面部对齐（Face-alignment" class="headerlink" title="面部对齐（Face alignment)"></a>面部对齐（Face alignment)</h4><p>基本的方法是仿射变换，直接对图像上的关键点用矩阵进行映射变换到模板位置。但是由于数据集中的特征关键点坐标是二维的，只能在二维平面上做仿射变换。</p><p>如果希望用上姿态角的信息，需要尝试用姿态角然后找到标准人脸模板进行3d建模，像视觉PnP算法（Perspecitve n point)，根据二维图像点，计算出三维场景中物体的位置和姿态。在三维里进行仿射变换再还原到二维。或者看是否有合适的深度学习的模型能进行变换。</p><h2 id="仿射变换"><a href="#仿射变换" class="headerlink" title="仿射变换"></a>仿射变换</h2><p><strong>仿射变换</strong>（Affine Transformation)是一种保持点间直线关系和比例关系的几何变换。可以实现的操作有平移，缩放，旋转，剪切。</p><p>在人脸对齐中使用仿射变换将图像中的人脸关键点对齐到标准模板关键点的位置。</p><p>算法流程：</p><p>准备人脸和模板的关键点坐标</p><p>计算仿射变换矩阵M</p><p>将M作用到原始关键点上得到对齐后关键点坐标</p><p><strong>几种仿射变换的代码：</strong></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604230606082.png" alt="image-20250604230606082" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604230624436.png" alt="image-20250604230624436" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604230641779.png" alt="image-20250604230641779" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604230659894.png" alt="image-20250604230659894" style="zoom:33%;" /></p><p>四种方法特点总结</p><table><thead><tr><th>特性</th><th>procrustes_align_136 (经典普氏)</th><th>similarity_align_136 (Umeyama算法)</th><th>OpenCV_align_136 (OpenCV estimateAffinePartial2D)</th><th><strong>OpenCV_align_136_full</strong>（cv2.estimateAffine2D）</th></tr></thead><tbody><tr><td>变换类型</td><td>欧式变换 (平移, 旋转)</td><td>相似变换 (平移, 旋转, 均匀缩放)</td><td>相似变换 (平移, 旋转, 均匀缩放)</td><td>仿射变换（平移、旋转、非均匀缩放、剪切）</td></tr><tr><td>处理尺度</td><td>否 (假设尺度一致)</td><td>是 (自动计算均匀缩放因子)</td><td>仅改变大小、位置、方向，保持形状不变</td><td>可以改变形状（拉伸、倾斜）</td></tr><tr><td>处理剪切</td><td>否</td><td>否</td><td>否 (通常用于相似变换)</td><td>是（拉伸、倾斜）</td></tr><tr><td>鲁棒性</td><td>对噪声敏感 (标准最小二乘)</td><td>对噪声敏感 (标准最小二乘)</td><td>对异常值鲁棒 (LMEDS方法)</td><td>对异常值鲁棒 (LMEDS方法)</td></tr><tr><td>实现方式</td><td>手动SVD分解</td><td>手动SVD分解</td><td>调用OpenCV库函数</td><td>调用OpenCV库函数</td></tr><tr><td>自由度（2D）</td><td>3</td><td>4</td><td>4</td><td>6</td></tr></tbody></table><p>总结：直接调用OpenCV的2D的映射变换函数cv2.estimateAffine2D效果最好</p><h3 id="关键点映射前后效果展示："><a href="#关键点映射前后效果展示：" class="headerlink" title="关键点映射前后效果展示："></a>关键点映射前后效果展示：</h3><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604195851802.png" alt="image-20250604195851802" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604195909473.png" alt="image-20250604195909473" style="zoom:50%;" /></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604195942846.png" alt="image-20250604195942846" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200003593.png" alt="image-20250604200003593" style="zoom:50%;" /></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200030348.png" alt="image-20250604200030348" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200109026.png" alt="image-20250604200109026" style="zoom:50%;" /></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200206851.png" alt="image-20250604200206851" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200300712.png" alt="image-20250604200300712" style="zoom:50%;" /></p><h2 id="仿射变换方法实验"><a href="#仿射变换方法实验" class="headerlink" title="仿射变换方法实验"></a>仿射变换方法实验</h2><p>LMVD数据集处理</p><p>将136维的面部关键点特征单独提取出来处理</p><p>在LMVD的代码上给的<strong>机器学习模型knn</strong>上试了一下效果，<strong>有1个多点提升</strong></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200830957.png" alt="image-20250604200830957" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604200923248.png" alt="image-20250604200923248" style="zoom:50%;" /></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250604201635736.png"></p><h3 id="其它方法"><a href="#其它方法" class="headerlink" title="其它方法"></a>其它方法</h3><p>和人脸对齐(face alignment)类似的还有一个人脸正对化（face frontalization)</p><p>在人脸正对化里有个模型TP-GAN，看它展示出来的图片处理的效果还不错。不过模型是直接处理的图像，能不能处理关键点还得再研究研究。</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250602155841084.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>周报</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Dvlog_intro</title>
+    <link href="/2025/05/29/Dvlog-intro/"/>
+    <url>/2025/05/29/Dvlog-intro/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>face_align</title>
+    <link href="/2025/05/29/face-align/"/>
+    <url>/2025/05/29/face-align/</url>
+    
+    <content type="html"><![CDATA[<h3 id="相似变换"><a href="#相似变换" class="headerlink" title="相似变换"></a><strong>相似变换</strong></h3><p>opencv现有库  cv2.estimateAffinePartial2D()</p><p><strong>平移（Translation）</strong>：图像移动</p><p><strong>缩放（Scaling）</strong>：图像缩放</p><p><strong>旋转（Rotation）</strong>：图像绕某点旋转</p><p><strong>统一尺度保持的变形（不包含剪切）</strong></p><p>对转动只是对着z轴，头部向左倾斜，向右倾斜这种能转动，但是对于绕x,y轴的转动不能处理。</p><p>GAN模型生成正脸图像</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250529094857517.png" alt="image-20250529094857517"></p><p>3D模型建模</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>face alignment</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>track1和track2的划分逻辑</title>
+    <link href="/2025/05/15/track1%E5%92%8Ctrack2%E7%9A%84%E5%88%92%E5%88%86%E9%80%BB%E8%BE%91/"/>
+    <url>/2025/05/15/track1%E5%92%8Ctrack2%E7%9A%84%E5%88%92%E5%88%86%E9%80%BB%E8%BE%91/</url>
+    
+    <content type="html"><![CDATA[<p>MPDD Track1和Track2的划分逻辑</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>多模态情感识别</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>mpdd_Elderly数据集分析</title>
+    <link href="/2025/05/14/mpdd%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/"/>
+    <url>/2025/05/14/mpdd%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="MPDD-Elderly数据集分析"><a href="#MPDD-Elderly数据集分析" class="headerlink" title="MPDD Elderly数据集分析"></a>MPDD Elderly数据集分析</h1><h2 id="人格标签各项统计"><a href="#人格标签各项统计" class="headerlink" title="人格标签各项统计"></a>人格标签各项统计</h2><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514121314918.png" alt="image-20250514121314918"></p><h2 id="相关性分析"><a href="#相关性分析" class="headerlink" title="相关性分析"></a>相关性分析</h2><h3 id="各项相关性分析"><a href="#各项相关性分析" class="headerlink" title="各项相关性分析"></a>各项相关性分析</h3><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514132147081.png" alt="image-20250514132147081" style="zoom:50%;" /><h3 id="五人格与二分类抑郁的箱图"><a href="#五人格与二分类抑郁的箱图" class="headerlink" title="五人格与二分类抑郁的箱图"></a>五人格与二分类抑郁的箱图</h3><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514124421948.png" alt="image-20250514124421948" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514125350038.png" alt="image-20250514125350038" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514125429038.png" alt="image-20250514125429038" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514125452958.png" alt="image-20250514125452958" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514125510664.png" alt="image-20250514125510664" style="zoom:25%;" /></p><h3 id="五人格与三分类抑郁的箱图"><a href="#五人格与三分类抑郁的箱图" class="headerlink" title="五人格与三分类抑郁的箱图"></a>五人格与三分类抑郁的箱图</h3><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514130124963.png" alt="image-20250514130124963" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514130142439.png" alt="image-20250514130142439" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514130204732.png" alt="image-20250514130204732" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514130220265.png" alt="image-20250514130220265" style="zoom:25%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514130234265.png" alt="image-20250514130234265" style="zoom:25%;" /></p><h3 id="t检验分析（二分类抑郁类型）"><a href="#t检验分析（二分类抑郁类型）" class="headerlink" title="t检验分析（二分类抑郁类型）"></a>t检验分析（二分类抑郁类型）</h3><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514141746818.png" alt="image-20250514141746818" style="zoom:50%;" /><p>注：t统计值为负是正相关，即得分越高越可能抑郁。p值小于0.05在统计学上具体参考意义。</p><p>五人格中<strong>抑郁质</strong> <strong>开放性</strong>对是否抑郁判断最有用  其中抑郁组的得分抑郁质得分偏高，开放性评分偏低</p><p><strong>HAMD量表</strong>判断抑郁症效果比PHQ_9效果好</p><p>经济压力和家庭成员参考性一般</p><p><strong>疾病</strong>数量很有参考意义</p><h3 id="相关性分析小结"><a href="#相关性分析小结" class="headerlink" title="相关性分析小结"></a>相关性分析小结</h3><p><strong>疾病</strong>   <strong>HAMD_24  PHQ_9  Openness Neuroticism</strong></p><h2 id="标签数据统计"><a href="#标签数据统计" class="headerlink" title="标签数据统计"></a>标签数据统计</h2><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514155740070.png" alt="image-20250514155740070" style="zoom:67%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514155755009.png" alt="image-20250514155755009" style="zoom:67%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514155808461.png" alt="image-20250514155808461" style="zoom:67%;" /></p><p>二分类就是<strong>没有</strong>和<strong>有</strong></p><p>三分类中将有<strong>没有</strong>划分为了<strong>没有</strong>，<strong>有倾向</strong>，<strong>有</strong></p><p>五分类进一步细分，具体怎么分的看不太出来，在人格信息文件里也没有用上五分类标签</p><h2 id="人格特征统计直方图"><a href="#人格特征统计直方图" class="headerlink" title="人格特征统计直方图"></a>人格特征统计直方图</h2><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>老师这个比赛上面的<strong>谷歌数据集的链接数据有更新吗</strong>？我点开这个链接只看到了训练集的文件。虽然公开网站上显示的是在15号会更新测试集，但是我看群消息里面他们有提到使用了测试集，好像公开了部分测试集，我不知道怎么获取。而且15号公开测试集我也是点开这个谷歌网盘链接里面就自动更新吗？</p><p>草稿：现在对Elderly的人格数据分析的差不多了，具体也知道了人格信息中哪些部分是重要的。</p><p>接下来的任务：</p><ul><li><input disabled="" type="checkbox"> 重新跑代码，跑出baseline的结果</li><li><input disabled="" type="checkbox"> 理清代码的训练集， 验证集，测试集怎么分的（群消息里面提到的测试集是哪里来的？）</li><li><input disabled="" type="checkbox"> 理清生成人格特征的逻辑，重新只使用几个重要的的人格并尝试合适的prompt来生成人格特征</li><li><input disabled="" type="checkbox"> 接入emotion llama，找陈旭东学长问怎么跑这个大模型</li></ul><p>对数据处理部分还没理清楚</p><p>一共就89个人的信息拿来训练，还要随机划分出去十分之一作为验证集，最后训练能用到的也就80个人了。数据量真的少的夸张了这个任务，波动也很大。</p><p>跑一次只要八分钟，我还是和baseline差距很大，群里没有人提到和baseline差距大这个问题，还没有找出来问题在哪</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514173052293.png" alt="image-20250514173052293" style="zoom: 20%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514173115420.png" alt="image-20250514173115420" style="zoom:20%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250514173127580.png" alt="image-20250514173127580" style="zoom:20%;" /></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>多模态情感计算</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>毕业答辩</title>
+    <link href="/2025/05/09/%E6%AF%95%E4%B8%9A%E7%AD%94%E8%BE%A9/"/>
+    <url>/2025/05/09/%E6%AF%95%E4%B8%9A%E7%AD%94%E8%BE%A9/</url>
+    
+    <content type="html"><![CDATA[<h1 id="本科毕业答辩"><a href="#本科毕业答辩" class="headerlink" title="本科毕业答辩"></a>本科毕业答辩</h1><h1 id="基于随机嵌入的跨模态行人重识别方法"><a href="#基于随机嵌入的跨模态行人重识别方法" class="headerlink" title="基于随机嵌入的跨模态行人重识别方法"></a>基于随机嵌入的跨模态行人重识别方法</h1><h2 id="研究背景、意义与现状"><a href="#研究背景、意义与现状" class="headerlink" title="研究背景、意义与现状"></a>研究背景、意义与现状</h2><h3 id="背景与意义"><a href="#背景与意义" class="headerlink" title="背景与意义"></a>背景与意义</h3><p>行人重识别：行人重识别任务是指在跨摄像头情况下匹配和识别相同的行人个体。  【 任务插图  】 page1</p><p>背景1：随着现在的城市化进程加快，城市人口密度持续上升，各类智能安防系统在城市建设中普及。单纯依赖人工进行图像监控与筛查，已难以满足高效、准确的安全管理需求。</p><p>意义：发展更加高效、智能、可扩展的行人识别技术，成为人工智能在公共安全领域落地应用的重要方向，具有深远的社会价值与现实意义。  page2</p><p>背景2：当前研究多依赖大规模标注数据进行有监督学习，但实际应用中，获取准确身份标签耗时费力，且受数据隐私与采集条件限制，难以大规模获取高质量数据。此外，现有单一图像模态方法难以充分理解和表达目标语义信息，在目标不清晰或缺乏判别特征时表现不佳。  【基于文本的行人重识别任务插图】</p><p>意义：因此，如何在缺乏精确标注信息的前提下，充分利用图像、文本、属性等多模态信息，进行跨模态建模和弱监督学习，已成为当前智能视觉识别技术突破的关键方向之一。 page3</p><h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><p>行人重识别作为计算机视觉领域的重要研究方向，近年来在深度学习技术的推动下取得了显著进展。深度神经网络凭借其强大的特征学习能力，逐渐成为解决 ReID问题的核心工具，并衍生出多种创新方法，涵盖网络架构设计、损失函数优化、局部特征建模以及注意力机制融合等关键技术方向。</p><p>尽管现有的行人重识别方法在公开数据集上取得了较高的性能，但仍然存在以下不足：数据标注成本高，监督学习依赖大规模标注数据，而获取跨摄像头的大量高质量标签数据代价昂贵；特征匹配的确定性假设，大多数方法基于欧式距离或余弦相似度进行匹配，未考虑数据的概率分布，容易受到噪声影响；模型的泛化能力有限，由于行人外观受环境因素影响较大，训练好的模型在不同场景下的泛化能力往往较差；缺乏有效的不确定性建模，传统的行人特征提取方法往往输出固定的特征向量，而不确定性建模可以通过高斯分布表示特征，提供更加丰富的信息，但目前的研究仍较为初步。page4-5</p><h2 id="方法介绍"><a href="#方法介绍" class="headerlink" title="方法介绍"></a>方法介绍</h2><h3 id="问题定义与模型框架"><a href="#问题定义与模型框架" class="headerlink" title="问题定义与模型框架"></a>问题定义与模型框架</h3><p>在弱监督基于文本的行人重识别任务中是用文本去检索符合描述的行人图像。数据集中图像有对应的文本描述，但是相同行人的不同图像没有行人的身份标注。因此在训练时输入包括文本和图像两个模态的数据，为了能够根据文本检索出对应的行人图像，我们的模型框架设计如图  【模型框架图】</p><p>Page6-8</p><p>使用被大量数据预训练过的具有强大跨模态对齐能力的模型 CLIP 的图像编码器和文本编码器来分别提取图像特征和文本特征，为了解决弱监督没有行人标注的问题，我们首先使用图像编码器提取全部图像特征，然后用图像特征对随机嵌入网络 SENet 进行训练，并实现对图像特征的随机嵌入，用嵌入后的图像特征进行聚类得到图像的伪标签，再将伪标签标注到真实的图像和文本，用有伪标签的图像和文本再来训练 CLIP 的图像编码器和文本编码器。在训练 CLIP的图像编码器和文本编码器的时候采用的是跨模态分布匹配损失（CDM)以及跨模态难样本挖掘损失（CHM)，在训练 SENet 的时候采用的是 KL 损失和重构损失。</p><h3 id="SENet"><a href="#SENet" class="headerlink" title="SENet"></a>SENet</h3><p>在使用预训练好的 CLIP 图像编码器提取文本特征后，我们设计了一个随机嵌入网络 Stochastic Embedding Neural Network（SENet）来对图像特征进行随机嵌入。我们采用高斯分布来建模特征，即每个图像的特征被表示为一个均值向量和协方差矩阵。SENet 网络主要分为三部分，编码器、采样层和解码器，如图 3.2 所示。由 CLIP图像编码器得到的 512 维的图像特征被输入到 SENet 中，输出为潜在空间中高斯分布的参数（均值和对数方差），以及重构后的原始特征。【结构图】</p><p>损失函数</p><p>kl损失 重构损失</p><p>page9–10</p><h2 id="实验设置与结果"><a href="#实验设置与结果" class="headerlink" title="实验设置与结果"></a>实验设置与结果</h2><h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><p>page11</p><p>【数据集表】</p><p>【评价指标】</p><h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>page12-13</p><p>【实验结果 表】</p><h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><p>page14</p><p>【检索图示】</p><h2 id="总结与致谢"><a href="#总结与致谢" class="headerlink" title="总结与致谢"></a>总结与致谢</h2><p>page15</p><p>本文针对传统行人重识别方法在特征建模方面忽视不确定性的问题，提出了一种基于不确定性嵌入建模的行人重识别方法。通过引入随机嵌入网络对图像特征进行高斯分布建模，，从而增强了特征表达的鲁棒性和泛化能力。</p><p>未来的研究可进一步探索更高效的概率建模方法。</p><p>我的展示到此结束 ，恳请老师指正。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>其它</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MPDD</title>
+    <link href="/2025/05/07/MPDD/"/>
+    <url>/2025/05/07/MPDD/</url>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="MPDD"><a href="#MPDD" class="headerlink" title="MPDD"></a>MPDD</h1><p>多模态人格感知抑郁症检测</p><h2 id="抑郁症检测任务"><a href="#抑郁症检测任务" class="headerlink" title="抑郁症检测任务"></a>抑郁症检测任务</h2><p>常见信息：视频 音频 文本</p><p>判断是否有抑郁症   分类问题</p><p>二分类  有没有</p><p>三分类 没有 有倾向 有 </p><h2 id="本任务信息"><a href="#本任务信息" class="headerlink" title="本任务信息"></a>本任务信息</h2><p>视频 音频 人格信息</p><p>两个赛道：track1 Elderly    track2 young</p><p>二分类  三分类  五分类</p><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a><strong>数据集</strong></h2><h3 id="视频特征提取"><a href="#视频特征提取" class="headerlink" title="视频特征提取"></a>视频特征提取</h3><p>用1s或5s分段，每十帧截取一张图片，得到语段级的特征</p><p><em>没看懂是每帧一个特征向量还是每段一个特征向量</em></p><p><em>是一帧得到一个特征向量，然后用一个向量数组来表示这一段的视频特征</em></p><p><em>还是一帧得到一个特征向量，然后融合这些特征向量得到一个一维的特征向量来表示这一段的视频特征</em></p><p>特征提取模型</p><p>ResNet-50 1000</p><p>DenseNet-121 1024(track1)  1000(track2)</p><p>OpenFace 709</p><h3 id="音频特征提取"><a href="#音频特征提取" class="headerlink" title="音频特征提取"></a>音频特征提取</h3><p><strong>Wav2vec</strong>512</p><p><strong>MFCCs</strong>64</p><p><strong>OpenSmile</strong>6373</p><h3 id="人格特征提取"><a href="#人格特征提取" class="headerlink" title="人格特征提取"></a>人格特征提取</h3><p> GLM3生成人格描述</p><p>roberta-large 根据人格描述生成人格特征1024维</p><h3 id="代码中的具体data处理流程"><a href="#代码中的具体data处理流程" class="headerlink" title="代码中的具体data处理流程"></a>代码中的具体data处理流程</h3><p>Elderly  118人   即118个id</p><p>两种label的JSON文件</p><h4 id="有人格信息的Label"><a href="#有人格信息的Label" class="headerlink" title="有人格信息的Label"></a>有人格信息的Label</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507182603763.png" alt="image-20250507182603763" style="zoom:33%;" /><h4 id="无人格信息的label"><a href="#无人格信息的label" class="headerlink" title="无人格信息的label"></a>无人格信息的label</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507182754719.png" alt="image-20250507182754719" style="zoom:33%;" /><p><em>不同分段的视频和音频但是对应的抑郁分类都是相同的？</em></p><p><em>缺少的一些id就是被拿去后面作为测试集才放出来吗？</em></p><p><em>音频视频的原文件在哪？可以 根据原文件造数据吗？</em></p><h4 id="人格特征"><a href="#人格特征" class="headerlink" title="人格特征"></a>人格特征</h4><p>根据上面提到的有人格信息的label首先用GLM生成文本描述，然后使用roberta-large生成人格特征。</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507185141082.png" alt="image-20250507185141082"></p><p>实际89人</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507185237540.png" alt="image-20250507185237540"></p><p>人格特征1024维</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507190702810.png" alt="image-20250507190702810"></p><h4 id="音频特征"><a href="#音频特征" class="headerlink" title="音频特征"></a>音频特征</h4><p>1s分段的为例</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507192714970.png" alt="image-20250507192714970"><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507192936801.png" alt="image-20250507192936801"></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507192809664.png" alt="image-20250507192809664"></p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507192828436.png" alt="image-20250507192828436" style="zoom:50%;" /><p><em>也就是一个npy对应的里面存放的11s的音频特征？</em></p><h4 id="视觉特征"><a href="#视觉特征" class="headerlink" title="视觉特征"></a>视觉特征</h4><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507193444891.png" alt="image-20250507193444891" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507193508158.png" alt="image-20250507193508158" style="zoom:33%;" /><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507193848460.png" alt="image-20250507193848460" style="zoom:33%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507193827618.png" alt="image-20250507193827618" style="zoom:33%;" /></p><p>一个npy里17s的图像特征</p><h2 id="baseline-model"><a href="#baseline-model" class="headerlink" title="baseline model"></a>baseline model</h2><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250507211315774.png" alt="image-20250507211315774"></p><p>另外还有一个分类头netEmoCF用来反向传播时使用Focal  loss来训练模型，模型训练一共使用两个损失，一个交叉熵损失一个Focal loss</p><h2 id="track1-baseline"><a href="#track1-baseline" class="headerlink" title="track1 baseline"></a>track1 baseline</h2><table><thead><tr><th>Length</th><th>Task Type</th><th>Audio Feature</th><th>Visual Feature</th><th>w&#x2F; PF (W_F1&#x2F;U_F1)</th><th>w&#x2F; PF (W_Acc.&#x2F;U_Acc.)</th><th>w&#x2F;o PF (W_F1&#x2F;U_F1)</th><th>w&#x2F;o PF (W_Acc.&#x2F;U_Acc.)</th></tr></thead><tbody><tr><td>1s</td><td>Binary</td><td>mfcc</td><td>openface</td><td>85.71 &#x2F; 79.13</td><td>85.40 &#x2F; 84.62</td><td>82.60 &#x2F; 70.89</td><td>69.37 &#x2F; 83.33</td></tr><tr><td>1s</td><td>Ternary</td><td>opensmile</td><td>resnet</td><td>56.48 &#x2F; 55.64</td><td>55.49 &#x2F; 56.41</td><td>54.35 &#x2F; 49.14</td><td>48.93 &#x2F; 55.13</td></tr><tr><td>1s</td><td>Quinary</td><td>opensmile</td><td>densenet</td><td>66.26 &#x2F; 46.66</td><td>45.79 &#x2F; 69.23</td><td>63.85 &#x2F; 44.00</td><td>42.45 &#x2F; 66.67</td></tr><tr><td>5s</td><td>Binary</td><td>opensmile</td><td>resnet</td><td>81.75 &#x2F; 72.37</td><td>75.40 &#x2F; 80.77</td><td>77.90 &#x2F; 66.15</td><td>67.94 &#x2F; 76.92</td></tr><tr><td>5s</td><td>Ternary</td><td>wav2vec</td><td>openface</td><td>58.22 &#x2F; 59.37</td><td>59.62 &#x2F; 57.69</td><td>50.88 &#x2F; 47.59</td><td>46.58 &#x2F; 50.00</td></tr><tr><td>5s</td><td>Quinary</td><td>mfcc</td><td>densenet</td><td>75.62 &#x2F; 58.40</td><td>57.71 &#x2F; 78.21</td><td>73.49 &#x2F; 56.83</td><td>56.98 &#x2F; 75.64</td></tr></tbody></table><p><em>跑出来效果差很多？</em></p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20250508090347147.png" alt="image-20250508090347147"></p><h2 id="track2-baseline"><a href="#track2-baseline" class="headerlink" title="track2 baseline"></a>track2 baseline</h2><table><thead><tr><th>Length</th><th>Task Type</th><th>Audio Feature</th><th>Visual Feature</th><th>w&#x2F; PF (W_F1&#x2F;U_F1)</th><th>w&#x2F; PF (W_Acc.&#x2F;U_Acc.)</th><th>w&#x2F;o PF (W_F1&#x2F;U_F1)</th><th>w&#x2F;o PF (W_Acc.&#x2F;U_Acc.)</th></tr></thead><tbody><tr><td>1s</td><td>Binary</td><td>wav2vec</td><td>openface</td><td>59.96 &#x2F; 59.96</td><td>63.64 &#x2F; 63.64</td><td>55.23 &#x2F; 55.23</td><td>56.06 &#x2F; 56.06</td></tr><tr><td>1s</td><td>Ternary</td><td>mfcc</td><td>densenet</td><td>51.86 &#x2F; 51.62</td><td>49.66 &#x2F; 51.52</td><td>47.95 &#x2F; 43.72</td><td>42.63 &#x2F; 48.48</td></tr><tr><td>5s</td><td>Binary</td><td>opensmile</td><td>resnet</td><td>62.11 &#x2F; 62.11</td><td>62.12 &#x2F; 62.12</td><td>60.02 &#x2F; 60.02</td><td>60.61 &#x2F; 60.61</td></tr><tr><td>5s</td><td>Ternary</td><td>mfcc</td><td>densenet</td><td>48.18 &#x2F; 41.31</td><td>41.71 &#x2F; 50.00</td><td>42.82 &#x2F; 39.38</td><td>41.29 &#x2F; 42.42</td></tr></tbody></table><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>数据    模型   损失</p><p>数据方面:怎么去猜测试集的数据，现在数据集里面是提取完的视觉和音频特征，视频和音频的原文件也没有看到</p><p>模型方面：人格特征是直接拼接到transformer输出的视觉和音频特征融合特征，直接cat会不会太简单了，会不会也和视觉音频特征融合一下比较好</p><p>损失方面：现在用的是一个分类常用的交叉熵损失加上一个帮助区分难分样本的focal loss，感觉可以了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>多模态情感计算</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>icpg代码加入随机嵌入模块</title>
+    <link href="/2025/04/22/icpg%E4%BB%A3%E7%A0%81%E5%8A%A0%E5%85%A5%E9%9A%8F%E6%9C%BA%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9D%97/"/>
+    <url>/2025/04/22/icpg%E4%BB%A3%E7%A0%81%E5%8A%A0%E5%85%A5%E9%9A%8F%E6%9C%BA%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9D%97/</url>
+    
+    <content type="html"><![CDATA[<ul><li><p><input checked="" disabled="" type="checkbox"> 修改icpg模型结构</p><p>将嵌入网络模块添加到icpg结构中</p></li><li><p><input disabled="" type="checkbox"> 修改forward函数</p></li><li><p><input disabled="" type="checkbox"> 修改损失函数</p></li><li><p><input disabled="" type="checkbox"> 修改训练脚本</p></li><li><p><input disabled="" type="checkbox"> 修改配置文件</p></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>深度学习 代码</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>安卓端自动跳广告脚本开发</title>
+    <link href="/2025/03/14/%E5%AE%89%E5%8D%93%E7%AB%AF%E8%87%AA%E5%8A%A8%E8%B7%B3%E5%B9%BF%E5%91%8A%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91/"/>
+    <url>/2025/03/14/%E5%AE%89%E5%8D%93%E7%AB%AF%E8%87%AA%E5%8A%A8%E8%B7%B3%E5%B9%BF%E5%91%8A%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>技术 开发 安卓端 apk 脚本 自动化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2025/03/05/Untitled/"/>
+    <url>/2025/03/05/Untitled/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2025.2-2025.3计划</title>
+    <link href="/2025/02/16/2025-2-2025-3%E8%AE%A1%E5%88%92/"/>
+    <url>/2025/02/16/2025-2-2025-3%E8%AE%A1%E5%88%92/</url>
+    
+    <content type="html"><![CDATA[<p>2025.2.15已返校，大学本科的最后 一个学期了。</p><p>算是保研后的一个gap year了，我醒悟的算是比较晚了，到了这个时候才真正意义上的思考未来，以前都是虚无缥缈的假想，现在是真的考虑自己的未来了。以前高贵的说自己不需要钱，每个月的消费完全可以很低，物欲很低，但现在看那些只是省下来的小钱，实际上永远不会缺少对钱的需求。</p><p>至少最短期的目标是我要存钱买车买房，我的占有欲其实是很强的，很多东西希望是切实属于我自己的，独属于我。</p><p>考虑的自己的未来可能的选择，按可能性由低到高进行列举吧</p><ol><li>读研期间努力科研，发个B或者A刊，反正好一些的，对多模态有深入了解，进一步申博，拼到985去，毕业后进高校当老师。</li><li>研究生期间水一水，研一把c刊一发，满足毕业要求，研二研三老实进公司，选个开发岗，一直打灰，毕业后留公司</li><li>研究生期间发C刊，研二研三边摸鱼边学习形策申论，准备公务员考试</li><li>研究生考完教资，收集物理高中教师招聘信息，应聘高中物理老师</li><li>研究生努力发论文，边学习嵌入式相关的知识，做嵌入式相关的项目，研二研三努力往嵌入式方向靠，从事嵌入式相关岗位。</li></ol><p>接下来的一个月</p><ul><li>准备教资</li><li>准备毕设</li><li>学习数电模电基础知识</li><li>出去旅游，结交朋友</li><li>向enfj靠拢</li><li>找个新的家教</li><li>做视频，做有意思的硬件项目</li></ul><p>涨球涨球涨球！华物杯看我大展身手:)</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日常</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>研究生三年规划</title>
+    <link href="/2025/02/16/%E7%A0%94%E7%A9%B6%E7%94%9F%E4%B8%89%E5%B9%B4%E8%A7%84%E5%88%92/"/>
+    <url>/2025/02/16/%E7%A0%94%E7%A9%B6%E7%94%9F%E4%B8%89%E5%B9%B4%E8%A7%84%E5%88%92/</url>
+    
+    <content type="html"><![CDATA[<p>根据你的背景、兴趣和困惑，我为你梳理了以下几个方向的建议，希望能帮助你找到适合自己的发展路径：</p><hr><h3 id="一、发挥兴趣优势：硬件-电子工程方向"><a href="#一、发挥兴趣优势：硬件-电子工程方向" class="headerlink" title="一、发挥兴趣优势：硬件&#x2F;电子工程方向"></a><strong>一、发挥兴趣优势：硬件&#x2F;电子工程方向</strong></h3><p>你的兴趣在电路设计、动手实践，且物理基础扎实，这是转型硬件领域的核心优势。以下是具体建议：</p><ol><li><strong>补充专业知识</strong>  <ul><li><strong>自学基础课程</strong>：通过慕课（如Coursera、edX）学习《模拟电路》《数字电路》《嵌入式系统》等课程，重点掌握PCB设计（如Altium Designer）、单片机开发（Arduino&#x2F;STM32）。  </li><li><strong>实践项目</strong>：从简单电路开始（如LED控制、传感器应用），逐步参与开源硬件项目（如树莓派扩展板设计），积累作品集。</li></ul></li><li><strong>利用现有资源转型</strong>  <ul><li><strong>调整研究方向</strong>：尝试与导师沟通，将行人重识别课题与硬件结合（例如开发基于嵌入式设备的识别系统），或争取参与实验室的硬件相关课题。  </li><li><strong>联合培养机会</strong>：在东风商用车技术中心期间，主动接触车载电子、自动驾驶硬件模块等项目，积累工业级经验。</li></ul></li><li><strong>就业准备</strong>  <ul><li><strong>实习</strong>：瞄准武汉的硬件企业（如长江存储、烽火通信）、智能硬件公司或车企（如东风汽车电子部门），争取实习机会。  </li><li><strong>证书</strong>：考取《电子设计工程师》等证书提升竞争力。</li></ul></li></ol><hr><h3 id="二、软硬件结合方向：嵌入式开发-物联网"><a href="#二、软硬件结合方向：嵌入式开发-物联网" class="headerlink" title="二、软硬件结合方向：嵌入式开发&#x2F;物联网"></a><strong>二、软硬件结合方向：嵌入式开发&#x2F;物联网</strong></h3><p>计算机背景与硬件兴趣的结合点，适合INFP的创造性需求：</p><ul><li><strong>学习路径</strong>：掌握Linux驱动开发、RTOS实时系统（如FreeRTOS），熟悉通信协议（CAN总线、MQTT）。  </li><li><strong>职业选择</strong>：嵌入式软件工程师、物联网系统架构师，武汉的光电子和汽车产业对此类人才需求较大。</li></ul><hr><h3 id="三、职业路径备选方案"><a href="#三、职业路径备选方案" class="headerlink" title="三、职业路径备选方案"></a><strong>三、职业路径备选方案</strong></h3><ol><li><strong>教育行业</strong>  <ul><li><strong>优势</strong>：师范背景+技术基础，可应聘武汉的中学信息技术&#x2F;通用技术教师，或高职院校讲师。  </li><li><strong>风险应对</strong>：选择国际化学校或民办学校，通常对性取向包容度更高；积累教学经验后可通过在线教育兼职增加收入。</li></ul></li><li><strong>考公考编</strong>  <ul><li><strong>推荐岗位</strong>：技术类岗位（如工信局、质检中心）或高校行政岗，人际关系压力较小。  </li><li><strong>地域选择</strong>：武汉作为新一线城市，体制内环境相对宽松，可优先考虑开发区单位（如东湖高新区）。</li></ul></li><li><strong>过渡性选择</strong>  <ul><li><strong>短期开发岗</strong>：进入车企&#x2F;硬件企业的软件开发部门（如车载系统开发），逐步内部转岗至硬件团队。  </li><li><strong>副业探索</strong>：通过硬件DIY教程创作、技术测评视频等自媒体实现兴趣变现，为经济独立铺路。</li></ul></li></ol><hr><h3 id="四、心理与生活建议"><a href="#四、心理与生活建议" class="headerlink" title="四、心理与生活建议"></a><strong>四、心理与生活建议</strong></h3><ol><li><strong>经济独立计划</strong>  <ul><li><strong>硬件接单</strong>：在闲鱼&#x2F;极客论坛承接小型电路设计项目，初期报价可低于市场价（如500元&#x2F;单）积累口碑。  </li><li><strong>技能变现</strong>：利用师范背景做家教（物理&#x2F;信息技术课时费约80-150元&#x2F;小时）。</li></ul></li><li><strong>家庭关系处理</strong>  <ul><li><strong>阶段性策略</strong>：就业初期以“工作忙”为由减少家庭干涉，同时建立“好友支持圈”（加入武汉本地LGBTQ+社群）。  </li><li><strong>长远规划</strong>：争取进入外企或科技公司（如武汉的思科、IBM分公司），通常企业文化更包容。</li></ul></li></ol><hr><h3 id="五、行动时间表"><a href="#五、行动时间表" class="headerlink" title="五、行动时间表"></a><strong>五、行动时间表</strong></h3><ul><li><strong>研一（当前）</strong>：  <ul><li>3个月内完成《模拟电路》慕课学习+设计第一个PCB作品。  </li><li>与导师协商研究方向调整可能性。</li></ul></li><li><strong>研二（东风联合培养）</strong>：  <ul><li>主动申请参与车载电子相关项目，积累工业经验。  </li><li>考取Altium Designer官方认证。</li></ul></li><li><strong>研三秋招</strong>：  <ul><li>投递硬件工程师岗位（优先选择有明确培养体系的企业）。  </li><li>同步准备教师编制考试（保底选择）。</li></ul></li></ul><hr><p>你的核心优势在于<strong>动手能力+跨领域可能性</strong>，不必被当前专业限制。硬件行业更看重项目经验而非纯理论知识，通过6-12个月的针对性积累完全可能成功转型。武汉的光电子、汽车产业链完善，且生活成本可控，是适合你长期发展的城市。保持对兴趣的坚持，经济独立和职业成就感会为你赢得更多自主权。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>规划</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>cursor+vscode+ssh连不上服务器</title>
+    <link href="/2024/12/27/cursor-vscode-ssh%E8%BF%9E%E4%B8%8D%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <url>/2024/12/27/cursor-vscode-ssh%E8%BF%9E%E4%B8%8D%E4%B8%8A%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<p>bug记录</p><p>使用cursor+vscode+ssh远程连接服务器一直停留在downloading vscode server这一步。</p><p>出现bug的几个情况和原因</p><p>1.一直在downloading vscode server就是没有开始下载</p><p>本地网不好，没有翻墙</p><p>解决方法：不知道怎么好的网，然后cursor方面是在settings里面去重新import一下vscode的配置，可能是cursor的设置里面的代理某些位置有问题，尝试卸载重新下载，最后是重新import配置好的。</p><p>不过现在还是一直有一个问题，cursor里面的vscode不能下载插件，加载不出来，但如果不能联网，代码提示prompt这些功能又是好的，好奇怪</p><p>2.反复downloading vscode server，每次解压缩都失败了</p><p>这个没办法，服务器的空间不够，每次这些配置都是默认放在了&#x2F;home&#x2F;yyh下面，但是家目录下根本没有空间了。</p><p>解决方法：把配置tmp等文件迁移到&#x2F;mnt&#x2F;disk1&#x2F;yyh下，并且把链接指过来</p><p><code>mkdir -p /mnt/disk1/yyh/cursor-server</code></p><p><code>mv /home/yyh/.cursor-server /mnt/disk1/yyh/cursor-server</code></p><p><code>ln -s /mnt/disk1/yyh/cursor-server /home/yyh/.cursor-server</code></p><p>ps:我以为既然是从vscode直接导入的配置到cursor，cursor的配置就不用再下载了，没想到还是需要下载到服务器里。</p><p>折腾了一天半了，真浪费时间找这个bug</p><p>【cursor是ai+vscode vscode加上copilot是vscode+ai】顺序不同，体验不同</p><p>vscode和cursor居然可以同时两个脸上服务器，同时改代码，不卡同一用户同时用ssh登录。</p><p>不过想想也不能卡，我有时也会同时用终端登一下用scp传个文件，这也是ssh登录的。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>bug</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>蒙特卡洛近似计算</title>
+    <link href="/2024/12/21/Approximation/"/>
+    <url>/2024/12/21/Approximation/</url>
+    
+    <content type="html"><![CDATA[<p>Monte Carlo Approximation</p><p>方法：随机抽样来估计数学问题解</p><p>核心思想：通过随机生成大量样本来近似计算复杂的积分或期望值</p><p>原理：大数定理，用样本估计整体</p><p>应用：积分计算、期望计算</p><p>embedding</p><p>传统方法嵌入就是嵌入为一个维数固定的向量</p><p>传统的嵌入方法，（确定嵌入，点嵌入）计算嵌入后的z1 z2的距离经典的就是使用欧几里得距离的对比损失，然后在HIB这篇文章中对对比损失改进了一下，修改成了软对比。</p><p>现在很流行这种，<strong>把离散的计算变得连续</strong>。这个趋势也是符合自然规律得，是很合理得，因为毕竟周围环境中得东西实际上都是连续得。</p><p>离散化很容易，一般打上的标签就都是离散的，数据处理时也可以通过设置一个阈值，区分开来离散化。</p><p>加权是一种变得连续的方法，之前得krnn那篇文章中，</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221193550678.png" alt="image-20241221193550678" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221193612160.png" alt="image-20241221193612160" style="zoom:50%;" /><p>把图片相关性编码成为向量就有由hard到soft的过程，所以由距离给权重<br>$$<br>e^{-d}<br>$$<br>是一个很好用的函数</p><p>还有sigmoid也是个好用的函数</p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221194000052.png" alt="image-20241221194000052" style="zoom:50%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221194131543.png" alt="image-20241221194131543" style="zoom:30%;" /><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221194535940.png" alt="image-20241221194535940" style="zoom:33%;" /><p>基于概率的嵌入是嵌入为一个不确定的概率分布<br>$$</p><p>$$</p><p>$$</p><p>$$</p><p>在modeling uncertainty with hedged instance embedding这篇文章中的概率嵌入部分就有：</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241221190650689.png" alt="image-20241221190650689"><br>$$<br>\sigma(x)&#x3D;\frac{1}{1+e^{-x}}<br>$$</p><p>好了，第一篇论文得前面点嵌入部分基本都看懂了，公式也比较熟悉了。下课，打球！</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>概率嵌入</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ML的发展历史</title>
+    <link href="/2024/10/29/ML%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/"/>
+    <url>/2024/10/29/ML%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/</url>
+    
+    <content type="html"><![CDATA[<p>所以一个模型就相当于一个公式，这个公式可以对不同的输入计算不同的输出，公式里面有很多参数，模型的具体组织形式是很多个节点形成一个层，然后层与层连接形成网络，节点有权重w和偏置b，如果层与层间直接连接就相当于线性的了，但是如果加上激活函数就可以是非线性的了。然后通过预测结果与实际结果间的误差，使用反向传播算法来训练模型，是这样吗</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Transformer</title>
+    <link href="/2024/10/29/Transformer/"/>
+    <url>/2024/10/29/Transformer/</url>
+    
+    <content type="html"><![CDATA[<p>classic model-Transformer</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>paper reading</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>特征空间</title>
+    <link href="/2024/10/29/%E8%B6%85%E5%B9%B3%E9%9D%A2/"/>
+    <url>/2024/10/29/%E8%B6%85%E5%B9%B3%E9%9D%A2/</url>
+    
+    <content type="html"><![CDATA[<p>representation learning</p><p>论文[<a href="https://yiyibooks.cn/arxiv/2005.10242v10/index.html">2005.10242] Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere</a></p><p><a href="D:\Downloads\多模态机器学习.pdf">D:\Downloads\多模态机器学习.pdf</a></p><p>数学知识</p><p>超hyper的意思就是嵌入在比自己高一维的空间里，比如在三维空间里定义一个二维平面，在一个二维空间里定义一个一维直线。</p><p>嵌入在n维空间里的n-1维子空间。</p><p>hyper这个词很有意思啊，科幻里面很多这种概率，三体里的三体人，高一维的视角就和开了上帝视角一样。星际穿越等等，很多科幻电影都有这种思想。</p><p>你在一维里定义的一个直线，从直线上的一点到另一点，可能弯曲在二维空间里，在二维视角下完全有更近的走法。</p><p>超曲面hypersurface</p><p>n维空间中嵌入一个n-1维的曲面，可以是开放的，可以是封闭的，可以是无曲率的（平面），可以是有曲率的。</p><p>超平面hyperplane</p><p>一个n维空间切开分成两半，分成两个半空间，形成n-1维的子空间。</p><p>n维空间中的超平面的线性方程表达式<br>$$<br>a_1x_1+a_2x_2+…+a_nx_n+b&#x3D;0<br>$$<br>一个n维空间中多了一个约束方程，就降了一维（线性代数知识）</p><p>这个方程表达的就是嵌入在n维空间里的超平面，这个超平面的法向量是(a1,…an)，b是偏置项</p><p>edg:三维空间里的2x+3y+4z&#x3D;0表示的是一个二维平面，这个平面就是嵌入在三维空间里的超平面。</p><p>应用：超平面用在分类问题<strong>支持向量机SVM中，将不同类别的数据点分离开，选择合适的超平面，最大化不同类别的间隔，提高分类问题的准确性</strong>（具体细节待学习）</p><p>超球面hypersphere</p><p>另一种特殊的超曲面，超球面hypersphere是n维球体n-sphere的表面或边界，一维球面是二维空间里的圆，二维球面是三维空间里球体的表面，高于二维的球面称为超球面。</p><p>一个n维空间，定义一个<br>$$<br>x_1^2+x_2^2+x_3^2+…+x_n^2&#x3D;R^2<br>$$<br>的n-1维的球面就是超球面，补一点，这就算是欧几里得距离公式。</p><p>现在特征空间很多都用超球面，对比学习里面正负样本就是在hypersyphere上，拉远和拉近，超球面上的特征分布讲究alignment和uniformity,详见论文图</p><p><strong>距离公式</strong></p><p>欧几里得距离Euclidean distance</p><p>空间中的绝对距离，二维平面里<br>$$<br>d&#x3D;\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}<br>$$<br>也称欧式距离。</p><p>余弦距离cosine similarity<br>$$<br>cosine&#x3D;\frac{\boldsymbol{A\cdot{B}}}{||\boldsymbol{A}||||\boldsymbol{B}||}<br>$$<br>余弦距离非常常用，已经看过很多次了，因为现在很多都是嵌入在超球面的，而超球面都是norm后的标准球面，空间绝对距离没有意义了，可以只看角度</p><p>曼哈顿距离manhatten distance<br>$$<br>d&#x3D;|x_2-x_1|+|y_2-y_1|<br>$$<br>切比雪夫距离Chebyshev Distance<br>$$<br>d&#x3D;max(|x_2-x_1|,|y_2-y1|)<br>$$<br>闵可夫斯基距离（Minkowski Distance）： 闵可夫斯基距离是欧几里得距离和曼哈顿距离的一般化</p><p>马氏距离：考虑了数据的协方差，是欧几里得距离的一种加权版本</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>乒乓日记3</title>
+    <link href="/2024/10/25/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B03/"/>
+    <url>/2024/10/25/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B03/</url>
+    
+    <content type="html"><![CDATA[<p>yesterday evening played pingpang with xiaomi, a fulfilling day again. particularly, my forehand improved and can loop against backspin stably. yeah, that’s perfect!</p><p>still, my backhand’s problem is still evident, can’t defend the topspin balls. and my backhand push is not as good as my forehand. At the moment, I’m more proficient at slicing the ball, but if it’s a strong topspin, i easily make mistakes when chopping. So i really need to improve my backhand now, at least to improve my backhand pushing back ball. even if i can’t initiate a high quality, i should be able to create opportunities for my forehand. After all, it’s about gaining the upper hand with the backhand and scoring with the forehand.</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>乒乓球</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>乒乓日记2</title>
+    <link href="/2024/10/23/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B02/"/>
+    <url>/2024/10/23/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B02/</url>
+    
+    <content type="html"><![CDATA[<p>Luckily i havn’t went home today, xiaofang sis invited me to play table tennis this afternoon. This is really an exciting news for me cause i have been looking forward to this since this new term. Well, this time my forehand gave a good performance, my backhand was just as before, a poor hit rate, but exceeded expectations a couple of times.</p><p>sis said she could come more frequently to play the ball during this time, this is awesome! oops.</p><p>i am really happy to hear this news.</p><p>a nice day playing ball again.</p><p>by the way, i have bought some bicycle sticker home and maybe this week i will ride bike home and decorate my bike. i will get a nearly new bike then, can’t help being excited when think of this idea.</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>乒乓球</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>进组第一次组会</title>
+    <link href="/2024/10/23/%E8%BF%9B%E7%BB%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/"/>
+    <url>/2024/10/23/%E8%BF%9B%E7%BB%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
+    
+    <content type="html"><![CDATA[<p>a sleepy morning, yesterday i sleep at half past two o’clock and then i woke up cause i have drunk so much water and want to go to the bathroom. only five more hours or so for me to sleep.</p><p>but the group meeting is not bad, the senior sister have given a clear presentation and i can almost get 70 percent content of it.</p><p>Presenter :MaMengyuan</p><p>Attender :LiuSIjia(also like me , a Master of Engineering)</p><p>Recording:</p><p>it is all about sentiment analysis, clearly speaking is about depression detection.</p><p>[ppt](F:\组会\第一次组会\Multimodal  Depression Detection Based on Vlog.pptx)</p><p>Problem:</p><p>here is where i don’t understand much.</p><p>why this is called six dimesion?</p><p>答：head pose 是6维向量的原因是空间中 的坐标xyz是三维的，加上旋转需要三个角度表示 yaw, pitch, roll和高数里面的求球体的三重积分思路是一样的。因此加起来是6维。</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241023112908856.png" alt="image-20241023112908856"></p><p>D-vlog(论文还可以是创立一个数据集然后再提出一个模型吗，这感觉有点亏啊，感觉建立一个数据集的工作量就够了，咋还得再提出一个方法)</p><p>LMVD（large-scale multimodel vlog dataset)</p><p>数据规模和来源，各视频平台1475个subjects参与者和1823个samples样本，一共214小时数据</p><p>多模态：音频模态A+视频模态V</p><p>what is lstm, transformer?</p><p>remember this normalization trick</p><p><img src="C:\Users\klull\AppData\Roaming\Typora\typora-user-images\image-20241023113041775.png" alt="image-20241023113041775"></p><p>why the count of frame L is set as 300, 300 is 300&#x2F;25 seconds?</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>组会</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>乒乓日记</title>
+    <link href="/2024/10/22/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B0/"/>
+    <url>/2024/10/22/%E4%B9%92%E4%B9%93%E6%97%A5%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>three people play in turn</p><p>tonight play table tennis with chenzixin and the master. the performance of my forehand is not bad, but the backhand really underperformed, it has missed so many balls and even though made the ball to the table, the quality was quite poor and i was easily caught off guard by a sharp angle to my forehand side.</p><p>so i really need to improve my backhand against topsin.</p><p>a good night, intersting, having a good mood.</p><p>fight on. ^_^</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>乒乓球</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>骑行计划</title>
+    <link href="/2024/10/22/%E9%AA%91%E8%A1%8C%E8%AE%A1%E5%88%92/"/>
+    <url>/2024/10/22/%E9%AA%91%E8%A1%8C%E8%AE%A1%E5%88%92/</url>
+    
+    <content type="html"><![CDATA[<p>These days the weather is not bad, no sun and cool. This is a good chance for me to achieve my long expected goal. riding back home!!! this is awesome. </p><p>It will take 5 hours or so. I would pack three bottles of yuanqisenlin of 900ml.</p><p>so today i will repair my bike and put on the camera holder. tonight i will go to play pingpang and tomorrow after having anticipated the weekly group meeting, i then will set up at about eleven o’clock after having the dinner, some pancake, making sure i will not feel hungry in the journey.</p><p>i can’t help thing how exciting it will be!</p><p>i will record this journey using my camera, there will also be so many sights. great!</p><p>supplement </p><p>10.23.11:04</p><p>well today is a good day, a gentle sun casting a warm glow, but regrettably i was so sleepy cause i go to bed so late yesterday. i have tried so many times to go to bed early but fail all the time.i promise i will gradually go to bed earlier. </p><p>so i have to put off the riding schedule, may be the yuandan i will do this, but i will do this for sure in this year, cause this is the last year during my undergraduate life. i can’t make it a regret for me not having a impulsive thing in my college life.</p><p>and before my riding journey, i will repair my bike, mount the camera holder on the bicycle, and decorate it in cool white sticker.</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>big thing</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>pingpangpick</title>
+    <link href="/2024/10/20/pingpangpick/"/>
+    <url>/2024/10/20/pingpangpick/</url>
+    
+    <content type="html"><![CDATA[<p>idea:在看论文代码的时候突然想自己完完整整用Pytorch写一套模型代码来使用。正好学的很多视觉模型，来训练一个识别乒乓球的模型。之前做过一个建议机械臂的项目，然后还买了一套小车没有使用过，模型运行在arduio上肯定是不行的，正好有废弃手机利用一下。</p><p>material:一部废弃手机，一个亚克力小车，一个机械钳，一个arduino，然后其它细节元器件</p><p>软件部分：训练好一个识别乒乓球的视觉模型，并且开发一个手机app，把模型部署到手机上，并且想办法把手机和单片机建立通信，蓝牙通信，小车端接受手机指令，控制车轮电机，机械钳舵机</p><p>硬件部分：小车配置必要传感器，摄像头，距离传感器，辅助乒乓球的定位与识别</p><p>设计电源部分，计算功率，能够有足够续航</p><p>说干就干</p><p>step1 训练模型</p><p>完了好像不需要使用深度学习模型，opencv就可以了</p><p>step2 开发app</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>电子作品</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>prompt engineer</title>
+    <link href="/2024/10/12/promptengineer/"/>
+    <url>/2024/10/12/promptengineer/</url>
+    
+    <content type="html"><![CDATA[<p><em>论文阅读清单</em></p><ul><li><input checked="" disabled="" type="checkbox"> Learning Transferable Visual Models From Natural Language Supervision</li><li><input checked="" disabled="" type="checkbox"> Learning to Prompt for Vision-Language Models</li><li><input disabled="" type="checkbox"> Conditional Prompt Learning for Vision-Language Models </li><li><input disabled="" type="checkbox"> A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</li></ul><p>复现论文</p><p>A Pedestrian is Worth One Prompt: Towards Language Guidance Person Re-Identification</p>]]></content>
     
     
     
